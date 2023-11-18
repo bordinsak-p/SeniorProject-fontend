@@ -11,7 +11,7 @@ import { DashboardComponent } from './dashboard.component';
                 
             //     }
             // ] 
-        }
+        },
     ])],
     exports: [RouterModule]
 })

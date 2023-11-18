@@ -1,0 +1,58 @@
+<p-dialog [(visible)]="visible" [modal]="true" [style]="{ width: '27vw'}" [draggable]="false" [closable]="true">
+    <ng-template pTemplate="header">
+        <h4 style="width: 100%;">
+           สมัครสมาชิก
+        </h4>
+    </ng-template>
+    <ng-template pTemplate="body">
+        <div class="grid" [formGroup]="userForm">
+            <div class="col-12 pb-0">
+                <label for="email1" class="block text-900 mb-2">
+                    อีเมล<span style="color: red;">*</span>
+                </label>
+                <input id="email1" type="email" formControlName="email" placeholder="Email address" pInputText class="w-full" style="padding:1rem" [class.ng-invalid]="">    
+                <div class="flex justify-content-end mb-2">
+                    <small class="text-red-500 mt-1" *ngIf="">กรุณากรอกอีเมลที่ถูกต้อง</small>
+                </div>
+            </div>
+            <div class="col-12 pb-0">
+                <label for="username" class="block text-900 mb-2">
+                    ชื่อผู้ใช้งาน<span style="color: red;">*</span>
+                </label>
+                <input id="username" type="text" formControlName="username" placeholder="Username" pInputText class="w-full" style="padding:1rem" [class.ng-invalid]="">    
+                <div class="flex justify-content-end mb-2">
+                    <small class="text-red-500 mt-1" *ngIf="">กรุณากรอกอีเมลที่ถูกต้อง</small>
+                </div>
+            </div>
+            <div class="col-12 pb-0">
+                <label for="password" class="block text-900 mb-2">
+                    รหัสผ่าน<span style="color: red;">*</span>
+                </label> 
+                <input id="password" type="password" formControlName="password" placeholder="Password" pInputText class="w-full" style="padding:1rem" [class.ng-invalid]="">    
+                <div class="flex justify-content-end mb-2">
+                    <small class="text-red-500 mt-1" *ngIf="">กรุณากรอกอีเมลที่ถูกต้อง</small>
+                </div>
+            </div>
+            <div class="col-12 pb-0">
+                <label for="firstname" class="block text-900 mb-2">
+                    ชื่อจริง<span style="color: red;">*</span>
+                </label>
+                <input id="firstname" type="text" formControlName="firstname" placeholder="Firstname" pInputText class="w-full" style="padding:1rem" [class.ng-invalid]="">    
+                <div class="flex justify-content-end mb-2">
+                    <small class="text-red-500 mt-1" *ngIf="">กรุณากรอกอีเมลที่ถูกต้อง</small>
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="lastname" class="block text-900 mb-2">
+                    นามสกุล<span style="color: red;">*</span>
+                </label>
+                <input id="lastname" type="text" formControlName="lastname" placeholder="Lastname" pInputText class="w-full" style="padding:1rem" [class.ng-invalid]="">    
+                <div class="flex justify-content-end mb-2">
+                    <small class="text-red-500 mt-1" *ngIf="">กรุณากรอกอีเมลที่ถูกต้อง</small>
+                </div>
+            </div>
+        </div>
+        <button pButton pRipple label="ยืนยัน" class="w-full text-xl" (click)="onRegister()"></button>
+        <button pButton pRipple label="ยกเลิก" class="w-full text-xl mt-2 dre-pink" (click)="onClose()"></button>
+    </ng-template>
+</p-dialog>

@@ -16,13 +16,16 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Home',
                 items: [
-                    { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
+                    { label: 'หน้าหลัก', icon: 'pi pi-fw pi-home', routerLink: ['/'] },
                 ]
             },
             {
-                label: 'UI Components',
+                label: 'Managements',
                 items: [
-                    { label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout'] },
+                    { label: 'จัดการข้อมูลสมาชิก', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout'] },
+                    { label: 'จัดการข้อมูลครุภัณฑ์', icon: 'pi pi-fw pi-server', routerLink: ['/uikit/formlayout'] },
+                    { label: 'จัดการข้อมูลการแจ้งซ่อม', icon: 'pi pi-fw pi-wrench', routerLink: ['/uikit/formlayout'] },
+                    { label: 'สร้าง QR Code', icon: 'pi pi-fw pi-qrcode', routerLink: ['/uikit/formlayout'] },
                 ]
             },
         ];
