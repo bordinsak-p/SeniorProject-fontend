@@ -10,45 +10,54 @@
                 <label for="email1" class="block text-900 mb-2">
                     อีเมล<span style="color: red;">*</span>
                 </label>
-                <input id="email1" type="email" formControlName="email" placeholder="Email address" pInputText class="w-full" style="padding:1rem" [class.ng-invalid]="">    
+                <input id="email1" type="email" formControlName="email" placeholder="Email address" pInputText class="w-full" style="padding:1rem" [class.ng-invalid]="userForm.get('email').invalid">    
                 <div class="flex justify-content-end mb-2">
-                    <small class="text-red-500 mt-1" *ngIf="">กรุณากรอกอีเมลที่ถูกต้อง</small>
+                    <small class="text-red-500 mt-1" *ngIf="userForm.get('email').invalid && userForm.get('email').dirty">กรุณากรอกอีเมลที่ถูกต้อง</small>
                 </div>
             </div>
             <div class="col-12 pb-0">
                 <label for="username" class="block text-900 mb-2">
                     ชื่อผู้ใช้งาน<span style="color: red;">*</span>
                 </label>
-                <input id="username" type="text" formControlName="username" placeholder="Username" pInputText class="w-full" style="padding:1rem" [class.ng-invalid]="">    
+                <input id="username" type="text" formControlName="username" [maxlength]="30" placeholder="Username" pInputText class="w-full" style="padding:1rem" [class.ng-invalid]="userForm.get('username').dirty && userForm.get('username').invalid">    
                 <div class="flex justify-content-end mb-2">
-                    <small class="text-red-500 mt-1" *ngIf="">กรุณากรอกอีเมลที่ถูกต้อง</small>
+                    <small class="text-red-500 mt-1" *ngIf="userForm.get('username').dirty && userForm.get('username').invalid">กรุณากรอกชื่อผู้ใช้งาน</small>
                 </div>
             </div>
             <div class="col-12 pb-0">
                 <label for="password" class="block text-900 mb-2">
                     รหัสผ่าน<span style="color: red;">*</span>
                 </label> 
-                <input id="password" type="password" formControlName="password" placeholder="Password" pInputText class="w-full" style="padding:1rem" [class.ng-invalid]="">    
+                <input id="password" type="password" formControlName="password" placeholder="Password" pInputText class="w-full" style="padding:1rem" [class.ng-invalid]="userForm.get('password').dirty && userForm.get('password').invalid">    
                 <div class="flex justify-content-end mb-2">
-                    <small class="text-red-500 mt-1" *ngIf="">กรุณากรอกอีเมลที่ถูกต้อง</small>
+                    <small class="text-red-500 mt-1" *ngIf="userForm.get('password').dirty && userForm.get('password').invalid">กรุณากรอกรหัสผ่าน</small>
+                </div>
+            </div>
+            <div class="col-12 pb-0">
+                <label for="Confirm password" class="block text-900 mb-2">
+                    ยืนยันรหัสผ่าน<span style="color: red;">*</span>
+                </label> 
+                <input id="password1" type="password" formControlName="confirmPassword" placeholder="Confirm password" pInputText class="w-full" style="padding:1rem" [class.ng-invalid]="userForm.get('password').dirty && userForm.get('password').invalid">    
+                <div class="flex justify-content-end mb-2">
+                    <small class="text-red-500 mt-1" *ngIf="userForm.get('password').dirty && userForm.get('password').invalid || userForm.get('password').value != userForm.get('confirmPassword').value">กรุณากรอกรหัสผ่าน</small>
                 </div>
             </div>
             <div class="col-12 pb-0">
                 <label for="firstname" class="block text-900 mb-2">
                     ชื่อจริง<span style="color: red;">*</span>
                 </label>
-                <input id="firstname" type="text" formControlName="firstname" placeholder="Firstname" pInputText class="w-full" style="padding:1rem" [class.ng-invalid]="">    
+                <input id="firstname" type="text" formControlName="firstname" [maxlength]="30" placeholder="Firstname" pInputText class="w-full" style="padding:1rem" [class.ng-invalid]="userForm.get('firstname').dirty && userForm.get('firstname').invalid">    
                 <div class="flex justify-content-end mb-2">
-                    <small class="text-red-500 mt-1" *ngIf="">กรุณากรอกอีเมลที่ถูกต้อง</small>
+                    <small class="text-red-500 mt-1" *ngIf="userForm.get('firstname').dirty && userForm.get('firstname').invalid">กรุณากรอกชื่อจริง</small>
                 </div>
             </div>
             <div class="col-12">
                 <label for="lastname" class="block text-900 mb-2">
                     นามสกุล<span style="color: red;">*</span>
                 </label>
-                <input id="lastname" type="text" formControlName="lastname" placeholder="Lastname" pInputText class="w-full" style="padding:1rem" [class.ng-invalid]="">    
+                <input id="lastname" type="text" formControlName="lastname" [maxlength]="30" placeholder="Lastname" pInputText class="w-full" style="padding:1rem" [class.ng-invalid]="userForm.get('lastname').dirty && userForm.get('lastname').invalid">    
                 <div class="flex justify-content-end mb-2">
-                    <small class="text-red-500 mt-1" *ngIf="">กรุณากรอกอีเมลที่ถูกต้อง</small>
+                    <small class="text-red-500 mt-1" *ngIf="userForm.get('lastname').dirty && userForm.get('lastname').invalid">กรุณากรอกนามสกุล</small>
                 </div>
             </div>
         </div>

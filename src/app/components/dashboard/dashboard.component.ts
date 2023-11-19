@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import { AuthService } from 'src/shared/auth.service';
 
 @Component({
     templateUrl: './dashboard.component.html',
@@ -8,7 +9,8 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
 export class DashboardComponent implements OnInit {
     items!: MenuItem[];
     
-    constructor( public layoutService: LayoutService) {
+    constructor( public layoutService: LayoutService, private auth: AuthService) {
+      console.log(auth.getUserData());
       
     }
 

@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../service/auth.service';
 import { MessageService } from 'primeng/api';
+import { UsersService } from '../service/users.service';
 
 @Component({
     selector: 'app-resgiter',
@@ -16,7 +16,7 @@ export class ResgiterComponent implements OnInit {
 
     constructor(
         private fb: FormBuilder,
-        private service: AuthService,
+        private service: UsersService,
         private mesg: MessageService
     ) {}
 
@@ -26,11 +26,12 @@ export class ResgiterComponent implements OnInit {
 
     onInitForm() {
         this.userForm = this.fb.group({
-            email: [null],
-            username: [null],
-            password: [null],
-            firstname: [null],
-            lastname: [null],
+            email: [null, [Validators.required, Validators.email]],
+            username: [null, [Validators.required]],
+            password: [null , [Validators.required]],
+            confirmPassword: [null , [Validators.required]],
+            firstname: [null , [Validators.required]],
+            lastname: [null , [Validators.required]],
             role: [null],
         });
     }
@@ -38,15 +39,22 @@ export class ResgiterComponent implements OnInit {
     onRegister() {
         const payload = this.userForm.getRawValue();
         payload.role = "user"
-        this.service.register(payload).subscribe((res) => {
-            this.mesg.add({ severity: 'success', summary: '', detail: 'สมัครสมาชิกสำเร็จ' })
-            this.userForm.reset();
-            this.visible = false
-        });
+
+        if(payload.password != payload.confirmPassword) {
+            this.mesg.add({ severity: 'error', summary: 'รหัสไม่ถูกต้อง', detail: 'กรุณากรอกรหัสของท่านให้ถูกต้อง' })
+        } else {
+            this.service.register(payload).subscribe((res) => {
+                this.mesg.add({ severity: 'success', summary: 'บักทึกสำเร็จ', detail: 'สมัครสมาชิกสำเร็จ' })
+                this.userForm.reset();
+                this.visible = false
+            });
+        }
+
     }
 
     onClose() {
         this.userForm.reset()
+        this.userForm.clearValidators()
         this.visible = false
     }
 }
