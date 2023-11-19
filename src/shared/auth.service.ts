@@ -13,20 +13,6 @@ export class AuthService {
 
     constructor(private http: HttpClient) {}
 
-    // login(credentials: { email: string, password: string }): Observable<any> {
-    //   return this.http.post(`${environment.baseUrl}login`, credentials).pipe(
-    //     tap((response: any) => {
-    //       if (response.success) {
-    //         const token = response.token;
-    //         localStorage.setItem('token', token);
-    //         const decodedToken = jwtDecode(token);
-    //         this.userData$.next(decodedToken);
-    //         this.loggedIn$.next(true);
-    //       }
-    //     })
-    //   );
-    // }
-
     login(credentials: { email: string; password: string }): Observable<any> {
         return this.http.post(`${environment.baseUrl}login`, credentials).pipe(
             tap((response: any) => {
