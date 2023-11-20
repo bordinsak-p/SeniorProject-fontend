@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     open = false
     openforget = false
 
-    @Output() openDialog = new EventEmitter()
+    // @Output() openDialog = new EventEmitter()
 
     constructor(
         public layoutService: LayoutService,
@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
 
     onLogin() {
         const paylode = this.userForm.getRawValue();
-        
         this.authService.login(paylode).pipe(catchError(
             (err: HttpErrorResponse) => {                
                 if(err.status == 401) {
