@@ -12,9 +12,10 @@ import { ResgiterComponent } from './resgiter/resgiter.component';
 import { DialogModule } from 'primeng/dialog';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { ForgetpassComponent } from './forgetpass/forgetpass.component';
 
 @NgModule({
-  declarations: [LoginComponent, ResgiterComponent],
+  declarations: [LoginComponent, ResgiterComponent, ForgetpassComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

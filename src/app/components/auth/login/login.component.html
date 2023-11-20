@@ -29,7 +29,7 @@
                         </div>
                         <div class="flex align-items-end gap-2">
                             <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)" (click)="onOpenDialog($event)">สมัครสมาชิก</a>
-                            <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--surface-600)">ลืมรหัสผ่าน</a>
+                            <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)"(click)="onOpenDialogforgetpass($event)">ลืมรหัสผ่าน?</a>
                         </div>
                     </div>
                     <button pButton pRipple label="เข้าสู่ระบบ" class="w-full p-3 text-xl" [disabled]="userForm.get('email').value == null || userForm.get('password').value == null" (click)="onLogin()"></button>
@@ -41,3 +41,4 @@
 
 
 <app-resgiter [visible]="open"></app-resgiter>
+<app-forgetpass [visible]="openforget"></app-forgetpass>

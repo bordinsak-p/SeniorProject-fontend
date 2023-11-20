@@ -1,0 +1,32 @@
+
+<p-dialog header="Header" [(visible)]="visible" [style]="{width: '27vw'}" [draggable]="false" [closable]="true" [modal]="true">
+    <ng-template pTemplate="header">
+        <h4 style="width: 100%;">
+           รีเซ็ตรหัสผ่าน
+        </h4>
+    </ng-template>
+    <ng-template pTemplate="body">
+        <div class="grid mb-2" [formGroup]="forgetform">
+            <div class="col-12 pb-0">
+                <label for="email" class="block text-900 mb-2">
+                    อีเมล <span style="color: red;">*</span>
+                </label>
+                <input type="email" formControlName="email" placeholder="Email address" pInputText class="w-full" style="padding: 1rem;" [class.ng-invalid]="forgetform.get('email').invalid">
+            </div>
+            <div class="col-12 pb-0">
+                <label for="email" class="block text-900 mb-2">
+                    รหัสผ่าน <span style="color: red;">*</span>
+                </label>
+                <input type="email" formControlName="password" placeholder="Password" pInputText class="w-full" style="padding: 1rem;" [class.ng-invalid]="forgetform.get('email').invalid">
+            </div>
+            <div class="col-12 pb-0">
+                <label for="email" class="block text-900 mb-2">
+                    ยืนยันรหัสผ่าน <span style="color: red;">*</span>
+                </label>
+                <input type="email" formControlName="confirmPassword" placeholder="Confirm Password" pInputText class="w-full" style="padding: 1rem;" [class.ng-invalid]="forgetform.get('email').invalid">
+            </div>
+        </div>
+        <button pButton pRipple label="ยืนยัน" class="w-full text-xl"></button>
+        <button pButton pRipple label="ยกเลิก" class="w-full text-xl mt-2 dre-pink"></button>
+    </ng-template>
+</p-dialog>

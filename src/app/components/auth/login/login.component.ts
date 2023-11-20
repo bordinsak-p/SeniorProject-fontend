@@ -15,6 +15,7 @@ import { catchError, throwError } from 'rxjs';
 export class LoginComponent implements OnInit {
     userForm: FormGroup;
     open = false
+    openforget = false
 
     @Output() openDialog = new EventEmitter()
 
@@ -60,5 +61,9 @@ export class LoginComponent implements OnInit {
 
     onOpenDialog(event: any) {
         this.open = event
+    }
+
+    onOpenDialogforgetpass(event: any) {
+        this.openforget = event
     }
 }
