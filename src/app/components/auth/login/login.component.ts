@@ -4,6 +4,8 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/shared/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
     selector: 'app-login',
@@ -37,7 +39,21 @@ export class LoginComponent implements OnInit {
 
     onLogin() {
         const paylode = this.userForm.getRawValue();
-        this.authService.login(paylode).subscribe(() => {
+        
+        this.authService.login(paylode).pipe(catchError(
+            (err: HttpErrorResponse) => {                
+                if(err.status == 401) {
+                    if(err.error.message == 'รหัสผ่านไม่ถูกต้อง') {
+                        this.mesg.add({ severity: 'error', summary: 'Unauthorized', detail: 'กรุณากรอกรหัสของท่านให้ถูกต้อง' })
+                        this.userForm.get('password').reset()
+                    } else {
+                        this.mesg.add({ severity: 'error', summary: 'Unauthorized', detail: 'กรุณากรอกอีเมลหรือรหัสของท่านให้ถูกต้อง' })
+                        this.userForm.reset()
+                    }
+                } 
+                return throwError("เข้าสู่ระบบไม่สำเร็จ")
+            }
+        )).subscribe((res) => {
             this.router.navigate(['/']);
         });
     }
