@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -11,7 +12,7 @@ export class AuthService {
     private loggedIn$ = new BehaviorSubject<boolean>(false);
     private userData$ = new BehaviorSubject<any>(null);
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private router: Router) {}
 
     login(credentials: { email: string; password: string }): Observable<any> {
         return this.http.post(`${environment.baseUrl}login`, credentials).pipe(
@@ -27,8 +28,15 @@ export class AuthService {
 
     private decodeAndSetUserData(token: string): void {
         const decodedToken = jwtDecode(token);
-        this.userData$.next(decodedToken);
-        this.loggedIn$.next(true);
+        const expTime = decodedToken.exp * 1000
+        const currentTime = new Date().getTime()
+
+        if(currentTime > expTime) {
+            this.logout()            
+        } else {
+            this.userData$.next(decodedToken);
+            this.loggedIn$.next(true);    
+        }
     }
 
     checkTokenAndSetUser(): void {

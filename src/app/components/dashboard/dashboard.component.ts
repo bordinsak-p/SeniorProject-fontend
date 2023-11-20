@@ -9,10 +9,7 @@ import { AuthService } from 'src/shared/auth.service';
 export class DashboardComponent implements OnInit {
     items!: MenuItem[];
     
-    constructor( public layoutService: LayoutService, private auth: AuthService) {
-      console.log(auth.getUserData());
-      
-    }
+    constructor( public layoutService: LayoutService, private auth: AuthService) { }
 
     ngOnInit() {
     

@@ -25,7 +25,11 @@ import { AuthGuard } from './guard/auth.guard';
                 path: 'auth',
                 loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule) 
             },
-            { path: 'notfound', component: NotfoundComponent },
+            { 
+                path: 'notfound',
+                canActivate: [AuthGuard], 
+                component: NotfoundComponent 
+            },
             { path: '**', redirectTo: '/notfound' },
         ], { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', onSameUrlNavigation: 'reload' })
     ],

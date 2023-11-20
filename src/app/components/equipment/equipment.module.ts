@@ -6,8 +6,7 @@ import { EquipmentComponent } from './equipment.component';
 
 
 @NgModule({
-  declarations: [
-  
+  declarations: [ 
     EquipmentComponent
   ],
   imports: [
