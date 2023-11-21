@@ -1,6 +1,6 @@
 <div class="layout-topbar">
     <a class="layout-topbar-logo" routerLink="">
-        <!-- <img src="assets/layout/images/" alt="logo"> -->
+        <!-- <img src="../../assets/images/rmutt_logo.png" alt="logo"> -->
         <span>DRE System</span>
     </a>
 
@@ -12,7 +12,7 @@
         <i class="pi pi-ellipsis-v"></i>
     </button>
 
-    <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+    <div #topbarmenu class="layout-topbar-menu gap-3" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
         <!-- <button class="p-link layout-topbar-button">
             <i class="pi pi-calendar"></i>
             <span>Calendar</span>
@@ -23,6 +23,9 @@
         <button class="p-link layout-topbar-button">
             <i class="pi pi-user"></i>
         </button>
+        <div class="flex justify-content-center align-items-center">
+            <p style="font-size: 18px;">สวัสดีคุณ {{username}}</p>
+        </div>
         <button class="p-link layout-topbar-button" (click)="onLogOut()">
             <i class="pi pi-sign-out"></i>
         </button>

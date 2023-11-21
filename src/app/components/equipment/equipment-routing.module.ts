@@ -5,19 +5,20 @@ import { SearchComponent } from './pages/search/search.component';
 import { SaveComponent } from './pages/save/save.component';
 
 const routes: Routes = [
-    { 
-        path: '', component: EquipmentComponent,
+    {
+        path: '',
+        component: EquipmentComponent,
         children: [
-          {
-            path: '',
-            component: SearchComponent
-          },
-          {
-            path: 'save',
-            component: SaveComponent
-          },
-        ] 
-    }
+            {
+                path: '',
+                component: SearchComponent,
+            },
+            {
+                path: 'save',
+                component: SaveComponent,
+            },
+        ],
+    },
 ];
 
 @NgModule({
