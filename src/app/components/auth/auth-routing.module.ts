@@ -6,10 +6,7 @@ import { ResgiterComponent } from './resgiter/resgiter.component';
 const routes: Routes = [
   {
     path: '', component: LoginComponent
-  },
-  // {
-  //   path: 'register', component: ResgiterComponent
-  // }
+  }
 ];
 
 @NgModule({
