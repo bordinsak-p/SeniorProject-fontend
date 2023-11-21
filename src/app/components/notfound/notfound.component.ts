@@ -8,7 +8,7 @@ import { Subject, interval, take, takeUntil } from 'rxjs';
 })
 export class NotfoundComponent { 
     countDown$ = interval(1000);
-    number: number = 1
+    number: number = 5
     private destroy$ = new Subject<void>();
     
     constructor(private router: Router) {
@@ -18,7 +18,7 @@ export class NotfoundComponent {
           takeUntil(this.destroy$) // หยุด Observable เมื่อ destroy$ ถูกเรียก
         )
         .subscribe((next) => {
-          this.number += 1;
+          this.number -= 1;
           if (next === 4) {
             this.destroy$.next();
             this.destroy$.complete();
