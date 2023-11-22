@@ -1,41 +1,47 @@
-<div class="grid">
-    <div class="col-12 md:col-6 lg:col-4 mt-5">
-        <label for="equipmentName" class="block text-lg mb-2">
-            ชื่อครุภัณฑ์ <span style="color: red;">*</span>
+<div class="grid" [formGroup]="searchForm">
+    <div class="col-12 md:col-2 lg:col-2 mt-5">
+        <label for="equipmentId" class="block text-lg mb-2">
+            รหัสครุภัณฑ์ <span style="color: red;">*</span>
         </label>
-        <input type="text" pInputText  class="w-full"/>
+        <input type="text" pInputText class="w-full" formControlName="equipmentId"/>
     </div>
-    <div class="col-12 md:col-6 lg:col-4 mt-5">
+    <div class="col-12 md:col-6 lg:col-4 lg:mt-5">
+        <label for="equipmentName" class="block text-lg mb-2">
+            ชื่อครุภัณฑ์
+        </label>
+        <input type="text" pInputText class="w-full" formControlName="equipmentName"/>
+    </div>
+    <div class="col-12 md:col-6 lg:col-3 lg:mt-5">
         <label for="location" class="block text-lg mb-2">
             สถานที่ 
         </label>
-        <input type="text" pInputText  class="w-full"/>
+        <input type="text" pInputText  class="w-full" formControlName="locationName"/>
     </div>
-    <div class="col-12 md:col-6 md:m-0 lg:col-4 lg:mt-5">
+    <div class="col-12 md:col-6 md:m-0 lg:col-3 lg:mt-5">
         <label for="branchInfo" class="block text-lg mb-2">
             สาขา 
         </label>
-        <input type="text" pInputText  class="w-full"/>
+        <input type="text" pInputText  class="w-full" formControlName="branchInfo"/>
     </div>
     <div class="col-12 md:col-3 lg:col-2">
         <label for="roomNumber" class="block text-lg mb-2">
             เลขที่ห้อง
         </label>
-        <input type="text" pInputText  class="w-full"/>
+        <input type="text" pInputText  class="w-full" formControlName="roomNumber"/>
     </div>
     <div class="col-12 md:col-3 lg:col-2">
         <label for="budgetYear" class="block text-lg mb-2">
             ปีงบประมาณ
         </label>
-        <input type="text" pInputText  class="w-full"/>
+        <input type="number" pInputText  class="w-full" formControlName="budgetYear" [maxlength]="4"/>
     </div>
 </div>
 
-<div class="flex justify-content-center gap-2">
-    <button type="button" label="Success" class="p-button p-button-info">
+<div class="flex justify-content-center gap-2 mt-3">
+    <button type="button" label="Success" class="p-button p-button-info" (click)="onSearch()">
         <span class="p-button-label">ค้นหา <i class="pi pi-search ml-2"></i></span>
     </button>
-    <button type="button" label="Success" class="p-button p-button-warning">
-        <span class="p-button-label">ล้างข้อมูล</span>
+    <button type="button" label="Success" class="p-button p-button-warning" (click)="onClear()">
+        <span class="p-button-label">ล้างข้อมูล <i class="pi pi-eraser ml-2"></i></span>
     </button>
 </div>

@@ -1,5 +1,6 @@
 import { OnInit , Component} from '@angular/core';
 import { LayoutService } from './service/app.layout.service';
+import { AuthService } from 'src/shared/auth.service';
 
 @Component({
     selector: 'app-menu',
@@ -8,8 +9,15 @@ import { LayoutService } from './service/app.layout.service';
 export class AppMenuComponent implements OnInit {
 
     model: any[] = [];
+    role = ''
 
-    constructor(public layoutService: LayoutService) { }
+    constructor(public layoutService: LayoutService, private auth: AuthService) { 
+        auth.getUserData().subscribe(
+            (res) => {
+                this.role = res.role
+            }
+        )
+    }
 
     ngOnInit() {
         this.model = [

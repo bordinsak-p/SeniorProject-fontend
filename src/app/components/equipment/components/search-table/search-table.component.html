@@ -1,44 +1,45 @@
-<div style="margin-top: 50px;">
-    <div class="flex justify-content-end mb-2 gap-2">
-        <button type="button" label="Success" class="p-button-success p-button">
-            <span class="p-button-label">เพิ่มข้อมูล <i class="pi pi-plus ml-2"></i></span>
-        </button>
-        <button type="button" label="Danger" class="p-button-danger p-button">
-            <span class="p-button-label">ลบข้อมูล<i class="pi pi-trash ml-2"></i></span>
-        </button>
-    </div>
-    <p-table
-    [value]=""
-    [lazy]="true"
-    dataKey="id"
-    [tableStyle]="{ 'min-width': '75rem' }"
-    [selection]=""
-    [selectAll]=""
+<div class="flex justify-content-end mb-2 gap-2">
+    <button type="button" label="Success" class="p-button-success p-button">
+        <span class="p-button-label"
+            >เพิ่มข้อมูล <i class="pi pi-plus ml-2"></i
+        ></span>
+    </button>
+</div>
+
+{{equipments[0] | json}}
+
+<p-table
+    [value]="equipments"
     [paginator]="true"
-    [rows]="10"
-    [totalRecords]=""
-    [loading]=""
+    [columns]="cols"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    currentPageReportTemplate="{first} to {last} of {totalRecords}"
+    [rowsPerPageOptions]="[5, 10, 25]"
+    responsiveLayout="stack"
     styleClass="p-datatable-striped"
 >
-    <ng-template pTemplate="header">
+    <ng-template pTemplate="header" let-columns>
         <tr>
-            <th style="width: 4rem"></th>
-            <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
-            <th pSortableColumn="country.name">Country <p-sortIcon field="country.name"></p-sortIcon></th>
-            <th pSortableColumn="company">Company <p-sortIcon field="company"></p-sortIcon></th>
-            <th pSortableColumn="representative.name">Representative <p-sortIcon field="representative.name"></p-sortIcon></th>
+            <th *ngFor="let col of columns">
+                {{ col.header }}
+            </th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-customer>
+    <ng-template pTemplate="body" let-equipments>
         <tr>
-            <td>
-                <p-tableCheckbox [value]="customer"></p-tableCheckbox>
+            <td class="text-center">
+                <i class="pi pi-trash cursor-pointer sm:m-0 md:mr-3 text-red-500 text-lg"></i>
+                <i class="pi pi-file-edit cursor-pointer sm:m-0 md:mr-3 text-purple-500 text-lg"></i>
+                <i class="pi pi-eye cursor-pointer text-pink-500 text-lg"></i>
             </td>
-            <td>{{ customer.name }}</td>
-            <td>{{ customer.country.name }}</td>
-            <td>{{ customer.company }}</td>
-            <td>{{ customer.representative.name }}</td>
+            <td>{{ equipments.equipment_id }}</td>
+            <td>{{ equipments.equipment_name }}</td>
+            <td>{{ equipments.Location.location_name }}</td>
+            <td>{{ equipments.Location.branch_info }}</td>
+            <td>{{ equipments.created_at | date:'dd/MM/yyyy'}}</td>
         </tr>
     </ng-template>
 </p-table>
-</div>
+

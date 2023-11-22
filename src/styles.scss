@@ -16,6 +16,25 @@
     background-color: #ff387a;
     border-color: #fa5e92;
 }
+
+.button-panel {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: -8px;
+  &-right {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: -8px;
+  }
+  &-left {
+      display: flex;
+      justify-content: flex-start;
+      gap: 8px;
+      margin-top: -8px;
+  }
+}
 /* =============== */
 
 $gutter: 1rem; //for primeflex grid system
