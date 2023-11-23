@@ -1,8 +1,14 @@
 <ul class="layout-menu">
-    บทบาท {{role | json}}
-    <ng-container *ngFor="let item of model; let i = index;">
-        <li app-menuitem *ngIf="role != 'admin'" [item]="item" [index]="i" [root]="true"></li>
-        <li app-menuitem *ngIf="role != 'user'" [item]="item" [index]="i" [root]="true"></li>
-        <li *ngIf="item.separator" class="menu-separator"></li>
-    </ng-container>
+    <div *ngIf="role !== 'user' else admin">
+        <ng-container *ngFor="let item of model; let i = index;"> 
+            <li app-menuitem [item]="item" [index]="i" [root]="true"></li>
+            <li *ngIf="item.separator" class="menu-separator"></li>
+        </ng-container>
+    </div>
+    <ng-template #admin>
+        <ng-container *ngFor="let item of modelUsers; let i = index;"> 
+            <li app-menuitem [item]="item" [index]="i" [root]="true"></li>
+            <li *ngIf="item.separator" class="menu-separator"></li>
+        </ng-container>
+    </ng-template>
 </ul>

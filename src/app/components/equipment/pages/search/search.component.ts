@@ -4,6 +4,7 @@ import { EquipmentService } from '../../services/equipment.service';
 import { TABLE_SEARCH } from '../../constants/table-option';
 import { SharedService } from 'src/shared/shared.service';
 import { Equipments } from '../../constants/equipments';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-search',
@@ -13,20 +14,25 @@ import { Equipments } from '../../constants/equipments';
 export class SearchComponent implements OnInit {
     searchForm: FormGroup;
     cols = TABLE_SEARCH;
-    equipments: Equipments[] = []
-    query: any
+    equipments: Equipments[] = [];
+    query: any;
 
-    constructor(private fb: FormBuilder, private service: EquipmentService, private sharedService: SharedService) {
-       this.queryTable()
+    constructor(
+        private fb: FormBuilder,
+        private service: EquipmentService,
+        private sharedService: SharedService,
+        private dateFormat: DatePipe
+    ) {
+        this.queryTable();
     }
 
     queryTable() {
         this.service.getEquipment(this.query).subscribe((res: any) => {
-            this.equipments = res.results.map((item: any) => {                
+            this.equipments = res.results.map((item: any) => {
                 item.image = this.sharedService.getProductImage(item.image);
                 return item;
             });
-        })
+        });
     }
 
     ngOnInit(): void {
@@ -35,8 +41,8 @@ export class SearchComponent implements OnInit {
 
     onInitForm() {
         this.searchForm = this.fb.group({
-            equipmentId: [null, [Validators.required]], 
-            equipmentName: [null], 
+            equipmentId: [null, [Validators.required]],
+            equipmentName: [null],
             locationName: [null],
             branchInfo: [null],
             roomNumber: [null],
@@ -46,27 +52,38 @@ export class SearchComponent implements OnInit {
 
     onSearch() {
         this.query = {};
-    
+
         if (this.searchForm.get('equipmentId').value != null) {
             this.query.equipmentId = this.searchForm.get('equipmentId').value;
         }
-    
+
         if (this.searchForm.get('equipmentName').value != null) {
-            this.query.equipmentName = this.searchForm.get('equipmentName').value;
+            this.query.equipmentName =
+                this.searchForm.get('equipmentName').value;
         }
-    
+
         if (this.searchForm.get('locationName').value != null) {
             this.query.locationName = this.searchForm.get('locationName').value;
         }
-    
+
         if (this.searchForm.get('branchInfo').value != null) {
             this.query.branchInfo = this.searchForm.get('branchInfo').value;
         }
-    
+
         if (this.searchForm.get('roomNumber').value != null) {
             this.query.roomNumber = this.searchForm.get('roomNumber').value;
         }
-    
+
+        // if (this.searchForm.get('budgetYear').value != null) {
+        //     const newDate = new Date(this.searchForm.get('budgetYear').value);
+        //     this.query.budgetYear = this.dateFormat.transform(newDate, 'yyyy-MM-dd hh:mm:ss')
+        // }
+
+        if (this.searchForm.get('budgetYear').value != null) {
+            const newDate = new Date(this.searchForm.get('budgetYear').value);
+            this.query.budgetYear = newDate.toISOString(); // ให้ Angular ส่ง ISO 8601 format
+        }        
+
         this.service.getEquipment(this.query).subscribe((res: any) => {
             this.equipments = res.results.map((item: any) => {
                 item.image = this.sharedService.getProductImage(item.image);
@@ -74,13 +91,12 @@ export class SearchComponent implements OnInit {
             });
         });
     }
-    
 
     onClear() {
         this.searchForm.reset();
         this.searchForm.clearValidators();
-        this.query = null
-        this.queryTable()
+        this.query = null;
+        this.queryTable();
     }
 
     onDelete() {}

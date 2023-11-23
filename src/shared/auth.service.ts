@@ -32,7 +32,8 @@ export class AuthService {
         const currentTime = new Date().getTime()
 
         if(currentTime > expTime) {
-            this.logout()            
+            this.logout();
+            this.router.navigate(['/auth'])            
         } else {
             this.userData$.next(decodedToken);
             this.loggedIn$.next(true);    

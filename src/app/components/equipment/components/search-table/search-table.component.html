@@ -1,5 +1,5 @@
 <div class="flex justify-content-end mb-2 gap-2">
-    <button type="button" label="Success" class="p-button-success p-button">
+    <button type="button" label="Success" class="p-button-success p-button" [routerLink]="['save']">
         <span class="p-button-label"
             >เพิ่มข้อมูล <i class="pi pi-plus ml-2"></i
         ></span>
@@ -37,7 +37,7 @@
             <td>{{ equipments.Location.location_name }}</td>
             <td>{{ equipments.Location.branch_info }}</td>
             <td>{{ equipments.Location.room_number }}</td>
-            <td>{{ equipments.buget_year | date:'dd/MM/yyyy' }}</td>
+            <td>{{ equipments.budget_year | date:'dd/MM/yyyy' }}</td>
         </tr>
     </ng-template>
 </p-table>

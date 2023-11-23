@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { EquipmentRoutingModule } from './equipment-routing.module';
 import { EquipmentComponent } from './equipment.component';
@@ -32,6 +32,7 @@ import { TabViewModule } from 'primeng/tabview';
 import { TreeModule } from 'primeng/tree';
 import { TreeTableModule } from 'primeng/treetable';
 import { CardModule } from 'primeng/card';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { SearchTableComponent } from './components/search-table/search-table.component';
 import { SaveTableComponent } from './components/save-table/save-table.component';
@@ -81,7 +82,11 @@ import { SaveComponent } from './pages/save/save.component';
         InputSwitchModule,
         MultiSelectModule,
         HttpClientModule,
-        CardModule
+        CardModule,
+        BreadcrumbModule
     ],
+    providers:[
+        DatePipe
+    ]
 })
 export class EquipmentModule {}
