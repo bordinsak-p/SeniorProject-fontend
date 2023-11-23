@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EquipmentService } from '../../services/equipment.service';
 import { TABLE_SEARCH } from '../../constants/table-option';
 import { SharedService } from 'src/shared/shared.service';
+import { Equipments } from '../../constants/equipments';
 
 @Component({
     selector: 'app-search',
@@ -12,10 +13,15 @@ import { SharedService } from 'src/shared/shared.service';
 export class SearchComponent implements OnInit {
     searchForm: FormGroup;
     cols = TABLE_SEARCH;
-    equipments: any[] = []
+    equipments: Equipments[] = []
+    query: any
 
     constructor(private fb: FormBuilder, private service: EquipmentService, private sharedService: SharedService) {
-        this.service.getEquipment().subscribe((res: any) => {
+       this.queryTable()
+    }
+
+    queryTable() {
+        this.service.getEquipment(this.query).subscribe((res: any) => {
             this.equipments = res.results.map((item: any) => {                
                 item.image = this.sharedService.getProductImage(item.image);
                 return item;
@@ -39,14 +45,42 @@ export class SearchComponent implements OnInit {
     }
 
     onSearch() {
-        const payload = this.searchForm.getRawValue();
-        this.service.getEquipment()
-        console.log(payload);
+        this.query = {};
+    
+        if (this.searchForm.get('equipmentId').value != null) {
+            this.query.equipmentId = this.searchForm.get('equipmentId').value;
+        }
+    
+        if (this.searchForm.get('equipmentName').value != null) {
+            this.query.equipmentName = this.searchForm.get('equipmentName').value;
+        }
+    
+        if (this.searchForm.get('locationName').value != null) {
+            this.query.locationName = this.searchForm.get('locationName').value;
+        }
+    
+        if (this.searchForm.get('branchInfo').value != null) {
+            this.query.branchInfo = this.searchForm.get('branchInfo').value;
+        }
+    
+        if (this.searchForm.get('roomNumber').value != null) {
+            this.query.roomNumber = this.searchForm.get('roomNumber').value;
+        }
+    
+        this.service.getEquipment(this.query).subscribe((res: any) => {
+            this.equipments = res.results.map((item: any) => {
+                item.image = this.sharedService.getProductImage(item.image);
+                return item;
+            });
+        });
     }
+    
 
     onClear() {
         this.searchForm.reset();
         this.searchForm.clearValidators();
+        this.query = null
+        this.queryTable()
     }
 
     onDelete() {}

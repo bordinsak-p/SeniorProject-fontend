@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Equipments } from '../constants/equipments';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class EquipmentService {
   
   constructor(private httpClient: HttpClient) { }
   
-  getEquipment(): Observable<any[]>{
-    return this.httpClient.get<any[]>(`${environment.baseUrl}getEquipment`, { headers: this.headers })
+  getEquipment(params: any): Observable<Equipments[]>{
+    return this.httpClient.get<Equipments[]>(`${environment.baseUrl}getEquipment`, { headers: this.headers, params })
   }
 }

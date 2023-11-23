@@ -4,7 +4,7 @@ import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-search-form',
   templateUrl: './search-form.component.html',
-  styleUrls: ['./search-form.component.scss']
+  // styleUrls: ['./search-form.component.scss']
 })
 export class SearchFormComponent {
   @Input() searchForm!: FormGroup 
