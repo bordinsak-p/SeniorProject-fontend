@@ -1,1 +1,53 @@
-<p>save-form works!</p>
+<div class="grid mt-5" [formGroup]="saveForm">
+    <div class="col-12 md:col-2">
+        <label for="equipmentid" class="block text-lg mb-2">
+            รหัสครุภัณฑ์
+        </label>
+        <input type="text" pInputText class="w-full" formControlName="equipmentid"/>
+    </div>
+    <div class="col-12 md:col-4">
+        <label for="equipmentname" class="block text-lg mb-2">
+            ชื่อครุภัณฑ์
+        </label>
+        <input type="text" pInputText class="w-full" formControlName="equipmentname"/>
+    </div>
+    <div class="col-12 md:col-4">
+        <label for="locationname" class="block text-lg mb-2" >
+            สถานที่
+        </label>
+        <input type="text" pInputText class="w-full" formControlName="locationname"/>
+    </div>
+    <div class="col-12 md:col-3">
+        <label for="branchinfo" class="block text-lg mb-2">
+            สาขา
+        </label>
+        <input type="text" pInputText class="w-full" formControlName="branchinfo"/>
+    </div>
+    <div class="col-12 md:col-2">
+        <label for="roomnumber" class="block text-lg mb-2">
+            เลขที่ห้อง
+        </label>
+        <input type="text" pInputText class="w-full" formControlName="roomnumber"/>
+    </div>
+    <div class="col-12 md:col-12">
+        <label for="description" class="block text-lg mb-2">
+            คำอธิบาย
+        </label>
+        <textarea  type="text" pInputTextarea  class="w-full" rows="5" cols="30" [autoResize]="true" [maxLength]="500" formControlName="description"></textarea>
+    </div>
+    <div class="col-12 md:col-4">
+        <label for="image" class="block text-lg mb-2">
+            รหัสครุภัณฑ์
+        </label>
+        <input type="file" class="w-full" formControlName="image" />
+    </div>
+</div>
+
+<div class="button-panel gap-2 mt-3 ">
+    <button type="button" label="Success" class="p-button p-button-success" (click)="onSave()">
+        <span class="p-button-label">บันทึก <i class="pi pi-save ml-2"></i></span>
+    </button>
+    <button type="button" label="Success" class="p-button p-button-danger" (click)="onClear()">
+        <span class="p-button-label">ล้างข้อมูล <i class="pi pi-eraser ml-2"></i></span>
+    </button>
+</div>

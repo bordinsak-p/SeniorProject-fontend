@@ -1,4 +1,4 @@
-<div class="flex justify-content-end mb-2 gap-2">
+<div class="button-panel-end mb-2 gap-2">
     <button type="button" label="Success" class="p-button-success p-button" [routerLink]="['save']">
         <span class="p-button-label"
             >เพิ่มข้อมูล <i class="pi pi-plus ml-2"></i
@@ -40,5 +40,10 @@
             <td>{{ equipments.budget_year | date:'dd/MM/yyyy' }}</td>
         </tr>
     </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="18" style="text-align: center">ไม่พบข้อมูล</td>
+        </tr>
+      </ng-template>
 </p-table>
 

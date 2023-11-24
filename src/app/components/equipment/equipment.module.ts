@@ -39,6 +39,7 @@ import { SaveTableComponent } from './components/save-table/save-table.component
 import { SaveFormComponent } from './components/save-form/save-form.component';
 import { SearchComponent } from './pages/search/search.component';
 import { SaveComponent } from './pages/save/save.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
     declarations: [
@@ -83,7 +84,8 @@ import { SaveComponent } from './pages/save/save.component';
         MultiSelectModule,
         HttpClientModule,
         CardModule,
-        BreadcrumbModule
+        BreadcrumbModule,
+        InputTextareaModule
     ],
     providers:[
         DatePipe

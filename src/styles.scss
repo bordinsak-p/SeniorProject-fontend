@@ -1,17 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100&display=swap");
 
 // body {
 //     font-family: 'Kanit', sans-serif !important;
 // }
 
-
 /* เพิ่มเอง */
 .dre-pink {
     background-color: #fa5e92;
     border-color: #fa5e92;
-  }
+}
 .dre-pink:enabled:hover {
     background-color: #ff387a;
     border-color: #fa5e92;
@@ -20,19 +19,27 @@
 .button-panel {
   display: flex;
   justify-content: center;
-  gap: 8px;
-  margin-top: -8px;
-  &-right {
-      display: flex;
-      justify-content: flex-end;
-      gap: 8px;
-      margin-top: -8px;
+}
+
+.button-panel-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 375px) {
+  .button-panel {
+    flex-direction: column !important;
   }
-  &-left {
-      display: flex;
-      justify-content: flex-start;
-      gap: 8px;
-      margin-top: -8px;
+
+  .button-panel-end {
+    justify-content: center;
+    flex-direction: column !important;
+    margin-top: 8px;
+  }
+}
+@media screen and (max-width: 390px) {
+  .button-panel {
+    flex-direction: column !important;
   }
 }
 /* =============== */

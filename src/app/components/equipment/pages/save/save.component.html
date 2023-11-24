@@ -1,1 +1,5 @@
-<app-save-form></app-save-form>
+<app-save-form
+    [saveForm]="saveForm"
+    (onSaveEvent)="onSave()"
+    (onClearEvent)="onClear()"
+></app-save-form>

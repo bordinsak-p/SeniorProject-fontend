@@ -73,12 +73,7 @@ export class SearchComponent implements OnInit {
         if (this.searchForm.get('roomNumber').value != null) {
             this.query.roomNumber = this.searchForm.get('roomNumber').value;
         }
-
-        // if (this.searchForm.get('budgetYear').value != null) {
-        //     const newDate = new Date(this.searchForm.get('budgetYear').value);
-        //     this.query.budgetYear = this.dateFormat.transform(newDate, 'yyyy-MM-dd hh:mm:ss')
-        // }
-
+        
         if (this.searchForm.get('budgetYear').value != null) {
             const newDate = new Date(this.searchForm.get('budgetYear').value);
             this.query.budgetYear = newDate.toISOString(); // ให้ Angular ส่ง ISO 8601 format
