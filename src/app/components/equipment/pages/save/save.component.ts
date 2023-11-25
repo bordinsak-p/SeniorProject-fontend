@@ -11,7 +11,7 @@ import { MessageService } from 'primeng/api';
 export class SaveComponent implements OnInit {
     saveForm: FormGroup;
     showImage: any;
-    file: any;
+    fileEvent: any;
 
     constructor(
         private fb: FormBuilder,
@@ -36,12 +36,10 @@ export class SaveComponent implements OnInit {
     }
 
     onGetFileFormSelected(e: any) {
-        this.file = e;
-        console.log(this.file);
-        
+        this.fileEvent = e;
     }
 
-    onSave() {
+    onSave(e: any) {
         const paylaod = this.saveForm.getRawValue();
 
         const newPaylode = new FormData();
@@ -51,15 +49,17 @@ export class SaveComponent implements OnInit {
         newPaylode.append('branchinfo', paylaod.branchinfo);
         newPaylode.append('roomnumber', paylaod.roomnumber);
         newPaylode.append('description', paylaod.description);
-        newPaylode.append('image', this.file);        
-
-        // this.serivce.addEquipment(paylaod).subscribe((res: any) => {
-        //     console.log(res);
-        // });
+        newPaylode.append('image', this.fileEvent);        
+        
+        this.serivce.addEquipment(newPaylode).subscribe((res: any) => {
+            this.msgs.add({ severity: 'success', summary: 'สำเร็จ', detail: 'บันทึกข้อมูลสำเร็จ' })
+        });
+        this.saveForm.reset()
+        this.showImage = e
     }
 
-    onClear() {
+    onClear(e: any) {
         this.saveForm.reset();
-        this.showImage = null;
+        this.showImage = e;
     }
 }

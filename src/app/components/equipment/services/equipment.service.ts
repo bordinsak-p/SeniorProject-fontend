@@ -17,7 +17,7 @@ export class EquipmentService {
     return this.httpClient.get<Equipments[]>(`${environment.baseUrl}getEquipment`, { headers: this.headers, params })
   }
 
-  addEquipment(paylaod: any): Observable<any> {
+  addEquipment(paylaod: any): Observable<any> {    
     return this.httpClient.post(`${environment.baseUrl}addEquipment`, paylaod, {headers: this.headers });
   }
   
