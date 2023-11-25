@@ -7,10 +7,14 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./save-form.component.scss']
 })
 export class SaveFormComponent {
+  file: File | null = null
+
   @Input() saveForm!: FormGroup
+  @Input() showImage! : any
 
   @Output() onSaveEvent = new EventEmitter()
   @Output() onClearEvent = new EventEmitter()
+  @Output() onSelectedFileEvent = new EventEmitter()
 
   onSave() {
     this.onSaveEvent.emit()
@@ -18,5 +22,18 @@ export class SaveFormComponent {
 
   onClear() {
     this.onClearEvent.emit()
+  }
+
+  onSelectedFile(e: any) {
+    const metaImage = e.target.files[0]
+    if(metaImage) {
+      this.file = metaImage
+      const readFile = new FileReader()
+      readFile.readAsDataURL(metaImage)
+      readFile.onload = () => {
+        this.showImage = readFile.result
+      }      
+      this.onSelectedFileEvent.emit(this.file)
+    }
   }
 }

@@ -1,5 +1,8 @@
+<p-toast></p-toast>
 <app-save-form
     [saveForm]="saveForm"
+    [showImage]="showImage"
     (onSaveEvent)="onSave()"
     (onClearEvent)="onClear()"
+    (onSelectedFileEvent)="onGetFileFormSelected($event)"
 ></app-save-form>

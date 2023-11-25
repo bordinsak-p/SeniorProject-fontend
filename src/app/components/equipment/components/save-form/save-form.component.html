@@ -35,12 +35,15 @@
         </label>
         <textarea  type="text" pInputTextarea  class="w-full" rows="5" cols="30" [autoResize]="true" [maxLength]="500" formControlName="description"></textarea>
     </div>
-    <div class="col-12 md:col-4">
-        <label for="image" class="block text-lg mb-2">
-            รหัสครุภัณฑ์
+    <div class="col-12 md:col-12">
+        <label for="images" class="drop-container mr-3" id="dropcontainer">
+            เลือกรูปภาพ
         </label>
-        <input type="file" class="w-full" formControlName="image" />
+        <input type="file" id="images" accept="image/*" formControlName="image" (change)="onSelectedFile($event)">
     </div>
+    <div class="col-12 mb-3" *ngIf="showImage">
+        <img [src]="showImage" alt="previewImage" id="previewImage" />
+      </div>
 </div>
 
 <div class="button-panel gap-2 mt-3 ">
@@ -48,6 +51,6 @@
         <span class="p-button-label">บันทึก <i class="pi pi-save ml-2"></i></span>
     </button>
     <button type="button" label="Success" class="p-button p-button-danger" (click)="onClear()">
-        <span class="p-button-label">ล้างข้อมูล <i class="pi pi-eraser ml-2"></i></span>
+        <span class="p-button-label">เคลียร์ฟอร์ม <i class="pi pi-eraser ml-2"></i></span>
     </button>
 </div>

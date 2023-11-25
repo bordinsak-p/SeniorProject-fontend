@@ -6,7 +6,7 @@ import { EquipmentComponent } from './equipment.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionModule } from 'primeng/accordion';
-import { SharedModule } from 'primeng/api';
+import { MessageService, SharedModule } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { ChartModule } from 'primeng/chart';
@@ -40,6 +40,7 @@ import { SaveFormComponent } from './components/save-form/save-form.component';
 import { SearchComponent } from './pages/search/search.component';
 import { SaveComponent } from './pages/save/save.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
     declarations: [
@@ -85,10 +86,12 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
         HttpClientModule,
         CardModule,
         BreadcrumbModule,
-        InputTextareaModule
+        InputTextareaModule,
+        ToastModule
     ],
     providers:[
-        DatePipe
+        DatePipe,
+        MessageService
     ]
 })
 export class EquipmentModule {}

@@ -47,11 +47,12 @@
                                     "maximumError": "5mb"
                                 },
                                 {
-                                    "type": "anyComponentStyle",
+                                    "type": "anyComponentStyle",  
                                     "maximumWarning": "6kb",
                                     "maximumError": "10kb"
                                 }
                             ],
+                            "localize": true,
                             "fileReplacements": [
                                 {
                                     "replace": "src/environments/environment.ts",
