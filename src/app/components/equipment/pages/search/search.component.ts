@@ -3,8 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EquipmentService } from '../../services/equipment.service';
 import { TABLE_SEARCH } from '../../constants/table-option';
 import { SharedService } from 'src/shared/shared.service';
-import { Equipments } from '../../constants/equipments';
+import { Equipments } from '../../models/equipments';
 import { DatePipe } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
     selector: 'app-search',
@@ -21,15 +23,20 @@ export class SearchComponent implements OnInit {
         private fb: FormBuilder,
         private service: EquipmentService,
         private sharedService: SharedService,
-        private dateFormat: DatePipe
+        private dateFormat: DatePipe,
+        private router: Router,
+        private route: ActivatedRoute,
+        private cfs: ConfirmationService,
+        private msags: MessageService
     ) {
         this.queryTable();
+        service.mode$.next('add')
     }
 
     queryTable() {
         this.service.getEquipment(this.query).subscribe((res: any) => {
             this.equipments = res.results.map((item: any) => {
-                item.image = this.sharedService.getProductImage(item.image);
+                item.image = this.sharedService.getImagePath(item.image);
                 return item;
             });
         });
@@ -81,7 +88,7 @@ export class SearchComponent implements OnInit {
 
         this.service.getEquipment(this.query).subscribe((res: any) => {
             this.equipments = res.results.map((item: any) => {
-                item.image = this.sharedService.getProductImage(item.image);
+                item.image = this.sharedService.getImagePath(item.image);
                 return item;
             });
         });
@@ -94,7 +101,24 @@ export class SearchComponent implements OnInit {
         this.queryTable();
     }
 
-    onDelete() {}
+    onDelete(id: any) {
+        this.cfs.confirm({
+            message: 'คุณต้องการลบข้อมูลหรือไม่?',
+            header: 'ยืนยัน',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.service.delEquipment(id).subscribe((res) => {
+                    this.msags.add({ severity: 'success', summary: 'สำเร็จ', detail: 'ลบข้อมูลสำเร็จ' });
+                    this.queryTable()
+                })
+            }
+        });
+    }
+    
 
-    onEdit() {}
+    onEdit(id: any) {
+        this.service.equipmentId$.next(id)
+        this.service.mode$.next('edit')
+        this.router.navigate(['save'], { relativeTo: this.route})
+    }
 }

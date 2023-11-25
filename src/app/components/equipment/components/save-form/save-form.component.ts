@@ -8,9 +8,10 @@ import { FormGroup } from '@angular/forms';
 })
 export class SaveFormComponent {
     file: File | null = null;
-
+    
     @Input() saveForm!: FormGroup;
     @Input() showImage!: any;
+    @Input() validMode!: any
 
     @Output() onSaveEvent = new EventEmitter();
     @Output() onClearEvent = new EventEmitter();

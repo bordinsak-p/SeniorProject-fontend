@@ -6,7 +6,7 @@ import { EquipmentComponent } from './equipment.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionModule } from 'primeng/accordion';
-import { MessageService, SharedModule } from 'primeng/api';
+import { ConfirmationService, MessageService, SharedModule } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { ChartModule } from 'primeng/chart';
@@ -35,19 +35,18 @@ import { CardModule } from 'primeng/card';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { SearchTableComponent } from './components/search-table/search-table.component';
-import { SaveTableComponent } from './components/save-table/save-table.component';
 import { SaveFormComponent } from './components/save-form/save-form.component';
 import { SearchComponent } from './pages/search/search.component';
 import { SaveComponent } from './pages/save/save.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToastModule } from 'primeng/toast';
 
+
 @NgModule({
     declarations: [
         EquipmentComponent,
         SearchFormComponent,
         SearchTableComponent,
-        SaveTableComponent,
         SaveFormComponent,
         SearchComponent,
         SaveComponent,
@@ -91,7 +90,8 @@ import { ToastModule } from 'primeng/toast';
     ],
     providers:[
         DatePipe,
-        MessageService
+        MessageService,
+        ConfirmationService
     ]
 })
 export class EquipmentModule {}

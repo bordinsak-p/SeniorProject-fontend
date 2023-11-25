@@ -7,6 +7,14 @@
 <app-search-table
     [cols]="cols"
     [equipments]="equipments"
-    (onDeleteInRowEvent)="onDelete()"
-    (onEditEvent)="onEdit()"
+    (onDeleteInRowEvent)="onDelete($event)"
+    (onEditEvent)="onEdit($event)"
 ></app-search-table>
+
+<p-toast></p-toast>
+<p-confirmDialog #cd [style]="{ width: '25vw' }">
+    <ng-template pTemplate="footer">
+        <button type="button" pButton icon="pi pi-times" label="ยกเลิก" class="p-button-danger" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="ตกลง" class="p-button-success" (click)="cd.accept()"></button>
+    </ng-template>
+</p-confirmDialog>

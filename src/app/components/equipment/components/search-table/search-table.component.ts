@@ -12,6 +12,7 @@ export class SearchTableComponent {
 
   @Output() onDeleteInRowEvent = new EventEmitter();
   @Output() onEditEvent = new EventEmitter();
+  @Output() onDeleteEvent = new EventEmitter();
 
   constructor() {
     // TODO
@@ -21,7 +22,11 @@ export class SearchTableComponent {
     this.onDeleteInRowEvent.emit(id);
   }
 
-  editProduct(id: any) {
+  onEdit(id: any) {
     this.onEditEvent.emit(id);
+  }
+
+  onDelete(id: any[]) {
+    this.onDeleteEvent.emit(id)
   }
 }

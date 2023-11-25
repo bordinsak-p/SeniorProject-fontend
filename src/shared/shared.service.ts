@@ -8,7 +8,7 @@ export class SharedService {
 
   constructor() { }
 
-  getProductImage(image: string): string {
+  getImagePath(image: string): string {
     if (image) {
       return `${environment.baseUrl}images/${image}`
     }

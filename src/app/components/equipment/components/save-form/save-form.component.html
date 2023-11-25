@@ -61,19 +61,12 @@
             formControlName="description"
         ></textarea>
     </div>
-    <div class="col-12 md:col-12">
-        <label for="images" class="drop-container mr-3" id="dropcontainer">
-            เลือกรูปภาพ
+    <div class="col-12 md:col-6">
+        <label for="images" class="drop-container" id="dropcontainer">
+            <input type="file" id="images" (change)="onFileSelected($event)"   accept=".png, .jpg, .jpeg"  formControlName="image">
         </label>
-        <input
-            type="file"
-            id="images"
-            formControlName="image"
-            (change)="onFileSelected($event)"
-            accept=".png, .jpg, .jpeg"
-        />
     </div>
-    <div class="col-12 mb-3" *ngIf="showImage">
+    <div class="col-12 md:col-6 mb-3" *ngIf="showImage">
         <img [src]="showImage" alt="previewImage" id="previewImage" />
     </div>
 </form>
@@ -94,6 +87,7 @@
         label="Success"
         class="p-button p-button-danger"
         (click)="onClear()"
+        [disabled]="validMode"
     >
         <span class="p-button-label"
             >เคลียร์ฟอร์ม <i class="pi pi-eraser ml-2"></i
