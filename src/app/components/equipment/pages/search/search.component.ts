@@ -6,7 +6,7 @@ import { SharedService } from 'src/shared/shared.service';
 import { Equipments } from '../../models/equipments';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
     selector: 'app-search',
@@ -63,6 +63,14 @@ export class SearchComponent implements OnInit {
     onSearch() {
         this.query = {};
 
+        const checkNull = this.searchForm.getRawValue()
+
+        // เช็ค null แต่ถ้าใส่ value ตัวใดตัวนึงมาก็แสดงว่าไม่ null
+        if(Object.values(checkNull).every(value => value === null)) {
+            this.msags.add({ severity: 'info', summary: 'แจ้งเตือน', detail: 'กรุณาเลือกข้อมูลที่ท่านต้องการลบ' });
+            return;
+        }
+
         if (this.searchForm.get('equipmentId').value != null) {
             this.query.equipmentId = this.searchForm.get('equipmentId').value;
         }
@@ -117,7 +125,6 @@ export class SearchComponent implements OnInit {
         });
     }
     
-
     onEdit(id: any) {
         this.service.equipmentId$.next(id)
         this.service.mode$.next('edit')
