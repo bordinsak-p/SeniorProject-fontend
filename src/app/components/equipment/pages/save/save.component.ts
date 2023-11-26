@@ -10,7 +10,7 @@ import { SharedService } from 'src/shared/shared.service';
     templateUrl: './save.component.html',
     // styleUrls: ['./save.component.scss']
 })
-export class SaveComponent implements OnInit, AfterContentInit {
+export class SaveComponent implements OnInit {
     saveForm: FormGroup;
     showImage: any;
     fileEvent: any;
@@ -29,9 +29,9 @@ export class SaveComponent implements OnInit, AfterContentInit {
 
     ngOnInit(): void {
         this.onInitform();
-        if(this.serivce.equipmentId$.value == null && this.serivce.mode$.value != 'add') {
-            this.router.navigate(['equipment'])
-        }
+        // if(this.serivce.equipmentId$.value == null && this.serivce.mode$.value != 'add') {
+        //     this.router.navigate(['equipment'])
+        // }
         if (this.serivce.mode$.value === 'edit') {
             this.serivce.getEquipmentForPrm(this.serivce.equipmentId$.value).subscribe((res: any) => {
                 this.showImage = this.sharedServic.getImagePath(res['results'].image)
@@ -49,12 +49,12 @@ export class SaveComponent implements OnInit, AfterContentInit {
         }
     }
 
-    ngAfterContentInit(): void {
-        if(this.serivce.equipmentId$.value == null) {
-            this.router.navigate(['equipment'])
-            this.serivce.mode$.next('add')
-        }
-    }
+    // ngAfterContentInit(): void {
+    //     if(this.serivce.equipmentId$.value == null) {
+    //         this.router.navigate(['equipment'])
+    //         this.serivce.mode$.next('add')
+    //     }
+    // }
 
     onInitform() {
         this.saveForm = this.fb.group({
@@ -86,7 +86,7 @@ export class SaveComponent implements OnInit, AfterContentInit {
     }
 
     onSave(e: any) {
-        if(this.serivce.mode$.value == 'add') {
+        if(this.serivce.mode$.value != 'edit') {
             const newPaylode = this.setDataForSave()        
             this.serivce.addEquipment(newPaylode).subscribe((res: any) => {
                 this.msgs.add({ severity: 'success', summary: 'สำเร็จ', detail: 'บันทึกข้อมูลสำเร็จ' })
@@ -98,7 +98,7 @@ export class SaveComponent implements OnInit, AfterContentInit {
             this.serivce.updateEquipment(this.serivce.equipmentId$.value, newPaylode).subscribe((res: any) => {
                 this.msgs.add({ severity: 'success', summary: 'สำเร็จ', detail: 'แก้ไขข้อมูลสำเร็จ' })
             })
-            this.serivce.mode$.next('add')
+            this.serivce.mode$.next(null)
         }
     }
 

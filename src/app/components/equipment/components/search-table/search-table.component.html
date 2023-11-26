@@ -1,4 +1,9 @@
-<div class="button-panel-end mb-2 gap-2">
+<div class="button-panel-end mb-2 gap-2 mt-5">
+    <button type="button" label="Success" class="p-button-danger p-button" (click)="onSelectCheckBox()">
+        <span class="p-button-label"
+            >ลบข้อมูล <i class="pi pi-trash ml-2"></i
+        ></span>
+    </button>
     <button type="button" label="Success" class="p-button-success p-button" [routerLink]="['save']">
         <span class="p-button-label"
             >เพิ่มข้อมูล <i class="pi pi-plus ml-2"></i
@@ -17,9 +22,13 @@
     [rowsPerPageOptions]="[5, 10, 25]"
     responsiveLayout="stack"
     styleClass="p-datatable-striped"
+    [(selection)]="selectCheckBox"
 >
     <ng-template pTemplate="header" let-columns>
         <tr>
+            <th style="width: 4rem">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
             <th *ngFor="let col of columns">
                 {{ col.header }}
             </th>
@@ -27,6 +36,9 @@
     </ng-template>
     <ng-template pTemplate="body" let-equipments>
         <tr>
+            <td>
+                <p-tableCheckbox [value]="equipments"></p-tableCheckbox>
+            </td>
             <td class="text-center">
                 <i class="pi pi-trash cursor-pointer sm:m-0 md:mr-3 text-red-500 text-lg" (click)="onDeleteInRow(equipments.id)"></i>
                 <i class="pi pi-file-edit cursor-pointer sm:m-0 md:mr-3 text-purple-500 text-lg" (click)="onEdit(equipments.id)"></i>

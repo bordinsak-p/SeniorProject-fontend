@@ -12,7 +12,7 @@ export class EquipmentService {
   private headers = {'Authorization': 'Bearer ' + localStorage.getItem('token')}
 
   equipmentId$ = new BehaviorSubject<any>(null);
-  mode$ = new BehaviorSubject<any>('add');
+  mode$ = new BehaviorSubject<any>(null);
   
   constructor(private httpClient: HttpClient) { }
   
@@ -40,8 +40,11 @@ export class EquipmentService {
     return this.httpClient.put<any>(`${environment.baseUrl}editEquipment/${id}`, equipment, {headers: this.headers});
   }
 
-
   delEquipment(id: number): Observable<any> {
     return this.httpClient.delete<any>(`${environment.baseUrl}delEquipment/${id}`, { headers: this.headers})
+  }
+
+  delEquipments(ids: number[]): Observable<any> {
+    return this.httpClient.delete<any>(`${environment.baseUrl}delEquipments`, { headers: this.headers, params: { ids: ids.join(',') } })
   }
 }

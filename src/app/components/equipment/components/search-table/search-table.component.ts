@@ -7,12 +7,15 @@ import { Column } from '../../constants/table-inteface'
   // styleUrls: ['./search-table.component.scss']
 })
 export class SearchTableComponent {
+  selectCheckBox: any[]
+  
   @Input() equipments!: any[];
   @Input() cols!: Column[];
-
+  
   @Output() onDeleteInRowEvent = new EventEmitter();
   @Output() onEditEvent = new EventEmitter();
   @Output() onDeleteEvent = new EventEmitter();
+  @Output() onSelectInRowEvent = new EventEmitter()
 
   constructor() {
     // TODO
@@ -28,5 +31,9 @@ export class SearchTableComponent {
 
   onDelete(id: any[]) {
     this.onDeleteEvent.emit(id)
+  }
+
+  onSelectCheckBox() {
+    this.onSelectInRowEvent.emit(this.selectCheckBox)
   }
 }

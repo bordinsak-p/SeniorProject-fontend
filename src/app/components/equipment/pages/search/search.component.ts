@@ -18,6 +18,7 @@ export class SearchComponent implements OnInit {
     cols = TABLE_SEARCH;
     equipments: Equipments[] = [];
     query: any;
+    selectInRow: any
 
     constructor(
         private fb: FormBuilder,
@@ -31,6 +32,8 @@ export class SearchComponent implements OnInit {
     ) {
         this.queryTable();
         service.mode$.next('add')
+        // console.log(service.mode$.value);
+        
     }
 
     queryTable() {
@@ -65,8 +68,7 @@ export class SearchComponent implements OnInit {
         }
 
         if (this.searchForm.get('equipmentName').value != null) {
-            this.query.equipmentName =
-                this.searchForm.get('equipmentName').value;
+            this.query.equipmentName = this.searchForm.get('equipmentName').value;
         }
 
         if (this.searchForm.get('locationName').value != null) {
@@ -120,5 +122,26 @@ export class SearchComponent implements OnInit {
         this.service.equipmentId$.next(id)
         this.service.mode$.next('edit')
         this.router.navigate(['save'], { relativeTo: this.route})
+    }
+
+    onSelectCheckBox(dataEvent: any[]) {
+        if(dataEvent === undefined || dataEvent.length == 0) {
+            this.msags.add({ severity: 'info', summary: 'แจ้งเตือน', detail: 'กรุณาเลือกข้อมูลที่ท่านต้องการลบ' });
+            return;
+        }
+
+        let equipmentIds = dataEvent.map( item => item.id); 
+       
+        this.cfs.confirm({
+            message: 'คุณต้องการลบข้อมูลหรือไม่?',
+            header: 'ยืนยัน',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.service.delEquipments(equipmentIds).subscribe((res: any) => {
+                    this.msags.add({ severity: 'success', summary: 'สำเร็จ', detail: 'ลบข้อมูลสำเร็จ' });
+                    this.queryTable()
+                })
+            }
+        });
     }
 }
