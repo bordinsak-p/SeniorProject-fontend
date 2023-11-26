@@ -6,27 +6,48 @@
         </h4>
     </ng-template>
     <ng-template pTemplate="body">
-        <div class="grid mb-2" [formGroup]="forgetform">
+        <div class="grid mb-4" [formGroup]="forgetform">
+
+            <!-- Form Email -->
             <div class="col-12 pb-0">
-                <label for="email" class="block text-900 mb-2">
-                    อีเมล <span style="color: red;">*</span>
+                <label for="email1" class="block text-900 mb-2">
+                    อีเมล<span style="color: red;">*</span>
                 </label>
-                <input type="email" formControlName="email" placeholder="Email address" pInputText class="w-full" style="padding: 1rem;" [class.ng-invalid]="forgetform.get('email').invalid">
+                <input id="email1" type="email" formControlName="email" placeholder="Email address" pInputText class="w-full" style="padding:1rem" [class.ng-invalid]="forgetform.get('email').invalid">    
+                <div class="flex justify-content-end mb-2">
+                    <small class="text-red-500 mt-1" *ngIf="forgetform.get('email').invalid && forgetform.get('email').dirty">กรุณากรอกอีเมลที่ถูกต้อง</small>
+                </div>
             </div>
+
+            <!-- Form Password -->
             <div class="col-12 pb-0">
-                <label for="email" class="block text-900 mb-2">
+                <label for="password" class="block text-900 mb-2">
                     รหัสผ่าน <span style="color: red;">*</span>
                 </label>
-                <input type="email" formControlName="password" placeholder="Password" pInputText class="w-full" style="padding: 1rem;" [class.ng-invalid]="forgetform.get('email').invalid">
+                <input type="password" formControlName="password" placeholder="Password" pInputText class="w-full" style="padding: 1rem;" [class.ng-invalid]="forgetform.get('email').invalid">
+                <div class="flex justify-content-end mb-2">
+                    <small class="text-red-500 mt-1" *ngIf="forgetform.get('password').dirty && (forgetform.get('password').invalid || forgetform.get('password').hasError('minlength'))">
+                        กรุณากรอกรหัสผ่านให้ถูกต้อง หรือ กรุณากรอกความยาวรหัสผ่านอย่างน้อย 6 ตัวอักษร
+                    </small>
+                </div>
             </div>
+
+            <!-- Form Confirm Password -->
             <div class="col-12 pb-0">
                 <label for="email" class="block text-900 mb-2">
                     ยืนยันรหัสผ่าน <span style="color: red;">*</span>
                 </label>
-                <input type="email" formControlName="confirmPassword" placeholder="Confirm Password" pInputText class="w-full" style="padding: 1rem;" [class.ng-invalid]="forgetform.get('email').invalid">
+                <input type="password" formControlName="confirmPassword" placeholder="Confirm Password" pInputText class="w-full" style="padding: 1rem;" [class.ng-invalid]="forgetform.get('email').invalid">
+                <div class="flex justify-content-end mb-2">
+                    <small class="text-red-500 mt-1" *ngIf="forgetform.hasError('mismatch') && forgetform.get('confirmPassword').touched">
+                        กรุณากรอกรหัสผ่านให้ตรงกัน
+                    </small>
+                </div>
             </div>
         </div>
-        <button pButton pRipple label="ยืนยัน" class="w-full text-xl"></button>
-        <button pButton pRipple label="ยกเลิก" class="w-full text-xl mt-2 dre-pink"></button>
+
+        <!-- Button -->
+        <button pButton pRipple label="ยืนยัน" class="w-full text-xl" [disabled]="forgetform.get('email').value == null || forgetform.get('password').value == null || forgetform.get('confirmPassword').value == null"></button>
+        <button pButton pRipple label="ยกเลิก" class="w-full text-xl mt-2 dre-pink" (click)="onCancelClick()"></button>
     </ng-template>
 </p-dialog>

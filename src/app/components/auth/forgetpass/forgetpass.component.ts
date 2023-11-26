@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from '../service/users.service';
 import { MessageService } from 'primeng/api';
 import { Password } from 'primeng/password';
+import { passwordMatchValidator } from './validator.component';
 
 @Component({
   selector: 'app-forgetpass',
@@ -21,8 +22,9 @@ export class ForgetpassComponent implements OnInit {
     constructor(
       private fb: FormBuilder,
       private service: UsersService,
-      private mesg: MessageService
+      private mesg: MessageService,
   ) {}
+
 
     ngOnInit(): void {
     this.onInitForm();
@@ -31,15 +33,11 @@ export class ForgetpassComponent implements OnInit {
     onInitForm() {
       this.forgetform = this.fb.group({
         email: [null, [Validators.required, Validators.email]],
-        password: [null, [Validators.required]],
+        password: [null, [Validators.required, Validators.minLength(5)]],
         confirmPassword: [null, [Validators.required]]
+      }, {
+        validator: passwordMatchValidator
       });
     }
 
-    // onForget() {
-    //   const payload = this.forgetform.getRawValue();
-    //   payload.role ="user"
-
-    //   if(payload.)
-    // }
 }
