@@ -12,14 +12,20 @@ import { AuthGuard } from './guard/auth.guard';
                 canActivate: [AuthGuard],
                 children: [
                     { path: '', loadChildren: () => import('./components/dashboard/dashboard.module').then(m => m.DashboardModule) },
-                ]
+                ],
+                data: {
+                    breadcrumb: 'หน้าหลัก',
+                }
             },
             {
                 path: 'equipment', component: AppLayoutComponent,
                 canActivate: [AuthGuard],
                 children: [
                     { path: '', loadChildren: () => import('./components/equipment/equipment.module').then(m => m.EquipmentModule) },
-                ]
+                ],
+                data: {
+                    breadcrumb: 'จัดการข้อมูลครุภัณฑ์'
+                }
             },
             { 
                 path: 'auth',

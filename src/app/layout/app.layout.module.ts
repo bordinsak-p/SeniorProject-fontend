@@ -15,7 +15,6 @@ import { RouterModule } from '@angular/router';
 import { AppTopBarComponent } from './app.topbar.component';
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
-import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 
 @NgModule({
@@ -24,8 +23,7 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
         AppTopBarComponent,
         AppMenuComponent,
         AppSidebarComponent,
-        AppLayoutComponent,
-        BreadcrumbsComponent,
+        AppLayoutComponent
     ],
     imports: [
         BrowserModule,

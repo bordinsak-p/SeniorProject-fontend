@@ -12,10 +12,16 @@ const routes: Routes = [
             {
                 path: '',
                 component: SearchComponent,
+                data: {
+                    breadcrumb: 'ค้นหา',
+                }
             },
             {
                 path: 'save',
                 component: SaveComponent,
+                data: {
+                    breadcrumb: 'บันทึก',
+                }
             },
         ],
     },
