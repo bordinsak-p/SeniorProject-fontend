@@ -41,9 +41,10 @@ export class ForgetpassComponent implements OnInit {
     }
 
     onClose() {
-      this.forgetform.reset()
-      this.forgetform.clearValidators()
-      this.visible = false
+      this.forgetform.reset();
+      this.forgetform.clearValidators();
+      this.forgetform.updateValueAndValidity();
+      this.visible = false;
   }
 
 }

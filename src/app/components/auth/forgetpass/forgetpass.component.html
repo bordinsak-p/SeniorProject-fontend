@@ -1,5 +1,5 @@
 
-<p-dialog header="Header" [(visible)]="visible" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '25vw' }" [draggable]="false" [resizable]="false">
+<p-dialog header="Header" [(visible)]="visible" [modal]="true" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '25vw' }" [draggable]="false" [resizable]="false">
     <ng-template pTemplate="header">
         <h4 style="width: 100%;">
            รีเซ็ตรหัสผ่าน
@@ -22,9 +22,9 @@
             <!-- Form Password -->
             <div class="col-12 pb-0">
                 <label for="password" class="block text-900 mb-2">
-                    รหัสผ่าน <span style="color: red;">*</span>
+                    รหัสผ่านใหม่ <span style="color: red;">*</span>
                 </label>
-                <input type="password" formControlName="password" placeholder="Password" pInputText class="w-full" style="padding: 1rem;" [class.ng-invalid]="forgetform.get('email').invalid">
+                <input type="password" formControlName="password" placeholder="New Password" pInputText class="w-full" style="padding: 1rem;" [class.ng-invalid]="forgetform.get('password').invalid">
                 <div class="flex justify-content-end mb-2">
                     <small class="text-red-500 mt-1" *ngIf="forgetform.get('password').dirty && (forgetform.get('password').invalid || forgetform.get('password').hasError('minlength'))">
                         กรุณากรอกรหัสผ่านให้ถูกต้อง หรือ กรุณากรอกความยาวรหัสผ่านอย่างน้อย 6 ตัวอักษร
@@ -37,7 +37,7 @@
                 <label for="email" class="block text-900 mb-2">
                     ยืนยันรหัสผ่าน <span style="color: red;">*</span>
                 </label>
-                <input type="password" formControlName="confirmPassword" placeholder="Confirm Password" pInputText class="w-full" style="padding: 1rem;" [class.ng-invalid]="forgetform.get('email').invalid">
+                <input type="password" formControlName="confirmPassword" placeholder="Confirm Password" pInputText class="w-full" style="padding: 1rem;" [class.ng-invalid]="forgetform.get('confirmPassword').invalid">
                 <div class="flex justify-content-end mb-2">
                     <small class="text-red-500 mt-1" *ngIf="forgetform.hasError('mismatch') && forgetform.get('confirmPassword').touched">
                         กรุณากรอกรหัสผ่านให้ตรงกัน
