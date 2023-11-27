@@ -8,7 +8,7 @@ import { passwordMatchValidator } from './validator.component';
 @Component({
   selector: 'app-forgetpass',
   templateUrl: './forgetpass.component.html',
-  styleUrls: ['./forgetpass.component.scss']
+  // styleUrls: ['./forgetpass.component.scss']
 })
 export class ForgetpassComponent implements OnInit {
   forgetform : FormGroup;

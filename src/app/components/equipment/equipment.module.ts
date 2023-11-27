@@ -40,6 +40,7 @@ import { SearchComponent } from './pages/search/search.component';
 import { SaveComponent } from './pages/save/save.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToastModule } from 'primeng/toast';
+import { ViewDialogComponent } from './components/view-dialog/view-dialog.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { ToastModule } from 'primeng/toast';
         SaveFormComponent,
         SearchComponent,
         SaveComponent,
+        ViewDialogComponent,
     ],
     imports: [
         CommonModule,

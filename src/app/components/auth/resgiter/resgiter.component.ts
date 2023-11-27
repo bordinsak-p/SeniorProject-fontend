@@ -6,7 +6,7 @@ import { UsersService } from '../service/users.service';
 @Component({
     selector: 'app-resgiter',
     templateUrl: './resgiter.component.html',
-    styleUrls: ['./resgiter.component.scss'],
+    // styleUrls: ['./resgiter.component.scss'],
 })
 export class ResgiterComponent implements OnInit {
     userForm: FormGroup;

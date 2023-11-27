@@ -16,14 +16,6 @@ export class EquipmentService {
   
   constructor(private httpClient: HttpClient) { }
   
-  set setEquipmentId(equipmentId: any) {
-    this.equipmentId$ = equipmentId
-  }
-
-  get getEquiptmentId() {
-    return this.equipmentId$
-  }
-
   getEquipment(params: any): Observable<Equipments[]>{
     return this.httpClient.get<Equipments[]>(`${environment.baseUrl}getEquipment`, { headers: this.headers, params })
   }

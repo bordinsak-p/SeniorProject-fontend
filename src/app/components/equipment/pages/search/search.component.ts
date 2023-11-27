@@ -15,10 +15,14 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 })
 export class SearchComponent implements OnInit {
     searchForm: FormGroup;
+    viewForm: FormGroup;
     cols = TABLE_SEARCH;
     equipments: Equipments[] = [];
     query: any;
-    selectInRow: any
+    selectInRow: any;
+    visible: any;
+    getIdView: number
+    showImage: any
 
     constructor(
         private fb: FormBuilder,
@@ -31,9 +35,8 @@ export class SearchComponent implements OnInit {
         private msags: MessageService
     ) {
         this.queryTable();
-        service.mode$.next('add')
+        service.mode$.next('add');
         // console.log(service.mode$.value);
-        
     }
 
     queryTable() {
@@ -47,6 +50,7 @@ export class SearchComponent implements OnInit {
 
     ngOnInit(): void {
         this.onInitForm();
+        this.onInitViewForm();
     }
 
     onInitForm() {
@@ -63,11 +67,15 @@ export class SearchComponent implements OnInit {
     onSearch() {
         this.query = {};
 
-        const checkNull = this.searchForm.getRawValue()
+        const checkNull = this.searchForm.getRawValue();
 
         // เช็ค null แต่ถ้าใส่ value ตัวใดตัวนึงมาก็แสดงว่าไม่ null
-        if(Object.values(checkNull).every(value => value === null)) {
-            this.msags.add({ severity: 'info', summary: 'แจ้งเตือน', detail: 'กรุณาเลือกข้อมูลที่ท่านต้องการลบ' });
+        if (Object.values(checkNull).every((value) => value === null)) {
+            this.msags.add({
+                severity: 'info',
+                summary: 'แจ้งเตือน',
+                detail: 'กรุณาเลือกข้อมูลที่ท่านต้องการลบ',
+            });
             return;
         }
 
@@ -76,7 +84,8 @@ export class SearchComponent implements OnInit {
         }
 
         if (this.searchForm.get('equipmentName').value != null) {
-            this.query.equipmentName = this.searchForm.get('equipmentName').value;
+            this.query.equipmentName =
+                this.searchForm.get('equipmentName').value;
         }
 
         if (this.searchForm.get('locationName').value != null) {
@@ -90,11 +99,11 @@ export class SearchComponent implements OnInit {
         if (this.searchForm.get('roomNumber').value != null) {
             this.query.roomNumber = this.searchForm.get('roomNumber').value;
         }
-        
+
         if (this.searchForm.get('budgetYear').value != null) {
             const newDate = new Date(this.searchForm.get('budgetYear').value);
             this.query.budgetYear = newDate.toISOString(); // ให้ Angular ส่ง ISO 8601 format
-        }        
+        }
 
         this.service.getEquipment(this.query).subscribe((res: any) => {
             this.equipments = res.results.map((item: any) => {
@@ -118,37 +127,97 @@ export class SearchComponent implements OnInit {
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
                 this.service.delEquipment(id).subscribe((res) => {
-                    this.msags.add({ severity: 'success', summary: 'สำเร็จ', detail: 'ลบข้อมูลสำเร็จ' });
-                    this.queryTable()
-                })
-            }
+                    this.msags.add({
+                        severity: 'success',
+                        summary: 'สำเร็จ',
+                        detail: 'ลบข้อมูลสำเร็จ',
+                    });
+                    this.queryTable();
+                });
+            },
         });
     }
-    
+
     onEdit(id: any) {
-        this.service.equipmentId$.next(id)
-        this.service.mode$.next('edit')
-        this.router.navigate(['save'], { relativeTo: this.route})
+        this.service.equipmentId$.next(id);
+        this.service.mode$.next('edit');
+        this.router.navigate(['save'], { relativeTo: this.route });
     }
 
     onSelectCheckBox(dataEvent: any[]) {
-        if(dataEvent === undefined || dataEvent.length == 0) {
-            this.msags.add({ severity: 'info', summary: 'แจ้งเตือน', detail: 'กรุณาเลือกข้อมูลที่ท่านต้องการลบ' });
+        if (dataEvent === undefined || dataEvent.length == 0) {
+            this.msags.add({
+                severity: 'info',
+                summary: 'แจ้งเตือน',
+                detail: 'กรุณาเลือกข้อมูลที่ท่านต้องการลบ',
+            });
             return;
         }
 
-        let equipmentIds = dataEvent.map( item => item.id); 
-       
+        let equipmentIds = dataEvent.map((item) => item.id);
+
         this.cfs.confirm({
             message: 'คุณต้องการลบข้อมูลหรือไม่?',
             header: 'ยืนยัน',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
-                this.service.delEquipments(equipmentIds).subscribe((res: any) => {
-                    this.msags.add({ severity: 'success', summary: 'สำเร็จ', detail: 'ลบข้อมูลสำเร็จ' });
-                    this.queryTable()
-                })
-            }
+                this.service
+                    .delEquipments(equipmentIds)
+                    .subscribe((res: any) => {
+                        this.msags.add({
+                            severity: 'success',
+                            summary: 'สำเร็จ',
+                            detail: 'ลบข้อมูลสำเร็จ',
+                        });
+                        this.queryTable();
+                    });
+            },
         });
     }
+
+    onInitViewForm() {
+        this.viewForm = this.fb.group({
+            equipmentid: [null],
+            equipmentname: [null],
+            locationname: [null],
+            branchinfo: [null],
+            roomnumber: [null],
+            budgetYear: [null],
+            description: [null]
+        });
+    }
+
+    onDisableViewForm() {
+        this.viewForm.get('equipmentid').disable();
+        this.viewForm.get('equipmentname').disable();
+        this.viewForm.get('locationname').disable();
+        this.viewForm.get('branchinfo').disable();
+        this.viewForm.get('roomnumber').disable();
+        this.viewForm.get('budgetYear').disable();
+        this.viewForm.get('description').disable();
+    }
+
+    onGetViewId(id: number) {
+        console.log(id);
+        this.getIdView = id;
+    }
+
+    onOpenDialog(e: any) {
+        this.visible = e.e;        
+        this.onDisableViewForm();
+        this.service.getEquipmentForPrm(e.id).subscribe((res: any) => {
+            this.showImage = this.sharedService.getImagePath(res['results'].image)
+            const setForm = {
+                equipmentid: res.results.equipment_id,
+                equipmentname: res.results.equipment_name,
+                locationname: res.results['Location'].location_name,
+                branchinfo: res.results['Location'].branch_info,
+                roomnumber: res.results['Location'].room_number,
+                budgetYear: this.dateFormat.transform(res.results.budget_year, 'dd/MM/yyyy') ,
+                description: res.results.description
+            }
+            this.viewForm.patchValue(setForm)
+        })
+    }
+
 }

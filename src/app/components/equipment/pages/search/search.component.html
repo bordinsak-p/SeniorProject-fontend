@@ -10,7 +10,11 @@
     (onDeleteInRowEvent)="onDelete($event)"
     (onEditEvent)="onEdit($event)"
     (onSelectInRowEvent)="onSelectCheckBox($event)"
+    (onOpenDialogEvent)="onOpenDialog($event)"
 ></app-search-table>
+
+<!-- (onSelectViewInRowEvent)="onGetViewId($event)" -->
+
 
 <p-toast></p-toast>
 <p-confirmDialog #cd [style]="{ width: '25vw' }">
@@ -19,3 +23,5 @@
         <button type="button" pButton icon="pi pi-check" label="ตกลง" class="p-button-success" (click)="cd.accept()"></button>
     </ng-template>
 </p-confirmDialog>
+
+<app-view-dialog [visible]="visible" [viewForm]="viewForm" [showImage]="showImage"></app-view-dialog>
