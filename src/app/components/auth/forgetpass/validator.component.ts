@@ -5,7 +5,7 @@ export const passwordMatchValidator: ValidatorFn = (control: FormGroup): Validat
   const confirmPassword = control.get('confirmPassword');
 
   const mismatch = password && confirmPassword && password.value !== confirmPassword.value;
-  console.log('Mismatch:', mismatch);
+  // console.log('Mismatch:', mismatch);
 
   return mismatch ? { 'mismatch': true } : null;
 };

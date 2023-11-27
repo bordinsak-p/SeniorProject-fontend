@@ -1,5 +1,5 @@
 
-<p-dialog header="Header" [(visible)]="visible" [style]="{width: '27vw'}" [draggable]="false" [closable]="true" [modal]="true">
+<p-dialog header="Header" [(visible)]="visible" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '25vw' }" [draggable]="false" [resizable]="false">
     <ng-template pTemplate="header">
         <h4 style="width: 100%;">
            รีเซ็ตรหัสผ่าน
@@ -48,6 +48,6 @@
 
         <!-- Button -->
         <button pButton pRipple label="ยืนยัน" class="w-full text-xl" [disabled]="forgetform.get('email').value == null || forgetform.get('password').value == null || forgetform.get('confirmPassword').value == null"></button>
-        <button pButton pRipple label="ยกเลิก" class="w-full text-xl mt-2 dre-pink" (click)="onCancelClick()"></button>
+        <button pButton pRipple label="ยกเลิก" class="w-full text-xl mt-2 dre-pink" (click)="onClose()"></button>
     </ng-template>
 </p-dialog>
