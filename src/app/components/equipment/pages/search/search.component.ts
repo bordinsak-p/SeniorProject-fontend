@@ -36,7 +36,6 @@ export class SearchComponent implements OnInit {
     ) {
         this.queryTable();
         service.mode$.next('add');
-        // console.log(service.mode$.value);
     }
 
     queryTable() {
@@ -198,7 +197,6 @@ export class SearchComponent implements OnInit {
     }
 
     onGetViewId(id: number) {
-        console.log(id);
         this.getIdView = id;
     }
 
