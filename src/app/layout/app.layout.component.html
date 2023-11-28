@@ -5,8 +5,8 @@
     </div>
     <div class="layout-main-container">
         <div class="layout-main">
-            <p-breadcrumb [model]="breadcrumbs" [home]="{icon:'pi pi-home', routerLink:'/'}"></p-breadcrumb>
-            <div class="mt-5">
+            <p-breadcrumb [model]="breadcrumbs" [home]="{icon:'pi pi-home', routerLink:'/'}" [hidden]="breadcrumbs[0]['label'] == 'หน้าหลัก'"></p-breadcrumb>
+            <div class="mt-2">
                 <router-outlet></router-outlet>
             </div>
         </div>

@@ -159,7 +159,7 @@ export class AppLayoutComponent implements OnDestroy, OnInit {
             if (routeURL !== '') {
                 url += `/${routeURL}`;
             }
-            breadcrumbs.push({ label: child.snapshot.data['breadcrumb'], routerLink: url,});
+            breadcrumbs.push({ label: child.snapshot.data['breadcrumb'], routerLink: url});
             this.createBreadcrumbs(child, url, breadcrumbs);
         }
         
