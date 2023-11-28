@@ -47,4 +47,20 @@ export class ForgetpassComponent implements OnInit {
       this.visible = false;
   }
 
+    onResetPass() {
+      if (this.forgetform.invalid) {
+        this.mesg.add({ severity: 'error', summary: 'ไม่สำเร็จ', detail: 'โปรดกรอกข้อมูลให้ครบทุกช่อง' });
+      }
+      const data = this.forgetform.getRawValue();
+      const paylode = {
+        email: data.email,
+        password: data.password
+      };
+
+        this.service.resetPassword(paylode).subscribe((res: any) => {
+          this.mesg.add({ severity: 'success', summary: 'สำเร็จ', detail: 'เปลี่ยนรหัสผ่านเรียบร้อยแล้ว' });
+          this.forgetform.reset();
+      });
+
+  }
 }
