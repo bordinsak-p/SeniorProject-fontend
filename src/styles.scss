@@ -27,29 +27,18 @@
 }
 
 // ปุ่ม 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 375px), screen and (max-width: 414px), screen and (max-width: 431px) {
   .button-panel {
-    flex-direction: column !important;
+    flex-direction: column;
   }
 
   .button-panel-end {
     justify-content: center;
-    flex-direction: column !important;
+    flex-direction: column;
     margin-top: 8px;
   }
 }
 
-@media screen and (max-width: 414px) {
-  .button-panel {
-    flex-direction: column !important;
-  }
-
-  .button-panel-end {
-    justify-content: center;
-    flex-direction: column !important;
-    margin-top: 8px;
-  }
-}
 
 // แก้ไขปุ่ม icon ใน table
 @media screen and (max-width: 820px) {

@@ -1,1 +1,47 @@
-<p>search-form works!</p>
+<div class="grid" [formGroup]="searchForm">
+    <div class="col-12 md:col-6 lg:col-3 lg:mt-5">
+        <label for="firstname" class="block text-lg">
+            ชื่อจริง
+        </label>
+        <input type="text" pInputText class="w-full" />
+    </div>
+    <div class="col-12 md:col-6 lg:col-3 lg:mt-5">
+        <label for="equipmentId" class="block text-lg">
+            นามสกุล
+        </label>
+        <input type="text" pInputText class="w-full" />
+    </div>
+    <div class="col-12 md:col-6 lg:col-3 lg:mt-5">
+        <label for="equipmentId" class="block text-lg">
+            อีเมล
+        </label>
+        <input type="text" pInputText class="w-full" />
+    </div>
+    <div class="col-12 md:col-6 lg:col-3 lg:mt-5">
+        <label for="equipmentId" class="block text-lg">
+            ชื่อผู้ใช้งาน
+        </label>
+        <input type="text" pInputText class="w-full" />
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+        <label for="equipmentId" class="block text-lg">
+            บทบาท
+        </label>
+        <input type="text" pInputText class="w-full" />
+    </div>
+    <div class="col-12 md:col-6 lg:col-3">
+        <label for="equipmentId" class="block text-lg">
+            วันที่เริ่มต้น
+        </label>
+        <input type="text" pInputText class="w-full" />
+    </div>
+</div>
+
+<div class="gap-2 mt-3 button-panel">
+    <button type="button" label="Success" class="p-button p-button-info">
+        <span class="p-button-label">ค้นหา <i class="pi pi-search ml-2"></i></span>
+    </button>
+    <button type="button" label="Success" class="p-button p-button-warning">
+        <span class="p-button-label">ล้างข้อมูล <i class="pi pi-eraser ml-2"></i></span>
+    </button>
+</div>

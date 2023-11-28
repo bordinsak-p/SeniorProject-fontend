@@ -1,1 +1,7 @@
-<p>search works!</p>
+<app-search-form
+    [searchForm]="searchForm"
+    (onSearchEvent)="onSearch()"
+    (onClearEvent)="onClear()"
+></app-search-form>
+
+<app-search-table [users]="user" [cols]="cols"></app-search-table>
