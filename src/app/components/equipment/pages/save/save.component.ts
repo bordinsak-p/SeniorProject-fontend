@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { EquipmentService } from '../../services/equipment.service';
 import { MessageService } from 'primeng/api';
@@ -10,7 +10,7 @@ import { SharedService } from 'src/shared/shared.service';
     templateUrl: './save.component.html',
     // styleUrls: ['./save.component.scss']
 })
-export class SaveComponent implements OnInit {
+export class SaveComponent implements OnInit, AfterContentInit {
     saveForm: FormGroup;
     showImage: any;
     fileEvent: any;
@@ -29,10 +29,7 @@ export class SaveComponent implements OnInit {
 
     ngOnInit(): void {
         this.onInitform();
-        // if(this.serivce.equipmentId$.value == null && this.serivce.mode$.value != 'add') {
-        //     this.router.navigate(['equipment'])
-        // }
-        if (this.serivce.mode$.value === 'edit') {
+        if (this.serivce.mode$.value === 'edit' ) {
             this.serivce.getEquipmentForPrm(this.serivce.equipmentId$.value).subscribe((res: any) => {
                 this.showImage = this.sharedServic.getImagePath(res['results'].image)
                 this.setData = {
@@ -47,15 +44,14 @@ export class SaveComponent implements OnInit {
                 this.saveForm.get('equipmentid').disable()
                 this.validMod = 'edit'
             });
-        }
+        } 
     }
 
-    // ngAfterContentInit(): void {
-    //     if(this.serivce.equipmentId$.value == null) {
-    //         this.router.navigate(['equipment'])
-    //         this.serivce.mode$.next('add')
-    //     }
-    // }
+    ngAfterContentInit(): void {
+        if(this.serivce.mode$.value == null) {
+            this.router.navigate(['equipment'])
+        }
+    }
 
     onInitform() {
         this.saveForm = this.fb.group({
