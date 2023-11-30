@@ -1,1 +1,41 @@
-<p>search-form works!</p>
+<div class="grid" [formGroup]="searchForm">
+    <div class="col-12 md:col-6 lg:col-2 lg:mt-5">
+        <label for="equipmentId" class="block text-lg mb-2">
+            รหัสครุภัณฑ์
+        </label>
+        <input type="text" pInputText class="w-full" formControlName="equipmentId" />
+    </div>
+    <div class="col-12 md:col-6 lg:col-4 lg:mt-5">
+        <label for="equipmentName" class="block text-lg mb-2" >
+            ชื่อครุภัณฑ์
+        </label>
+        <input type="text" pInputText class="w-full" formControlName="equipmentName"/>
+    </div>
+    <div class="col-12 md:col-6 lg:col-2 lg:mt-5">
+        <label for="status" class="block text-lg mb-2" >
+            สถานะ
+        </label>
+        <input type="text" pInputText class="w-full" formControlName="status"/>
+    </div>
+    <div class="col-12 md:col-6 lg:col-4 lg:mt-5">
+        <label for="budgetYear" class="block text-lg mb-2">
+            ปีงบประมาณ
+        </label>
+        <p-calendar [showIcon]="true" [showButtonBar]="true" formControlName="budgetYear"></p-calendar>
+    </div>
+    <div class="col-12 md:col-6 lg:col-4">
+        <label for="username" class="block text-lg mb-2">
+            ชื่อบัญชี ผู้แจ้งซ่อม
+        </label>
+        <input type="text" pInputText class="w-full" formControlName="username"/>
+    </div>
+</div>
+
+<div class="gap-2 mt-3 button-panel">
+    <button type="button" label="Success" class="p-button p-button-info" (click)="onSearch()">
+        <span class="p-button-label">ค้นหา <i class="pi pi-search ml-2"></i></span>
+    </button>
+    <button type="button" label="Success" class="p-button p-button-warning" (click)="onClear()">
+        <span class="p-button-label">ล้างข้อมูล <i class="pi pi-eraser ml-2"></i></span>
+    </button>
+</div>
