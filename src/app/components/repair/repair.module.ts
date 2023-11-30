@@ -31,11 +31,25 @@ import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { TreeModule } from 'primeng/tree';
 import { TreeTableModule } from 'primeng/treetable';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { CardModule } from 'primeng/card';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ToastModule } from 'primeng/toast';
+import { SearchFormComponent } from './components/search-form/search-form.component';
+import { SearchTableComponent } from './components/search-table/search-table.component';
+import { SaveFormComponent } from './components/save-form/save-form.component';
+import { SearchComponent } from './pages/search/search.component';
+import { SaveComponent } from './pages/save/save.component';
 
 
 @NgModule({
   declarations: [
-    RepairComponent
+    RepairComponent,
+    SearchFormComponent,
+    SearchTableComponent,
+    SaveFormComponent,
+    SearchComponent,
+    SaveComponent
   ],
   imports: [
     CommonModule,
@@ -69,6 +83,10 @@ import { TreeTableModule } from 'primeng/treetable';
     InputSwitchModule,
     MultiSelectModule,
     HttpClientModule,
+    CardModule,
+    BreadcrumbModule,
+    InputTextareaModule,
+    ToastModule
   ]
 })
 export class RepairModule { }

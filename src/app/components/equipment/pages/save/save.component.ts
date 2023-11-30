@@ -44,6 +44,7 @@ export class SaveComponent implements OnInit {
                     description: res.results.description,
                 };
                 this.saveForm.patchValue(this.setData);
+                this.saveForm.get('equipmentid').disable()
                 this.validMod = 'edit'
             });
         }

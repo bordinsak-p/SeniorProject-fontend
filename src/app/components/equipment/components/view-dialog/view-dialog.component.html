@@ -1,4 +1,4 @@
-<p-dialog [(visible)]="visible" [modal]="true" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '75vw' }" [draggable]="false" [resizable]="false">
+<p-dialog [(visible)]="visible" [modal]="true" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '75vw' }" [draggable]="false" [resizable]="false" >
     <ng-template pTemplate="header">
         <h4 style="width: 100%;">
            ข้อมูลครุภัณฑ์
@@ -65,7 +65,7 @@
                     formControlName="budgetYear"
                 />
             </div>
-            <div class="col-12 md:col-12 lg:col-12">
+            <div class="col-12 md:col-10 lg:col-10">
                 <label for="description" class="block text-lg mb-2"> ลายละเอียด </label>
                 <textarea
                     type="text"
