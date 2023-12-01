@@ -1,1 +1,61 @@
-<p>search-table works!</p>
+<div class="button-panel-end mb-2 gap-2 mt-5">
+    <button type="button" label="Success" class="p-button-danger p-button" (click)="onDeleteCheckBox()">
+        <span class="p-button-label"
+            >ลบข้อมูล <i class="pi pi-trash ml-2"></i
+        ></span>
+    </button>
+    <button type="button" label="Success" class="p-button-success p-button" [routerLink]="['save']">
+        <span class="p-button-label"
+            >เพิ่มข้อมูล <i class="pi pi-plus ml-2"></i
+        ></span>
+    </button>
+</div>
+
+<p-table
+    [value]="repair"
+    [paginator]="true"
+    [columns]="cols"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    currentPageReportTemplate="{first} to {last} of {totalRecords}"
+    [rowsPerPageOptions]="[5, 10, 25]"
+    responsiveLayout="stack"
+    styleClass="p-datatable-striped"
+    [(selection)]="selectCheckBox"
+>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th style="width: 4rem">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th *ngFor="let col of columns">
+                {{ col.header }}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-equipments>
+        <tr>
+            <td>
+                <p-tableCheckbox [value]="repair"></p-tableCheckbox>
+            </td>
+            <td class="text-center">
+                <i class="pi pi-trash cursor-pointer sm:m-0 md:mr-3 text-red-500 text-lg" (click)="onDeletInRow()"></i>
+                <i class="pi pi-file-edit cursor-pointer sm:m-0 md:mr-3 text-purple-500 text-lg" (click)="onEdit()"></i>
+                <i class="pi pi-eye cursor-pointer text-pink-500 text-lg"></i>
+            </td>
+            <!-- <td>{{ equipments.equipment_id }}</td>
+            <td>{{ equipments.equipment_name }}</td>
+            <td>{{ equipments.Location.location_name }}</td>
+            <td>{{ equipments.Location.branch_info }}</td>
+            <td>{{ equipments.Location.room_number }}</td>
+            <td>{{ equipments.budget_year | date:'dd/MM/yyyy' }}</td> -->
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="18" style="text-align: center">ไม่พบข้อมูล</td>
+        </tr>
+      </ng-template>
+</p-table>
+

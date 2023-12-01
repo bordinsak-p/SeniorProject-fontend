@@ -1,3 +1,7 @@
-<app-search-form></app-search-form>
+<app-search-form
+    [searchForm]="searchForm"
+    (onSearchEvent)="onSearch()"
+    (onClearEvent)="onClear()"
+></app-search-form>
 
 <app-search-table></app-search-table>
