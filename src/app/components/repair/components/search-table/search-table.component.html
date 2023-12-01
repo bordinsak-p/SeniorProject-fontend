@@ -34,7 +34,7 @@
             </th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-equipments>
+    <ng-template pTemplate="body" let-repair>
         <tr>
             <td>
                 <p-tableCheckbox [value]="repair"></p-tableCheckbox>
@@ -42,14 +42,16 @@
             <td class="text-center">
                 <i class="pi pi-trash cursor-pointer sm:m-0 md:mr-3 text-red-500 text-lg" (click)="onDeletInRow()"></i>
                 <i class="pi pi-file-edit cursor-pointer sm:m-0 md:mr-3 text-purple-500 text-lg" (click)="onEdit()"></i>
-                <i class="pi pi-eye cursor-pointer text-pink-500 text-lg"></i>
+                <!-- <i class="pi pi-eye cursor-pointer text-pink-500 text-lg"></i> -->
             </td>
-            <!-- <td>{{ equipments.equipment_id }}</td>
-            <td>{{ equipments.equipment_name }}</td>
-            <td>{{ equipments.Location.location_name }}</td>
-            <td>{{ equipments.Location.branch_info }}</td>
-            <td>{{ equipments.Location.room_number }}</td>
-            <td>{{ equipments.budget_year | date:'dd/MM/yyyy' }}</td> -->
+            <td>{{ repair['users'].firstname }}</td>
+            <td>{{ repair['users'].lastname }}</td>
+            <td>{{ repair['users'].username }}</td>
+            <td>{{ repair['equipments'].equipment_id }}</td>
+            <td>{{ repair['equipments'].equipment_name }}</td>
+            <!-- <td>{{ repair['equipments'].budget_year | date:'dd/MM/yyyy' }}</td> -->
+            <td>{{ repair.request_date | date:'dd/MM/yyyy' }}</td>
+            <td>{{ repair.status }}</td>
         </tr>
     </ng-template>
     <ng-template pTemplate="emptymessage">
