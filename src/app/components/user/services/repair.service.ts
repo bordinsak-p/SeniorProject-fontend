@@ -16,8 +16,9 @@ export class RepairService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getUsers(): Observable<Repairs[]> {
-    return this.httpClient.get<Repairs[]>(`${environment.baseUrl}getUsers`, { headers: this.headers })
-  }
+
+  getUsers(params: any): Observable<Repairs[]>{
+    return this.httpClient.get<Repairs[]>(`${environment.baseUrl}getUsers`, { headers: this.headers, params })
+  } 
   
 }
