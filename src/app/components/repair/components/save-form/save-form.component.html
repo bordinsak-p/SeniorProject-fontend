@@ -1,1 +1,17 @@
-<p>save-form works!</p>
+<div [formGroup]="saveForm">
+    <div class="col-12 md:col-6 lg:col-2 lg:mt-5">
+        <label for="equipmentId" class="block text-lg mb-2">
+            รหัสครุภัณฑ์
+        </label>
+        <input type="text" pInputText class="w-full" formControlName="equipmentId" />
+    </div>
+</div>
+
+<div class="gap-2 mt-3 button-panel">
+    <button type="button" label="Success" class="p-button p-button-success">
+        <span class="p-button-label">บันทึก <i class="pi pi-save ml-2"></i></span>
+    </button>
+    <button type="button" label="Success" class="p-button p-button-danger">
+        <span class="p-button-label">ล้างข้อมูล <i class="pi pi-eraser ml-2"></i></span>
+    </button>
+</div>

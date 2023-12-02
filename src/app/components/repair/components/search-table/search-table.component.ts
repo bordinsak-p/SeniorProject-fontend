@@ -7,16 +7,24 @@ import { Column } from '../../constants/table-inteface';
     styleUrls: ['./search-table.component.scss'],
 })
 export class SearchTableComponent {
-    selectCheckBox: any;
+    selectCheckBox: any[];
 
     @Input() repair: any[] = [];
     @Input() cols: Column;
 
     @Output() onEditEvent = new EventEmitter();
+    @Output() onDeleteCheckBoxEvent = new EventEmitter();
+    @Output() onDeleteInRowEvent = new EventEmitter();
 
-    onEdit(id: any) {}
+    onEdit(id: any) {
+        this.onEditEvent.emit()
+    }
 
-    onDeletInRow(id: any) {}
+    onDeletInRow(id: any) {
+        this.onDeleteInRowEvent.emit(id)
+    }
 
-    onDeleteCheckBox() {}
+    onDeleteCheckBox() {
+        this.onDeleteCheckBoxEvent.emit(this.selectCheckBox)
+    }
 }

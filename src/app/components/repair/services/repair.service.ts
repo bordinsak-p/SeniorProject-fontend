@@ -18,4 +18,12 @@ export class RepairService {
   getRepairs(params: any): Observable<Repair> {
     return this.httpClient.get<Repair>(`${environment.baseUrl}getRepairs`, { headers: this.headers, params })
   }
+
+  delRepair(id: number): Observable<any> {
+    return this.httpClient.delete<any>(`${environment.baseUrl}delRepairs/${id}`, { headers: this.headers})
+  }
+
+  delRepairs(ids: number[]): Observable<any> {
+    return this.httpClient.delete<any>(`${environment.baseUrl}delRepairs`, { headers: this.headers, params: { ids: ids.join(',') } })
+  }
 }
