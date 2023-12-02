@@ -5,5 +5,6 @@ export const TABLE_SEARCH = [
     { field: 'email', header: 'อีเมล' },
     { field: 'username', header: 'ชื่อผู้ใช้งาน' },  
     { field: 'role', header: 'ตำแหน่ง' },  
-    { field: 'createAt', header: 'วันที่เริ่มต้น'}, 
+    { field: 'createAt', header: 'วันที่สร้าง'}, 
+
 ]

@@ -49,7 +49,7 @@ import { ToastModule } from 'primeng/toast';
     SaveFormComponent,
     SearchTableComponent,
     SearchComponent,
-    SaveComponent
+    SaveComponent,
   ],
   imports: [
     CommonModule,

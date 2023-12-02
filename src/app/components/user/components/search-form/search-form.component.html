@@ -31,14 +31,14 @@
     </div>
     <div class="col-12 md:col-6 lg:col-3">
         <label for="createAt" class="block text-lg">
-            วันที่เริ่มต้น
+            วันที่สร้าง
         </label>
-        <p-calendar [showIcon]="true" [showButtonBar]="true" ></p-calendar>
+        <p-calendar [showIcon]="true" [showButtonBar]="true" formControlName="createdAt"></p-calendar>
     </div>
 </div>
 
 <div class="gap-2 mt-3 button-panel">
-    <button type="button" label="Success" class="p-button p-button-info">
+    <button type="button" label="Success" class="p-button p-button-info" (click)="onSearch()">
         <span class="p-button-label">ค้นหา <i class="pi pi-search ml-2"></i></span>
     </button>
     <button type="button" label="Success" class="p-button p-button-warning">

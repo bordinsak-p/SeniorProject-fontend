@@ -11,4 +11,8 @@ export class SearchFormComponent {
     
     @Output() onSearchEvent = new EventEmitter()
     @Output() onClearEvent = new EventEmitter()
+
+    onSearch() {
+      this.onSearchEvent.emit()
+    }
 }

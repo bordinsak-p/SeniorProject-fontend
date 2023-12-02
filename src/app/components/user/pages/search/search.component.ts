@@ -4,39 +4,38 @@ import { TABLE_SEARCH } from '../../constants/table-options';
 import { Repairs } from '../../models/repairs.interface';
 import { RepairService } from '../../services/repair.service';
 import { SharedService } from 'src/shared/shared.service';
-import { DatePipe } from '@angular/common';
-import { co } from '@fullcalendar/core/internal-common';
 
 @Component({
     selector: 'app-search',
     templateUrl: './search.component.html',
     // styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit{
+export class SearchComponent implements OnInit {
     searchForm: FormGroup;
-    user: any[]
+    user: any[];
     cols = TABLE_SEARCH;
-    users: Repairs[]= [];
+    users: Repairs[] = [];
     query: any;
     viewForm: any;
+    severityService: any;
 
     constructor(
         private fb: FormBuilder,
         private service: RepairService,
-        private sharedService: SharedService,
+        private sharedService: SharedService
     ) {
-        this.queryTable
+        this.queryTable();
     }
 
     queryTable() {
         this.service.getUsers(this.query).subscribe((res: any) => {
-            console.log(res);
-        }
-        )
+            this.users = res.results;
+            console.log(res.results);
+        });
     }
 
     ngOnInit(): void {
-        this.onInitForm()
+        this.onInitForm();
     }
 
     onInitForm() {
@@ -46,8 +45,8 @@ export class SearchComponent implements OnInit{
             email: [null],
             username: [null],
             role: [null],
-            createdAt: [null]
-        })
+            createdAt: [null],
+        });
     }
 
     onInitViewForm() {
@@ -57,46 +56,46 @@ export class SearchComponent implements OnInit{
             mail: [null],
             username: [null],
             role: [null],
-            createAt: [null]
+            createAt: [null],
         });
     }
 
     onSearch() {
         this.query = {};
 
-        const checkNull = this.searchForm.getRawValue();
+            const checkNull = this.searchForm.getRawValue();
+           
+            if (this.searchForm.get('firstname').value != null) {
+                this.query.firstname = this.searchForm.get('firstname').value;
+            }
 
-        if (this.searchForm.get('firstname').value != null) {
-            this.query.firstname = this.searchForm.get('firstname').value;
-        }
+            if (this.searchForm.get('lastname').value != null) {
+                this.query.lastname =
+                    this.searchForm.get('lastname').value;
+            }
 
-        if (this.searchForm.get('lastname').value != null) {
-            this.query.lastname =
-                this.searchForm.get('lastname').value;
-        }
+            if (this.searchForm.get('email').value != null) {
+                this.query.email = this.searchForm.get('email').value;
+            }
 
-        if (this.searchForm.get('email').value != null) {
-            this.query.email = this.searchForm.get('email').value;
-        }
+            if (this.searchForm.get('username').value != null) {
+                this.query.username = this.searchForm.get('username').value;
+            }
 
-        if (this.searchForm.get('username').value != null) {
-            this.query.username = this.searchForm.get('username').value;
-        }
+            if (this.searchForm.get('role').value != null) {
+                this.query.role = this.searchForm.get('role').value;
+            }
 
-        if (this.searchForm.get('role').value != null) {
-            this.query.role = this.searchForm.get('role').value;
-        }
+            if (this.searchForm.get('createdAt').value != null) {
+                const newDate = new Date(this.searchForm.get('createdAt').value);
+                this.query.createdAt = newDate.toISOString(); // ให้ Angular ส่ง ISO 8601 format
+            }
 
-        if (this.searchForm.get('createAt').value != null) {
-            const newDate = new Date(this.searchForm.get('createAt').value);
-            this.query.createAt = newDate.toISOString(); // ให้ Angular ส่ง ISO 8601 format
-        }
-
-        this.service.getUsers(this.query).subscribe((res: any) => {
-            console.log(res);
-        }
-      )
+            // this.service.getUsers(this.query).subscribe((res: any) => {
+            //     console.log(res);
+            // })
     }
 
     onClear() {}
+
 }
