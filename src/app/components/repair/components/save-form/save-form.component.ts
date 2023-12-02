@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-save-form',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./save-form.component.scss']
 })
 export class SaveFormComponent {
-
+    @Input() saveForm: FormGroup
 }

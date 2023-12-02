@@ -6,7 +6,7 @@ import { RepairComponent } from './repair.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionModule } from 'primeng/accordion';
-import { SharedModule } from 'primeng/api';
+import { ConfirmationService, MessageService, SharedModule } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { ChartModule } from 'primeng/chart';
@@ -87,6 +87,10 @@ import { SaveComponent } from './pages/save/save.component';
     BreadcrumbModule,
     InputTextareaModule,
     ToastModule
+  ],
+  providers: [
+    ConfirmationService,
+    MessageService
   ]
 })
 export class RepairModule { }

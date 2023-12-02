@@ -1,18 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { RepairService } from '../../services/repair.service';
+import { SharedService } from 'src/shared/shared.service';
+import { TABLE_SEARCH } from '../../constants/table-option';
+import { Repair } from '../../models/repair';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+    selector: 'app-search',
+    templateUrl: './search.component.html',
+    styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
-    searchForm: FormGroup
+    searchForm: FormGroup;
+    queryStr: any;
+    repair: Repair[] = [];
+    cols = TABLE_SEARCH;
 
-    constructor(private fb: FormBuilder) {}
+    constructor(
+        private fb: FormBuilder,
+        private service: RepairService,
+        private sharedService: SharedService,
+        private router: Router,
+        private route: ActivatedRoute,
+        private cfs: ConfirmationService,
+        private msags: MessageService
+    ) {
+        this.onInitForm();
+    }
 
     ngOnInit(): void {
-        this.onInitForm()
+        this.queryTable();
     }
 
     onInitForm() {
@@ -20,16 +39,109 @@ export class SearchComponent implements OnInit {
             equipmentId: [null],
             equipmentName: [null],
             status: [null],
-            budgetYear: [null],
-            username: [null]
-        })
+            requestDate: [null],
+            username: [null],
+        });
+    }
+
+    queryTable() {
+        this.service.getRepairs(this.queryStr).subscribe((res: any) => {
+            this.repair = res.results.map((item: any) => {
+                item.image = this.sharedService.getImagePath(item.image);
+                return item;
+            });
+        });
     }
 
     onSearch() {
+        this.queryStr = {};
+
         console.log(this.searchForm.getRawValue());
+
+        if (this.searchForm.get('requestDate').value != null) {
+            const newDate = new Date(this.searchForm.get('requestDate').value);
+            this.queryStr.requestdate = newDate.toISOString();
+        }
+
+        if (this.searchForm.get('username').value != null) {
+            this.queryStr.username = this.searchForm.get('username').value;
+        }
+
+        if (this.searchForm.get('equipmentId').value != null) {
+            this.queryStr.equipmentid =
+                this.searchForm.get('equipmentId').value;
+        }
+
+        if (this.searchForm.get('equipmentName').value != null) {
+            this.queryStr.equipmentName =
+                this.searchForm.get('equipmentName').value;
+        }
+
+        if (this.searchForm.get('status').value != null) {
+            this.queryStr.status = this.searchForm.get('status').value;
+        }
+
+        this.service.getRepairs(this.queryStr).subscribe((res: any) => {
+            this.repair = res.results.map((item: any) => {
+                item.image = this.sharedService.getImagePath(item.image);
+                return item;
+            });
+        });
     }
 
     onClear() {
-        this.searchForm.reset() 
+        this.searchForm.reset();
+        this.onSearch()
+    }
+
+    onEdit() {
+        console.log('Edit');
+    }
+
+    onDeleteInRow(id: number) {
+        this.cfs.confirm({
+            message: 'คุณต้องการลบข้อมูลหรือไม่?',
+            header: 'ยืนยัน',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.service.delRepair(id).subscribe((res) => {
+                    this.msags.add({
+                        severity: 'success',
+                        summary: 'สำเร็จ',
+                        detail: 'ลบข้อมูลสำเร็จ',
+                    });
+                    this.queryTable();
+                });
+            },
+        });
+    }
+
+    onDeleteCheckBox(id: any[]) {
+        if (id === undefined || id.length == 0) {
+            this.msags.add({
+                severity: 'info',
+                summary: 'แจ้งเตือน',
+                detail: 'กรุณาเลือกข้อมูลที่ท่านต้องการลบ',
+            });
+            return;
+        }
+
+        const ids = id.map(item => item.id);
+        
+        this.cfs.confirm({
+            message: 'คุณต้องการลบข้อมูลหรือไม่?',
+            header: 'ยืนยัน',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.service.delRepairs(ids).subscribe((res) => {
+                    this.msags.add({
+                        severity: 'success',
+                        summary: 'สำเร็จ',
+                        detail: 'ลบข้อมูลสำเร็จ',
+                    });
+                    this.queryTable();
+                });
+            },
+        });
     }
 }

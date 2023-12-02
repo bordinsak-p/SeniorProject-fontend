@@ -4,4 +4,19 @@
     (onClearEvent)="onClear()"
 ></app-search-form>
 
-<app-search-table></app-search-table>
+<app-search-table
+    [repair]="repair"
+    [cols]="cols"
+    (onEditEvent)="onEdit()"
+    (onDeleteInRowEvent)="onDeleteInRow($event)"
+    (onDeleteCheckBoxEvent)="onDeleteCheckBox($event)"
+></app-search-table>
+
+
+<p-toast></p-toast>
+<p-confirmDialog #cd [style]="{ width: '25vw' }">
+    <ng-template pTemplate="footer">
+        <button type="button" pButton icon="pi pi-times" label="ยกเลิก" class="p-button-danger" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="ตกลง" class="p-button-success" (click)="cd.accept()"></button>
+    </ng-template>
+</p-confirmDialog>
