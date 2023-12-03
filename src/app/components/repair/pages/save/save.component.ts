@@ -1,10 +1,104 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RepairService } from '../../services/repair.service';
+import { SharedService } from 'src/shared/shared.service';
+import { Equipments } from 'src/app/components/equipment/models/equipments';
+import { MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-save',
-  templateUrl: './save.component.html',
-  styleUrls: ['./save.component.scss']
+    selector: 'app-save',
+    templateUrl: './save.component.html',
+    styleUrls: ['./save.component.scss'],
 })
-export class SaveComponent {
+export class SaveComponent implements OnInit {
+    saveForm: FormGroup;
+    equipments: Equipments[] = []
+    query: any;
 
+    constructor(
+        private fb: FormBuilder,
+        private service: RepairService,
+        private sharedService: SharedService,
+        private msags: MessageService
+    ) {
+        this.onInitForm();
+    }
+
+    ngOnInit(): void {
+        this.queryTable()
+    }
+
+    queryTable() {
+        this.service.getEquipment(this.query).subscribe((res: any) => {
+            this.equipments = res.results.map((item: any) => {
+                item.image = this.sharedService.getImagePath(item.image);
+                return item;
+            });
+        });
+    }
+
+    onInitForm() {
+        this.saveForm = this.fb.group({
+            equipmentId: [null, [Validators.required]],
+            equipmentName: [null],
+            locationName: [null],
+            branchInfo: [null],
+            roomNumber: [null],
+            budgetYear: [null],
+        });
+    }
+
+    onSearch() {
+        this.query = {};
+
+        const checkNull = this.saveForm.getRawValue();
+
+        // เช็ค null แต่ถ้าใส่ value ตัวใดตัวนึงมาก็แสดงว่าไม่ null
+        if (Object.values(checkNull).every((value) => value === null)) {
+            this.msags.add({
+                severity: 'info',
+                summary: 'แจ้งเตือน',
+                detail: 'กรุณาเลือกข้อมูลที่ท่านต้องการลบ',
+            });
+            return;
+        }
+
+        if (this.saveForm.get('equipmentId').value != null) {
+            this.query.equipmentId = this.saveForm.get('equipmentId').value;
+        }
+
+        if (this.saveForm.get('equipmentName').value != null) {
+            this.query.equipmentName =
+                this.saveForm.get('equipmentName').value;
+        }
+
+        if (this.saveForm.get('locationName').value != null) {
+            this.query.locationName = this.saveForm.get('locationName').value;
+        }
+
+        if (this.saveForm.get('branchInfo').value != null) {
+            this.query.branchInfo = this.saveForm.get('branchInfo').value;
+        }
+
+        if (this.saveForm.get('roomNumber').value != null) {
+            this.query.roomNumber = this.saveForm.get('roomNumber').value;
+        }
+
+        if (this.saveForm.get('budgetYear').value != null) {
+            const newDate = new Date(this.saveForm.get('budgetYear').value);
+            this.query.budgetYear = newDate.toISOString(); // ให้ Angular ส่ง ISO 8601 format
+        }
+
+        this.service.getEquipment(this.query).subscribe((res: any) => {
+            this.equipments = res.results.map((item: any) => {
+                item.image = this.sharedService.getImagePath(item.image);
+                return item;
+            });
+        });
+    }
+
+    onClear() {
+        this.saveForm.reset();
+        this.onSearch();
+    }
 }

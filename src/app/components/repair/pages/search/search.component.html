@@ -12,7 +12,6 @@
     (onDeleteCheckBoxEvent)="onDeleteCheckBox($event)"
 ></app-search-table>
 
-
 <p-toast></p-toast>
 <p-confirmDialog #cd [style]="{ width: '25vw' }">
     <ng-template pTemplate="footer">
@@ -20,3 +19,4 @@
         <button type="button" pButton icon="pi pi-check" label="ตกลง" class="p-button-success" (click)="cd.accept()"></button>
     </ng-template>
 </p-confirmDialog>
+  

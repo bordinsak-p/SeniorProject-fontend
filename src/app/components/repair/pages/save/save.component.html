@@ -1,1 +1,6 @@
-<app-save-form></app-save-form>
+<p-toast></p-toast>
+<app-save-form
+    [saveForm]="saveForm"
+    (onSearchEvent)="onSearch()"
+    (onClaerEvent)="onClear()"
+></app-save-form>
