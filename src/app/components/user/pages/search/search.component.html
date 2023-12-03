@@ -1,6 +1,7 @@
 <app-search-form
     [searchForm]="searchForm"
     (onSearchEvent)="onSearch()"
+    (onClearEvent)="onClear()"
 ></app-search-form>
 
 <app-search-table [users]="users" [cols]="cols"></app-search-table>

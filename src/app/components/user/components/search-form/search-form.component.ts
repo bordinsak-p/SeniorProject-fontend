@@ -15,4 +15,8 @@ export class SearchFormComponent {
     onSearch() {
       this.onSearchEvent.emit()
     }
+
+    onClear() {
+      this.onClearEvent.emit()
+    }
 }

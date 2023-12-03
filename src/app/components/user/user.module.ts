@@ -40,6 +40,7 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { CardModule } from 'primeng/card';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToastModule } from 'primeng/toast';
+import { ConfirmationService } from 'primeng/api';
 
 
 @NgModule({
@@ -87,6 +88,7 @@ import { ToastModule } from 'primeng/toast';
     BreadcrumbModule,
     InputTextareaModule,
     ToastModule
-  ]
+  ],
+  providers: [ConfirmationService]
 })
 export class UserModule { }

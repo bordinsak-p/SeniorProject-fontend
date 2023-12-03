@@ -38,7 +38,7 @@
     <ng-template pTemplate="body" let-user>
         <tr>
             <td>
-                <p-tableCheckbox [value]="users"></p-tableCheckbox>
+                <p-tableCheckbox [value]="user"></p-tableCheckbox>
             </td>
             <td class="text-center">
                 <i class="pi pi-trash cursor-pointer sm:m-0 md:mr-3 text-red-500 text-lg"></i>
@@ -55,10 +55,10 @@
     </ng-template>
 
 
-    <!-- <ng-template pTemplate="emptymessage">
+    <ng-template pTemplate="emptymessage">
         <tr>
           <td colspan="18" style="text-align: center">ไม่พบข้อมูล</td>
         </tr>
-      </ng-template> -->
+      </ng-template>
 </p-table>
 

@@ -4,11 +4,13 @@ import { TABLE_SEARCH } from '../../constants/table-options';
 import { Repairs } from '../../models/repairs.interface';
 import { RepairService } from '../../services/repair.service';
 import { SharedService } from 'src/shared/shared.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
     selector: 'app-search',
     templateUrl: './search.component.html',
     // styleUrls: ['./search.component.scss']
+    providers: [MessageService]
 })
 export class SearchComponent implements OnInit {
     searchForm: FormGroup;
@@ -17,20 +19,22 @@ export class SearchComponent implements OnInit {
     users: Repairs[] = [];
     query: any;
     viewForm: any;
-    severityService: any;
 
     constructor(
         private fb: FormBuilder,
         private service: RepairService,
-        private sharedService: SharedService
+        private sharedService: SharedService,
+        private cfs: ConfirmationService,
+        private msags: MessageService
     ) {
         this.queryTable();
+        service.mode$.next('add');
     }
 
     queryTable() {
         this.service.getUsers(this.query).subscribe((res: any) => {
             this.users = res.results;
-            console.log(res.results);
+            // console.log(res.results);
         });
     }
 
@@ -63,7 +67,17 @@ export class SearchComponent implements OnInit {
     onSearch() {
         this.query = {};
 
-            const checkNull = this.searchForm.getRawValue();
+        const checkNull = this.searchForm.getRawValue();
+
+        // เช็ค null แต่ถ้าใส่ value ตัวใดตัวนึงมาก็แสดงว่าไม่ null
+        if (Object.values(checkNull).every((value) => value === null)) {
+            this.msags.add({
+                severity: 'info',
+                summary: 'แจ้งเตือน',
+                detail: 'กรุณากรอกข้อมูลที่ท่านต้องการค้นหา',
+            });
+            return;
+        }
            
             if (this.searchForm.get('firstname').value != null) {
                 this.query.firstname = this.searchForm.get('firstname').value;
@@ -91,11 +105,17 @@ export class SearchComponent implements OnInit {
                 this.query.createdAt = newDate.toISOString(); // ให้ Angular ส่ง ISO 8601 format
             }
 
-            // this.service.getUsers(this.query).subscribe((res: any) => {
-            //     console.log(res);
-            // })
+            this.service.getUsers(this.query).subscribe((res: any) => {
+                this.users = res.results;
+                // console.log(res.results);
+                
+            })
     }
 
-    onClear() {}
+    onClear() {
+        this.searchForm.reset();
+        this.query = null;
+        this.queryTable();
+    }
 
 }

@@ -3,34 +3,34 @@
         <label for="firstname" class="block text-lg">
             ชื่อจริง
         </label>
-        <input type="text" pInputText class="w-full" formControlName="firstname"/>
+        <input type="text" pInputText class="w-full" formControlName="firstname" (keydown.enter)="onSearch()"/>
     </div>
     <div class="col-12 md:col-6 lg:col-3 lg:mt-5">
         <label for="lastname" class="block text-lg">
             นามสกุล
         </label>
-        <input type="text" pInputText class="w-full" formControlName="lastname"/>
+        <input type="text" pInputText class="w-full" formControlName="lastname" (keydown.enter)="onSearch()"/>
     </div>
     <div class="col-12 md:col-6 lg:col-3 lg:mt-5">
         <label for="email" class="block text-lg">
             อีเมล
         </label>
-        <input type="text" pInputText class="w-full" formControlName="email"/>
+        <input type="text" pInputText class="w-full" formControlName="email" (keydown.enter)="onSearch()"/>
     </div>
     <div class="col-12 md:col-6 lg:col-3 lg:mt-5">
         <label for="username" class="block text-lg">
             ชื่อผู้ใช้งาน
         </label>
-        <input type="text" pInputText class="w-full" formControlName="username"/>
+        <input type="text" pInputText class="w-full" formControlName="username" (keydown.enter)="onSearch()"/>
     </div>
-    <div class="col-12 md:col-6 lg:col-3">
+    <div class="col-12 md:col-6 lg:col-2">
         <label for="role" class="block text-lg ">
             ตำแหน่ง
         </label>
-        <input type="text" pInputText class="w-full" formControlName="role"/>
+        <input type="text" pInputText class="w-full" formControlName="role" (keydown.enter)="onSearch()"/>
     </div>
-    <div class="col-12 md:col-6 lg:col-3">
-        <label for="createAt" class="block text-lg">
+    <div class="col-12 md:col-6 lg:col-2">
+        <label for="createdAt" class="block text-lg">
             วันที่สร้าง
         </label>
         <p-calendar [showIcon]="true" [showButtonBar]="true" formControlName="createdAt"></p-calendar>
@@ -41,7 +41,7 @@
     <button type="button" label="Success" class="p-button p-button-info" (click)="onSearch()">
         <span class="p-button-label">ค้นหา <i class="pi pi-search ml-2"></i></span>
     </button>
-    <button type="button" label="Success" class="p-button p-button-warning">
+    <button type="button" label="Success" class="p-button p-button-warning" (click)="onClear()">
         <span class="p-button-label">ล้างข้อมูล <i class="pi pi-eraser ml-2"></i></span>
     </button>
 </div>
