@@ -20,7 +20,7 @@ const routes: Routes = [
             path: 'save',
             component: SaveComponent,
             data: {
-                breadcrumb: 'บันทึก',
+                breadcrumb: 'แจ้งซ่อม',
             }
         },
     ],

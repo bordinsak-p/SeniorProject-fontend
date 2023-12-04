@@ -14,9 +14,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
     searchForm: FormGroup;
+    searchDialog: FormGroup;
     queryStr: any;
     repair: Repair[] = [];
     cols = TABLE_SEARCH;
+    visable: any;
 
     constructor(
         private fb: FormBuilder,
@@ -56,8 +58,6 @@ export class SearchComponent implements OnInit {
     onSearch() {
         this.queryStr = {};
 
-        console.log(this.searchForm.getRawValue());
-
         if (this.searchForm.get('requestDate').value != null) {
             const newDate = new Date(this.searchForm.get('requestDate').value);
             this.queryStr.requestdate = newDate.toISOString();
@@ -73,7 +73,7 @@ export class SearchComponent implements OnInit {
         }
 
         if (this.searchForm.get('equipmentName').value != null) {
-            this.queryStr.equipmentName =
+            this.queryStr.equipmentname =
                 this.searchForm.get('equipmentName').value;
         }
 
@@ -91,11 +91,13 @@ export class SearchComponent implements OnInit {
 
     onClear() {
         this.searchForm.reset();
-        this.onSearch()
+        this.queryStr = null;
+        this.queryTable();
     }
 
-    onEdit() {
-        console.log('Edit');
+    onEdit(e: any) {
+        this.visable = e;
+        console.log(e);
     }
 
     onDeleteInRow(id: number) {
@@ -126,8 +128,8 @@ export class SearchComponent implements OnInit {
             return;
         }
 
-        const ids = id.map(item => item.id);
-        
+        const ids = id.map((item) => item.id);
+
         this.cfs.confirm({
             message: 'คุณต้องการลบข้อมูลหรือไม่?',
             header: 'ยืนยัน',

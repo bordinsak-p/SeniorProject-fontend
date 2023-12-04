@@ -41,6 +41,8 @@ import { SaveFormComponent } from './components/save-form/save-form.component';
 import { SearchComponent } from './pages/search/search.component';
 import { SaveComponent } from './pages/save/save.component';
 import { SaveTableComponent } from './components/save-table/save-table.component';
+import { SearchDialogComponent } from './components/search-dialog/search-dialog.component';
+import { SaveDialogComponent } from './components/save-dialog/save-dialog.component';
 
 
 @NgModule({
@@ -52,6 +54,8 @@ import { SaveTableComponent } from './components/save-table/save-table.component
     SearchComponent,
     SaveComponent,
     SaveTableComponent,
+    SearchDialogComponent,
+    SaveDialogComponent,
   ],
   imports: [
     CommonModule,

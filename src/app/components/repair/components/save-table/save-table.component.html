@@ -1,1 +1,41 @@
-<p>save-table works!</p>
+<div class="mt-6"></div>
+<p-table
+    [value]="equipments"
+    [paginator]="true"
+    [columns]="cols"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    currentPageReportTemplate="{first} to {last} of {totalRecords}"
+    [rowsPerPageOptions]="[5, 10, 25]"
+    responsiveLayout="stack"
+    styleClass="p-datatable-striped"
+    [(selection)]="selectCheckBox"
+>
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{ col.header }}
+            </th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-equipments>
+        <tr>
+            <td class="text-center">
+                <i class="pi pi-wrench cursor-pointer text-blue-500 text-lg" (click)="onOpenDialog($event, equipments.id)"></i>
+            </td>
+            <td>{{ equipments.equipment_id }}</td>
+            <td>{{ equipments.equipment_name }}</td>
+            <td>{{ equipments.Location.location_name }}</td>
+            <td>{{ equipments.Location.branch_info }}</td>
+            <td>{{ equipments.Location.room_number }}</td>
+            <td>{{ equipments.budget_year | date:'dd/MM/yyyy' }}</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="18" style="text-align: center">ไม่พบข้อมูล</td>
+        </tr>
+      </ng-template>
+</p-table>
+

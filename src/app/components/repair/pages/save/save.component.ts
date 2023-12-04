@@ -4,6 +4,7 @@ import { RepairService } from '../../services/repair.service';
 import { SharedService } from 'src/shared/shared.service';
 import { Equipments } from 'src/app/components/equipment/models/equipments';
 import { MessageService } from 'primeng/api';
+import { TABLE_SEARCH } from '../../constants/table-option.equipment';
 
 @Component({
     selector: 'app-save',
@@ -13,6 +14,7 @@ import { MessageService } from 'primeng/api';
 export class SaveComponent implements OnInit {
     saveForm: FormGroup;
     equipments: Equipments[] = []
+    cols = TABLE_SEARCH
     query: any;
 
     constructor(
@@ -51,18 +53,6 @@ export class SaveComponent implements OnInit {
     onSearch() {
         this.query = {};
 
-        const checkNull = this.saveForm.getRawValue();
-
-        // เช็ค null แต่ถ้าใส่ value ตัวใดตัวนึงมาก็แสดงว่าไม่ null
-        if (Object.values(checkNull).every((value) => value === null)) {
-            this.msags.add({
-                severity: 'info',
-                summary: 'แจ้งเตือน',
-                detail: 'กรุณาเลือกข้อมูลที่ท่านต้องการลบ',
-            });
-            return;
-        }
-
         if (this.saveForm.get('equipmentId').value != null) {
             this.query.equipmentId = this.saveForm.get('equipmentId').value;
         }
@@ -99,6 +89,7 @@ export class SaveComponent implements OnInit {
 
     onClear() {
         this.saveForm.reset();
-        this.onSearch();
+        this.query = null
+        this.queryTable()
     }
 }

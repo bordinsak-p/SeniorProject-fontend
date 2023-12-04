@@ -41,14 +41,13 @@
             </td>
             <td class="text-center">
                 <i class="pi pi-trash cursor-pointer sm:m-0 md:mr-3 text-red-500 text-lg" (click)="onDeletInRow(repair.id)"></i>
-                <i class="pi pi-file-edit cursor-pointer sm:m-0 md:mr-3 text-purple-500 text-lg" (click)="onEdit(repair.id)"></i>
+                <i class="pi pi-file-edit cursor-pointer sm:m-0 md:mr-3 text-purple-500 text-lg" (click)="onEdit($event ,repair.id)"></i>
             </td>
             <td>{{ repair['users'].firstname }}</td>
             <td>{{ repair['users'].lastname }}</td>
             <td>{{ repair['users'].username }}</td>
             <td>{{ repair['equipments'].equipment_id }}</td>
             <td>{{ repair['equipments'].equipment_name }}</td>
-            <!-- <td>{{ repair['equipments'].budget_year | date:'dd/MM/yyyy' }}</td> -->
             <td>{{ repair.request_date | date:'dd/MM/yyyy' }}</td>
             <td>{{ repair.status }}</td>
         </tr>

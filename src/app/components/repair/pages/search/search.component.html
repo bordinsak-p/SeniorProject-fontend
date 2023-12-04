@@ -7,7 +7,7 @@
 <app-search-table
     [repair]="repair"
     [cols]="cols"
-    (onEditEvent)="onEdit()"
+    (onEditEvent)="onEdit($event)"
     (onDeleteInRowEvent)="onDeleteInRow($event)"
     (onDeleteCheckBoxEvent)="onDeleteCheckBox($event)"
 ></app-search-table>
@@ -20,3 +20,5 @@
     </ng-template>
 </p-confirmDialog>
   
+<!-- Edit Dialog -->
+<app-search-dialog [visible]="visable" [searchDialog]="searchDialog"></app-search-dialog>
