@@ -73,7 +73,7 @@ export class SearchComponent implements OnInit {
             this.msags.add({
                 severity: 'info',
                 summary: 'แจ้งเตือน',
-                detail: 'กรุณาเลือกข้อมูลที่ท่านต้องการลบ',
+                detail: 'กรุณากรอกข้อมูลที่ต้องการค้นหา',
             });
             return;
         }

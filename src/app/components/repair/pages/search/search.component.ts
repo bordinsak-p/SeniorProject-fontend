@@ -5,7 +5,7 @@ import { SharedService } from 'src/shared/shared.service';
 import { TABLE_SEARCH } from '../../constants/table-option';
 import { Repair } from '../../models/repair';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-search',
@@ -25,7 +25,6 @@ export class SearchComponent implements OnInit {
         private service: RepairService,
         private sharedService: SharedService,
         private router: Router,
-        private route: ActivatedRoute,
         private cfs: ConfirmationService,
         private msags: MessageService
     ) {
@@ -46,6 +45,12 @@ export class SearchComponent implements OnInit {
         });
     }
 
+    onInitFormDialog() {
+        this.searchDialog = this.fb.group({
+            
+        })
+    }
+
     queryTable() {
         this.service.getRepairs(this.queryStr).subscribe((res: any) => {
             this.repair = res.results.map((item: any) => {
@@ -57,6 +62,16 @@ export class SearchComponent implements OnInit {
 
     onSearch() {
         this.queryStr = {};
+
+        const checkNull = this.searchForm.getRawValue();
+        if (Object.values(checkNull).every((value) => value === null)) {
+            this.msags.add({
+                severity: 'info',
+                summary: 'แจ้งเตือน',
+                detail: 'กรุณากรอกข้อมูลที่ต้องการค้นหา',
+            });
+            return;
+        }
 
         if (this.searchForm.get('requestDate').value != null) {
             const newDate = new Date(this.searchForm.get('requestDate').value);

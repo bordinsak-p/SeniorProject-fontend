@@ -35,6 +35,7 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { CardModule } from 'primeng/card';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToastModule } from 'primeng/toast';
+import { TagModule } from 'primeng/tag';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { SearchTableComponent } from './components/search-table/search-table.component';
 import { SaveFormComponent } from './components/save-form/save-form.component';
@@ -92,7 +93,8 @@ import { SaveDialogComponent } from './components/save-dialog/save-dialog.compon
     CardModule,
     BreadcrumbModule,
     InputTextareaModule,
-    ToastModule
+    ToastModule,
+    TagModule
   ],
   providers: [
     ConfirmationService,
