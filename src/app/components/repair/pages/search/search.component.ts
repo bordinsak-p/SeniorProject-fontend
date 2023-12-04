@@ -6,6 +6,7 @@ import { TABLE_SEARCH } from '../../constants/table-option';
 import { Repair } from '../../models/repair';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { STATUS } from '../../constants/status.constant';
 
 @Component({
     selector: 'app-search',
@@ -15,10 +16,14 @@ import { Router } from '@angular/router';
 export class SearchComponent implements OnInit {
     searchForm: FormGroup;
     searchDialog: FormGroup;
+    
     queryStr: any;
-    repair: Repair[] = [];
-    cols = TABLE_SEARCH;
     visable: any;
+    repair: Repair[] = [];
+    
+    cols = TABLE_SEARCH;
+    status = STATUS
+    
 
     constructor(
         private fb: FormBuilder,
@@ -93,7 +98,7 @@ export class SearchComponent implements OnInit {
         }
 
         if (this.searchForm.get('status').value != null) {
-            this.queryStr.status = this.searchForm.get('status').value;
+            this.queryStr.status = this.searchForm.get('status').value.name;            
         }
 
         this.service.getRepairs(this.queryStr).subscribe((res: any) => {

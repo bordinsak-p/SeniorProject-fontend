@@ -15,7 +15,8 @@
         <label for="status" class="block text-lg mb-2" >
             สถานะ
         </label>
-        <input type="text" pInputText class="w-full" formControlName="status"/>
+        <!-- <input type="text" pInputText class="w-full" formControlName="status"/> -->
+        <p-dropdown [options]="status"  optionLabel="name" [showClear]="true" placeholder="เลือกสถานะ"  formControlName="status"></p-dropdown>
     </div>
     <div class="col-12 md:col-6 lg:col-4 lg:mt-5">
         <label for="requestDate" class="block text-lg mb-2">

@@ -8,6 +8,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class SearchFormComponent {
     @Input() searchForm!: FormGroup;
+    @Input() status: any
 
     @Output() onSearchEvent = new EventEmitter();
     @Output() onClearEvent = new EventEmitter();
