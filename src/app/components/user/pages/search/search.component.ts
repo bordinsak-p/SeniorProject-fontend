@@ -57,7 +57,7 @@ export class SearchComponent implements OnInit {
         this.viewForm = this.fb.group({
             firstname: [null],
             lastname: [null],
-            mail: [null],
+            email: [null],
             username: [null],
             role: [null],
             createAt: [null],

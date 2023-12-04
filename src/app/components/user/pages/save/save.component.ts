@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { UsersService } from 'src/app/components/auth/service/users.service';
+import { RepairService } from '../../services/repair.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-save',
@@ -10,11 +11,18 @@ import { UsersService } from 'src/app/components/auth/service/users.service';
 export class SaveComponent implements OnInit{
     saveForm: FormGroup;
 
+    roleOptions = [
+      'Admin',
+      'User'
+    ];
 
     constructor(
       private fb: FormBuilder,
-      private service: UsersService,
-    ) {}
+      private service: RepairService,
+      private msgs: MessageService,
+    ) {
+      this.onInitform()
+    }
 
   ngOnInit(): void {
 
@@ -28,8 +36,19 @@ export class SaveComponent implements OnInit{
         username: [null],
         password: [null],
         role: [null],
-        createdAt: [null],
-    })
+    });
   }
+
+
+onSave() {
+  this.service.addUser(this.saveForm.value).subscribe(( res ) => {
+    this.msgs.add({ severity: 'success', summary: 'สำเร็จ', detail: 'บันทึกข้อมูลสำเร็จ' })
+    this.saveForm.reset()
+    
+  })
+
+  // console.warn(this.saveForm.value);
+  
+}
 
 }

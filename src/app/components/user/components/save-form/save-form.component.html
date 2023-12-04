@@ -1,90 +1,74 @@
-<form class="grid mt-5">
+<form class="grid mt-5" [formGroup]="saveForm">
     <div class="col-12 md:col-12 lg:col-3">
-        <label for="firstname" class="block text-lg mb-2">
-            ชื่อจริง
-        </label>
-        <input 
+        <label for="firstname" class="block text-lg mb-2"> ชื่อจริง </label>
+        <input
             type="text"
             pInputText
             class="w-full"
+            formControlName="firstname"
         />
     </div>
 
     <div class="col-12 md:col-12 lg:col-3">
-        <label for="lastname" class="block text-lg mb-2">
-            นามสกุล
-        </label>
-        <input 
+        <label for="lastname" class="block text-lg mb-2"> นามสกุล </label>
+        <input
             type="text"
             pInputText
             class="w-full"
-        >
+            formControlName="lastname"
+        />
     </div>
 
     <div class="col-12 md:col-12 lg:col-3">
-        <label for="email" class="block text-lg mb-2">
-            อีเมล
-        </label>
-        <input 
+        <label for="email" class="block text-lg mb-2"> อีเมล </label>
+        <input type="text" pInputText class="w-full" formControlName="email" />
+    </div>
+
+    <div class="col-12 md:col-12 lg:col-3">
+        <label for="username" class="block text-lg mb-2"> ชื่อผู้ใช้งาน </label>
+        <input
             type="text"
             pInputText
             class="w-full"
-        >
+            formControlName="username"
+        />
     </div>
 
     <div class="col-12 md:col-12 lg:col-3">
-        <label for="username" class="block text-lg mb-2">
-            ชื่อผู้ใช้งาน
-        </label>
-        <input 
-            type="text"
-            pInputText
-            class="w-full"
-        >
-    </div>
-
-    <div class="col-12 md:col-12 lg:col-3">
-        <label for="password" class="block text-lg mb-2">
-            รหัสผ่าน
-        </label>
-        <input 
+        <label for="password" class="block text-lg mb-2"> รหัสผ่าน </label>
+        <input
             type="text"
             pInputText
             class="w-full"
             [minLength]="6"
-        >
+            formControlName="password"
+        />
     </div>
 
     <div class="col-12 md:col-12 lg:col-2">
-        <label for="role" class="block text-lg mb-2">
-            ตำแหน่ง
-        </label>
-        <input 
-            type="text"
-            pInputText
-            class="w-full"
+        <label for="role" class="block text-lg mb-2"> ตำแหน่ง </label>
+        <p-dropdown 
+        formControlName="role"
+        [options]="roleOptions" 
+        [(ngModel)]="saveForm.value.role" 
+        placeholder="Select a Role" 
         >
+        </p-dropdown>
     </div>
 </form>
 
 <div class="button-panel gap-2 mt-3">
-    <button 
-    type="button"
-    label="Success"
-    class="p-button p-button-success"    
->
-    <span>
-        บันทึก <i class="pi pi-save ml-2"></i>
-    </span>
-</button>
+    <button
+        type="button"
+        label="Success"
+        class="p-button p-button-success"
+        (click)="onSave()"
+        (window:keydown.enter)="onSave()"
+    >
+        <span> บันทึก <i class="pi pi-save ml-2"></i> </span>
+    </button>
 
-<button 
-    type="button"
-    label="danger"
-    class="p-button p-button-danger"    
->
-    <span>
-        เคลียร์ฟอร์ม <i class="pi pi-eraser ml-2"></i>
-    </span>
-</button>
+    <button type="button" label="danger" class="p-button p-button-danger">
+        <span> เคลียร์ฟอร์ม <i class="pi pi-eraser ml-2"></i> </span>
+    </button>
 </div>

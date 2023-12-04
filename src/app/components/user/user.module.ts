@@ -41,6 +41,7 @@ import { CardModule } from 'primeng/card';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -89,6 +90,6 @@ import { ConfirmationService } from 'primeng/api';
     InputTextareaModule,
     ToastModule
   ],
-  providers: [ConfirmationService]
+  providers: [ConfirmationService, MessageService]
 })
 export class UserModule { }
