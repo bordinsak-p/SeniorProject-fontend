@@ -9,7 +9,7 @@ import { TABLE_SEARCH } from '../../constants/table-option.equipment';
 @Component({
     selector: 'app-save',
     templateUrl: './save.component.html',
-    styleUrls: ['./save.component.scss'],
+    // styleUrls: ['./save.component.scss'],
 })
 export class SaveComponent implements OnInit {
     saveForm: FormGroup;

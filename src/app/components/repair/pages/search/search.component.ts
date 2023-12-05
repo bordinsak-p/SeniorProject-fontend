@@ -5,13 +5,13 @@ import { SharedService } from 'src/shared/shared.service';
 import { TABLE_SEARCH } from '../../constants/table-option';
 import { Repair } from '../../models/repair';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { STATUS } from '../../constants/status.constant';
 
 @Component({
     selector: 'app-search',
     templateUrl: './search.component.html',
-    styleUrls: ['./search.component.scss'],
+    // styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
     searchForm: FormGroup;
@@ -24,12 +24,12 @@ export class SearchComponent implements OnInit {
     cols = TABLE_SEARCH;
     status = STATUS
     
-
     constructor(
         private fb: FormBuilder,
         private service: RepairService,
         private sharedService: SharedService,
         private router: Router,
+        private activateRoute: ActivatedRoute,
         private cfs: ConfirmationService,
         private msags: MessageService
     ) {
@@ -115,9 +115,9 @@ export class SearchComponent implements OnInit {
         this.queryTable();
     }
 
-    onEdit(e: any) {
-        this.visable = e;
-        console.log(e);
+    onEdit(id: any) {
+        console.log(id);
+        this.router.navigate(['status'], {relativeTo: this.activateRoute})
     }
 
     onDeleteInRow(id: number) {

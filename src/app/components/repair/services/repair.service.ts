@@ -13,6 +13,7 @@ export class RepairService {
   private headers = {'Authorization': 'Bearer ' + localStorage.getItem('token')}
 
   mode$ = new BehaviorSubject<any>(null);
+  status$ = new BehaviorSubject<any>(false);
 
   constructor(private httpClient: HttpClient) { }
 

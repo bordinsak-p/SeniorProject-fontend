@@ -5,7 +5,7 @@ import { Equipments } from 'src/app/components/equipment/models/equipments';
 @Component({
   selector: 'app-save-table',
   templateUrl: './save-table.component.html',
-  styleUrls: ['./save-table.component.scss']
+  // styleUrls: ['./save-table.component.scss']
 })
 export class SaveTableComponent {
     selectCheckBox

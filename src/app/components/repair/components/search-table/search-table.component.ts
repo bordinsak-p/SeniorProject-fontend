@@ -4,7 +4,7 @@ import { Column } from '../../constants/table-inteface';
 @Component({
     selector: 'app-search-table',
     templateUrl: './search-table.component.html',
-    styleUrls: ['./search-table.component.scss'],
+    // styleUrls: ['./search-table.component.scss'],
 })
 export class SearchTableComponent {
     selectCheckBox: any[];
@@ -16,8 +16,8 @@ export class SearchTableComponent {
     @Output() onDeleteCheckBoxEvent = new EventEmitter();
     @Output() onDeleteInRowEvent = new EventEmitter();
 
-    onEdit(e: any, id: any) {
-        this.onEditEvent.emit({ e, id });
+    onEdit(id: any) {
+        this.onEditEvent.emit(id);
     }
 
     onDeletInRow(id: any) {

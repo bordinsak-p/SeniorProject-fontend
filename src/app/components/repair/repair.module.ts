@@ -36,14 +36,18 @@ import { CardModule } from 'primeng/card';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToastModule } from 'primeng/toast';
 import { TagModule } from 'primeng/tag';
+import { StepsModule } from 'primeng/steps';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { SearchTableComponent } from './components/search-table/search-table.component';
 import { SaveFormComponent } from './components/save-form/save-form.component';
 import { SearchComponent } from './pages/search/search.component';
 import { SaveComponent } from './pages/save/save.component';
 import { SaveTableComponent } from './components/save-table/save-table.component';
-import { SearchDialogComponent } from './components/search-dialog/search-dialog.component';
 import { SaveDialogComponent } from './components/save-dialog/save-dialog.component';
+import { ManageComponent } from './pages/manage/manage.component';
+import { StepOneComponent } from './components/step-one/step-one.component';
+import { StepTwoComponent } from './components/step-two/step-two.component';
+import { StepTreeComponent } from './components/step-two/step-tree/step-tree.component';
 
 
 @NgModule({
@@ -55,8 +59,11 @@ import { SaveDialogComponent } from './components/save-dialog/save-dialog.compon
     SearchComponent,
     SaveComponent,
     SaveTableComponent,
-    SearchDialogComponent,
     SaveDialogComponent,
+    ManageComponent,
+    StepOneComponent,
+    StepTwoComponent,
+    StepTreeComponent,
   ],
   imports: [
     CommonModule,
@@ -94,7 +101,8 @@ import { SaveDialogComponent } from './components/save-dialog/save-dialog.compon
     BreadcrumbModule,
     InputTextareaModule,
     ToastModule,
-    TagModule
+    TagModule,
+    StepsModule
   ],
   providers: [
     ConfirmationService,
