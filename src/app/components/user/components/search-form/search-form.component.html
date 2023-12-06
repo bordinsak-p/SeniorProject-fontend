@@ -27,7 +27,13 @@
         <label for="role" class="block text-lg ">
             ตำแหน่ง
         </label>
-        <input type="text" pInputText class="w-full" formControlName="role" (keydown.enter)="onSearch()"/>
+        <p-dropdown 
+        formControlName="role"
+        [options]="roleOptions" 
+        [(ngModel)]="searchForm.value.role" 
+        placeholder="เลือกตำแหน่ง" 
+        >
+        </p-dropdown>
     </div>
     <div class="col-12 md:col-6 lg:col-2">
         <label for="createdAt" class="block text-lg">

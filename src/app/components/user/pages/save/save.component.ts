@@ -51,4 +51,9 @@ onSave() {
   
 }
 
+onClear() {
+  this.saveForm.reset();
+  this.msgs.add({ severity: 'info', summary:'สำเร็จ', detail: 'เคลียร์ฟอร์มเรียบร้อย' })
+}
+
 }

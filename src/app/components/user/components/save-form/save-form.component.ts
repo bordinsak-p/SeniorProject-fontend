@@ -12,14 +12,15 @@ export class SaveFormComponent {
   @Input() roleOptions: any[] = [];
 
   @Output() onSaveEvent = new EventEmitter();
+  @Output() onClearEvent = new EventEmitter();
 
 
   onSave() {
-    this.onSaveEvent.emit() 
+    this.onSaveEvent.emit(); 
   }
 
   onClear() {
-
+    this.onClearEvent.emit();
   }
 
 }

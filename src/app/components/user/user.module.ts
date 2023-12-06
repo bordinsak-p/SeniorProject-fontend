@@ -42,6 +42,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
+import { ViewDialogComponent } from './components/view-dialog/view-dialog.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { MessageService } from 'primeng/api';
     SearchTableComponent,
     SearchComponent,
     SaveComponent,
+    ViewDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -88,8 +90,9 @@ import { MessageService } from 'primeng/api';
     CardModule,
     BreadcrumbModule,
     InputTextareaModule,
-    ToastModule
+    ToastModule,
+    
   ],
-  providers: [ConfirmationService, MessageService]
+  providers: [ConfirmationService, MessageService,]
 })
 export class UserModule { }

@@ -51,7 +51,7 @@
         formControlName="role"
         [options]="roleOptions" 
         [(ngModel)]="saveForm.value.role" 
-        placeholder="Select a Role" 
+        placeholder="เลือกตำแหน่ง" 
         >
         </p-dropdown>
     </div>
@@ -68,7 +68,12 @@
         <span> บันทึก <i class="pi pi-save ml-2"></i> </span>
     </button>
 
-    <button type="button" label="danger" class="p-button p-button-danger">
+    <button 
+    type="button" 
+    label="danger" 
+    class="p-button p-button-danger"
+    (click)="onClear()"
+    >
         <span> เคลียร์ฟอร์ม <i class="pi pi-eraser ml-2"></i> </span>
     </button>
 </div>

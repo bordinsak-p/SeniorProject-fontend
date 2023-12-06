@@ -1,5 +1,5 @@
 <div class="button-panel-end mb-2 gap-2 mt-5">
-    <button type="button" label="Success" class="p-button-danger p-button">
+    <button type="button" label="Success" class="p-button-danger p-button" (click)="onSelectCheckBox()">
         <span class="p-button-label"
             >ลบข้อมูล <i class="pi pi-trash ml-2"></i
         ></span>
@@ -22,6 +22,7 @@
     [rowsPerPageOptions]="[5, 10, 25]"
     responsiveLayout="stack"
     styleClass="p-datatable-striped"
+    [(selection)]="SelectCheckBox"
 >
     <ng-template pTemplate="header" let-Colums>
         <tr>
@@ -38,10 +39,10 @@
     <ng-template pTemplate="body" let-user>
         <tr>
             <td>
-                <p-tableCheckbox [value]="user"></p-tableCheckbox>
+                <p-tableCheckbox [value]="user"(onChange)="onSelectUser(user)" ></p-tableCheckbox>
             </td>
             <td class="text-center">
-                <i class="pi pi-trash cursor-pointer sm:m-0 md:mr-3 text-red-500 text-lg"></i>
+                <i class="pi pi-trash cursor-pointer sm:m-0 md:mr-3 text-red-500 text-lg" (click)="onDeleteInRow(user.id)"></i>
                 <i class="pi pi-file-edit cursor-pointer sm:m-0 md:mr-3 text-purple-500 text-lg"></i>
                 <i class="pi pi-eye cursor-pointer text-pink-500 text-lg"></i>
             </td>

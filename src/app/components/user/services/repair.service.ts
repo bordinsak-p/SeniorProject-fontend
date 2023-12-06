@@ -22,4 +22,13 @@ export class RepairService {
   addUser(payload: any): Observable<any> {
     return this.httpClient.post(`${environment.baseUrl}addUsers`, payload, { headers: this.headers });
   }
+
+  delUser(id: number): Observable<any> {
+    return this.httpClient.delete(`${environment.baseUrl}delUsers/${id}`, { headers: this.headers });
+  }
+
+  delUsers(id: number[]): Observable<any> {
+    return this.httpClient.delete<any>(`${environment.baseUrl}delUsers`, { headers: this.headers, params: { id: id.join(',') } });
+  }
+
 }

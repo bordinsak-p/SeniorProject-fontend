@@ -19,6 +19,10 @@ export class SearchComponent implements OnInit {
     users: Repairs[] = [];
     query: any;
     viewForm: any;
+    roleOptions = [
+        'Admin',
+        'User'
+      ];
 
     constructor(
         private fb: FormBuilder,
@@ -117,5 +121,58 @@ export class SearchComponent implements OnInit {
         this.query = null;
         this.queryTable();
     }
+
+    onDelete(id: any) {
+        this.cfs.confirm({ 
+            message: 'คุณต้องการลบข้อมูลหรือไม่',
+            header: 'ยืนยัน',
+            icon: 'pi pi-exclamation-triangle',
+            accept:() => {
+                this.service.delUser(id).subscribe(( res ) => {
+                    console.log(res);
+                    
+                    this.msags.add({ 
+                        severity: 'success',
+                        summary: 'สำเร็จ',
+                        detail: 'ลบข้อมูลสำเร็จ',
+                    });
+                    this.queryTable();
+                });
+            }
+        });
+    }
+
+    onSelectCheckBox(dataEvent: any[]) {
+        if (dataEvent === undefined || dataEvent.length == 0) {
+            
+            this.msags.add({
+                severity: 'info',
+                summary: 'แจ้งเตือน',
+                detail: 'กรุณาเลือกข้อมูลที่ท่านต้องการลบ',
+            });
+            return;
+        }
+
+        let userId = dataEvent.map(( item ) => item.id )
+
+        this.cfs.confirm({ 
+            message: 'คุณต้องการลบข้อมูลหรือไม่',
+            header:'ยืนยัน',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.service.delUsers(userId).subscribe(( res: any ) => {
+                    console.log(res);
+                    
+                    this.msags.add({ 
+                        severity: 'success',
+                        summary: 'สำเร็จ',
+                        detail: 'ลบข้อมูลสำเร็จ',
+                    });
+                    this.queryTable();
+                });
+            }
+        });
+    }
+
 
 }
