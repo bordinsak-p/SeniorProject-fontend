@@ -135,7 +135,11 @@ export class SaveComponent implements OnInit {
     onSave() {
         const id = this.service.id$.value
         const paylaod = this.dialogForm.get('description')?.value;
-        this.service.addRepairs(paylaod, id).subscribe((res: any) => {
+
+        const newPaylode = new FormData();
+        newPaylode.append("description", paylaod)
+        
+        this.service.addRepairs(newPaylode, id).subscribe((res: any) => {
             console.log(res);
             this.msgs.add({ severity: 'success', summary: 'สำเร็จ', detail: 'บันทึกข้อมูลสำเร็จ' })
         })
