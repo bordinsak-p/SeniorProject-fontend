@@ -1,1 +1,38 @@
-<p>save-dialog works!</p>
+<p-dialog [(visible)]="visible" [modal]="true" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+    <ng-template pTemplate="header">
+        <h4 style="width: 100%;">
+           ข้อมูลครุภัณฑ์
+        </h4>
+    </ng-template>
+    <ng-template pTemplate="body">
+        <div class="grid" [formGroup]="viewForm">
+            <div class="col-12 md:col-10 lg:col-10">
+                <label for="description" class="block text-lg mb-2"> ลายละเอียด </label>
+                <textarea
+                    type="text"
+                    pInputTextarea
+                    class="w-full"
+                    rows="5"
+                    cols="30"
+                    [autoResize]="true"
+                    [maxLength]="500"
+                    formControlName="description"
+                ></textarea>
+            </div>
+            <div class="col-12 md:col-12 lg:col-6 mb-3" *ngIf="showImage">
+                <img [src]="showImage" alt="previewImage" id="previewImage" class="w-full" />
+            </div>    
+        </div>
+    </ng-template>
+    
+   <ng-template pTemplate="footer">
+        <div class="gap-2 mt-3 button-panel">
+            <button type="button" label="Success" class="p-button p-button-success" (click)="onSave()">
+                <span class="p-button-label">บันทึก <i class="pi pi-wrench ml-2"></i></span>
+            </button>
+            <button type="button" label="Success" class="p-button p-button-warning" (click)="onClose()">
+                <span class="p-button-label">กลับ <i class="pi pi-reply ml-2"></i></span>
+            </button>
+        </div>
+   </ng-template>
+</p-dialog>

@@ -33,6 +33,7 @@ import { TreeModule } from 'primeng/tree';
 import { TreeTableModule } from 'primeng/treetable';
 import { CardModule } from 'primeng/card';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { TooltipModule } from 'primeng/tooltip';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { SearchTableComponent } from './components/search-table/search-table.component';
 import { SaveFormComponent } from './components/save-form/save-form.component';
@@ -88,7 +89,8 @@ import { ViewDialogComponent } from './components/view-dialog/view-dialog.compon
         CardModule,
         BreadcrumbModule,
         InputTextareaModule,
-        ToastModule
+        ToastModule,
+        TooltipModule
     ],
     providers:[
         DatePipe,

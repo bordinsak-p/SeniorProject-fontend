@@ -36,6 +36,7 @@ import { CardModule } from 'primeng/card';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToastModule } from 'primeng/toast';
 import { TagModule } from 'primeng/tag';
+import { TooltipModule } from 'primeng/tooltip';
 import { StepsModule } from 'primeng/steps';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { SearchTableComponent } from './components/search-table/search-table.component';
@@ -47,8 +48,7 @@ import { SaveDialogComponent } from './components/save-dialog/save-dialog.compon
 import { ManageComponent } from './pages/manage/manage.component';
 import { StepOneComponent } from './components/step-one/step-one.component';
 import { StepTwoComponent } from './components/step-two/step-two.component';
-import { StepTreeComponent } from './components/step-two/step-tree/step-tree.component';
-
+import { StepTreeComponent } from './components/step-tree/step-tree.component'
 
 @NgModule({
   declarations: [
@@ -63,7 +63,7 @@ import { StepTreeComponent } from './components/step-two/step-tree/step-tree.com
     ManageComponent,
     StepOneComponent,
     StepTwoComponent,
-    StepTreeComponent,
+    StepTreeComponent
   ],
   imports: [
     CommonModule,
@@ -102,7 +102,8 @@ import { StepTreeComponent } from './components/step-two/step-tree/step-tree.com
     InputTextareaModule,
     ToastModule,
     TagModule,
-    StepsModule
+    StepsModule,
+    TooltipModule
   ],
   providers: [
     ConfirmationService,

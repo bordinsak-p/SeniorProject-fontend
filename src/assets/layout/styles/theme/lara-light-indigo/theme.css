@@ -5571,7 +5571,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
   box-shadow: 0 0 0 0.2rem #C7D2FE;
 }
 .p-steps .p-steps-item.p-highlight .p-steps-number {
-  background: var(--primary-color);
+  background: #6366F1;
   color: var(--primary-color-text);
 }
 .p-steps .p-steps-item.p-highlight .p-steps-title {

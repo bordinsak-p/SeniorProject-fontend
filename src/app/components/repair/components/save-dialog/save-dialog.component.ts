@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-save-dialog',
@@ -6,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./save-dialog.component.scss']
 })
 export class SaveDialogComponent {
+    @Input() visible: any
+    @Input() viewForm: FormGroup
 
+    @Output() onCloseDialogEvent = new EventEmitter()
+    @Output() onSaveEvent = new EventEmitter()
+
+    onClose() {
+        this.onCloseDialogEvent.emit()
+    }
+
+    onSave() {
+        this.onSaveEvent.emit()
+    }
 }

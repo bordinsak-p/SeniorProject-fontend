@@ -27,15 +27,20 @@ export class AuthService {
     }
 
     private decodeAndSetUserData(token: string): void {
-        const decodedToken = jwtDecode(token);
-        const expTime = decodedToken.exp * 1000
-        const currentTime = new Date().getTime()
+        try {
+            const decodedToken = jwtDecode(token);
+            const expTime = decodedToken.exp * 1000;
+            const currentTime = new Date().getTime();
 
-        if(currentTime > expTime) {
+            if (currentTime > expTime) {
+                this.logout();
+            } else {
+                this.userData$.next(decodedToken);
+                this.loggedIn$.next(true);
+            }
+        } catch (error) {
+            console.error('Error decoding Token:', error);
             this.logout();
-        } else {
-            this.userData$.next(decodedToken);
-            this.loggedIn$.next(true);    
         }
     }
 

@@ -21,12 +21,8 @@ export class RepairService {
     return this.httpClient.get<Repair>(`${environment.baseUrl}getRepairs`, { headers: this.headers, params })
   }
 
-  getEquipment(params: any): Observable<Equipments[]>{
-    return this.httpClient.get<Equipments[]>(`${environment.baseUrl}getEquipment`, { headers: this.headers, params })
-  }
-
-  addEquipment(paylaod: any, id: number): Observable<any> {    
-    return this.httpClient.post(`${environment.baseUrl}addEquipment${id}`, paylaod, {headers: this.headers });
+  addRepairs(paylaod: any, id: number): Observable<any> {    
+    return this.httpClient.post(`${environment.baseUrl}addRepairs${id}`, paylaod, {headers: this.headers });
   }
 
   delRepair(id: number): Observable<any> {
@@ -36,4 +32,14 @@ export class RepairService {
   delRepairs(ids: number[]): Observable<any> {
     return this.httpClient.delete<any>(`${environment.baseUrl}delRepairs`, { headers: this.headers, params: { ids: ids.join(',') } })
   }
+
+  // equipment service
+  getEquipment(params: any): Observable<Equipments[]>{
+    return this.httpClient.get<Equipments[]>(`${environment.baseUrl}getEquipment`, { headers: this.headers, params })
+  }
+
+  getEquipmentForPrm(id: any): Observable<Equipments[]>{
+    return this.httpClient.get<Equipments[]>(`${environment.baseUrl}getEquipmentForPrm/${id}`, { headers: this.headers})
+  }
+
 }

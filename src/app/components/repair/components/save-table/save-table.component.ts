@@ -16,7 +16,7 @@ export class SaveTableComponent {
     @Output() onSeletedRepairEvent = new EventEmitter()
 
 
-    onOpenDialog(e: any, id: number) {
+    onOpen(e: any, id: number) {
         this.onSeletedRepairEvent.emit({e, id})
     }
 }

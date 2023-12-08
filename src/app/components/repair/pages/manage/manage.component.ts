@@ -8,8 +8,13 @@ import { MenuItem, MessageService } from 'primeng/api';
 })
 export class ManageComponent {
     items: MenuItem[];
+    activeIndex: number = 0;
 
     constructor(public messageService: MessageService) {}
+
+    onActiveIndexChange(event: number) {
+        this.activeIndex = event;
+    }
 
     ngOnInit() {
         this.items = [
@@ -23,7 +28,7 @@ export class ManageComponent {
             },
             {
                 label: 'สำเร็จ',
-                routerLink: 'step2/step3',
+                routerLink: 'step3',
             },
         ];
     }

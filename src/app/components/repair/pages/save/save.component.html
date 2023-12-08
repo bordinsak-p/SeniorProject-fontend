@@ -5,4 +5,15 @@
     (onClaerEvent)="onClear()"
 ></app-save-form>
 
-<app-save-table [equipments]="equipments" [cols]="cols"></app-save-table>
+<app-save-table
+    [equipments]="equipments"
+    [cols]="cols"
+    (onSeletedRepairEvent)="onOpen($event)"
+></app-save-table>
+
+<app-save-dialog 
+    [visible]="visible" 
+    [viewForm]="dialogForm"
+    (onSaveEvent)="onSave()"
+    (onCloseDialogEvent)="onClose()"
+></app-save-dialog>

@@ -6,63 +6,60 @@ import { SaveComponent } from './pages/save/save.component';
 import { ManageComponent } from './pages/manage/manage.component';
 import { StepOneComponent } from './components/step-one/step-one.component';
 import { StepTwoComponent } from './components/step-two/step-two.component';
-import { StepTreeComponent } from './components/step-two/step-tree/step-tree.component';
-
+import { StepTreeComponent } from './components/step-tree/step-tree.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: RepairComponent,
-    children: [
-        {
-            path: '',
-            component: SearchComponent,
-            data: {
-                breadcrumb: 'ค้นหา',
-            }
-        },
-        {
-            path: 'save',
-            component: SaveComponent,
-            data: {
-                breadcrumb: 'แจ้งซ่อม',
-            }
-        },
-        {
-            path: 'status',
-            component: ManageComponent,
-            children: [
-                {
-                    path: '',
-                    component: StepOneComponent,
+    {
+        path: '',
+        component: RepairComponent,
+        children: [
+            {
+                path: '',
+                component: SearchComponent,
+                data: {
+                    breadcrumb: 'ค้นหา',
                 },
-                {
-                    path: 'step2',
-                    component: StepTwoComponent,
-                    children: [
-                        {
-                            path: 'step3',
-                            component: StepTreeComponent,
-                            data: {
-                                breadcrumb: 'สำเร็จ'
-                            }
-                        }
-                    ],
-                    data: {
-                        breadcrumb: 'ดำเนินการ'
-                    }
+            },
+            {
+                path: 'save',
+                component: SaveComponent,
+                data: {
+                    breadcrumb: 'แจ้งซ่อม',
                 },
-            ],
-            data: {
-                breadcrumb: 'รอรับเรื่อง',
-            }
-        },
-    ],
-},
+            },
+            {
+                path: 'status',
+                component: ManageComponent,
+                children: [
+                    {
+                        path: '',
+                        component: StepOneComponent,
+                    },
+                    {
+                        path: 'step2',
+                        component: StepTwoComponent,
+                        data: {
+                            breadcrumb: 'ดำเนินการ',
+                        },
+                    },
+                    {
+                        path: 'step3',
+                        component: StepTreeComponent,
+                        data: {
+                            breadcrumb: 'สำเร็จ',
+                        },
+                    },
+                ],
+                data: {
+                    breadcrumb: 'รอรับเรื่อง',
+                },
+            },
+        ],
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
-export class RepairRoutingModule { }
+export class RepairRoutingModule {}

@@ -6,7 +6,7 @@
     </button>
     <button type="button" label="Success" class="p-button-success p-button" [routerLink]="['save']">
         <span class="p-button-label"
-            >เพิ่มข้อมูล <i class="pi pi-plus ml-2"></i
+            >แจ้งซ่อม<i class="pi pi-wrench ml-2"></i
         ></span>
     </button>
 </div>
@@ -40,8 +40,8 @@
                 <p-tableCheckbox [value]="repair"></p-tableCheckbox>
             </td>
             <td class="text-center">
-                <i class="pi pi-trash cursor-pointer sm:m-0 md:mr-3 text-red-500 text-lg" (click)="onDeletInRow(repair.id)"></i>
-                <i class="pi pi-file-edit cursor-pointer sm:m-0 md:mr-3 text-purple-500 text-lg" (click)="onEdit($event ,repair.id)"></i>
+                <i class="pi pi-trash cursor-pointer sm:m-0 md:mr-3 text-red-500 text-lg" pTooltip="ลบข้อมูล" tooltipPosition="top" (click)="onDeletInRow(repair.id)"></i>
+                <i class="pi pi-info-circle cursor-pointer sm:m-0 md:mr-3 text-cyan-300 text-lg" pTooltip="แก้ไขสถานะ" tooltipPosition="top" (click)="onEdit(repair.id)"></i>
             </td>
             <td>{{ repair['users'].firstname }}</td>
             <td>{{ repair['users'].lastname }}</td>

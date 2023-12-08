@@ -19,6 +19,6 @@ export class StepTwoComponent implements OnInit {
     }
 
     onNextStep() {
-        this.router.navigate(['step3'], { relativeTo: this.activatRout });
+        this.router.navigate(['/repair/status/step3']);
     }
 }

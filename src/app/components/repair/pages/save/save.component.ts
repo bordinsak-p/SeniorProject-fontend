@@ -13,9 +13,12 @@ import { TABLE_SEARCH } from '../../constants/table-option.equipment';
 })
 export class SaveComponent implements OnInit {
     saveForm: FormGroup;
-    equipments: Equipments[] = []
-    cols = TABLE_SEARCH
+    dialogForm: FormGroup;
+    equipments: Equipments[] = [];
+
+    cols = TABLE_SEARCH;
     query: any;
+    visible: any;
 
     constructor(
         private fb: FormBuilder,
@@ -24,10 +27,11 @@ export class SaveComponent implements OnInit {
         private msags: MessageService
     ) {
         this.onInitForm();
+        this.onInitDialogForm();
     }
 
     ngOnInit(): void {
-        this.queryTable()
+        this.queryTable();
     }
 
     queryTable() {
@@ -50,6 +54,12 @@ export class SaveComponent implements OnInit {
         });
     }
 
+    onInitDialogForm() {
+        this.dialogForm = this.fb.group({
+            description: [null],
+        });
+    }
+
     onSearch() {
         this.query = {};
 
@@ -58,8 +68,7 @@ export class SaveComponent implements OnInit {
         }
 
         if (this.saveForm.get('equipmentName').value != null) {
-            this.query.equipmentName =
-                this.saveForm.get('equipmentName').value;
+            this.query.equipmentName = this.saveForm.get('equipmentName').value;
         }
 
         if (this.saveForm.get('locationName').value != null) {
@@ -89,7 +98,43 @@ export class SaveComponent implements OnInit {
 
     onClear() {
         this.saveForm.reset();
-        this.query = null
-        this.queryTable()
+        this.query = null;
+        this.queryTable();
+    }
+
+    onDisable() {
+        this.dialogForm.get('description').disable()
+    }
+
+    onOpen(e: any) {
+        this.visible = e.e;
+        const id = e.id;
+
+        this.service.getEquipmentForPrm(id).subscribe((res: any) => {
+            this.dialogForm.patchValue({
+                description: `
+                รหัสครุภัณฑ์: ${res['results'].equipment_id} 
+                
+                ชื่อครุภัณฑ์: ${res['results'].equipment_name}
+                
+                สถานที่: ${res['results']['Location'].location_name} 
+                
+                สาขา: ${res['results']['Location'].branch_info} 
+                
+                ห้อง: ${res['results']['Location'].room_number}
+                `,
+            });
+        });
+
+        this.onDisable()
+    }
+
+    onSave() {
+        console.log("Hello");
+        
+    }
+
+    onClose() {
+        this.visible = false
     }
 }
