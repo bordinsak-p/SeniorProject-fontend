@@ -44,7 +44,7 @@
             <td class="text-center">
                 <i class="pi pi-trash cursor-pointer sm:m-0 md:mr-3 text-red-500 text-lg" (click)="onDeleteInRow(user.id)"></i>
                 <i class="pi pi-file-edit cursor-pointer sm:m-0 md:mr-3 text-purple-500 text-lg"></i>
-                <i class="pi pi-eye cursor-pointer text-pink-500 text-lg"></i>
+                <i class="pi pi-eye cursor-pointer text-pink-500 text-lg" (click)="onOpenDialog($event, user.id)"></i>
             </td>
             <td>{{ user.firstname }}</td>
             <td>{{ user.lastname }}</td>

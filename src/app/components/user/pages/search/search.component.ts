@@ -5,6 +5,7 @@ import { Repairs } from '../../models/repairs.interface';
 import { RepairService } from '../../services/repair.service';
 import { SharedService } from 'src/shared/shared.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-search',
@@ -19,6 +20,7 @@ export class SearchComponent implements OnInit {
     users: Repairs[] = [];
     query: any;
     viewForm: any;
+    visible: any;
     roleOptions = [
         'Admin',
         'User'
@@ -29,7 +31,8 @@ export class SearchComponent implements OnInit {
         private service: RepairService,
         private sharedService: SharedService,
         private cfs: ConfirmationService,
-        private msags: MessageService
+        private msags: MessageService,
+        private dateFormat: DatePipe 
     ) {
         this.queryTable();
         service.mode$.next('add');
@@ -44,6 +47,7 @@ export class SearchComponent implements OnInit {
 
     ngOnInit(): void {
         this.onInitForm();
+        this.onInitViewForm();
     }
 
     onInitForm() {
@@ -65,6 +69,7 @@ export class SearchComponent implements OnInit {
             username: [null],
             role: [null],
             createAt: [null],
+            created_at: [null]
         });
     }
 
@@ -174,5 +179,31 @@ export class SearchComponent implements OnInit {
         });
     }
 
+    onDisableViewForm() {
+        this.viewForm.get('firstname').disable();
+        this.viewForm.get('lastname').disable();
+        this.viewForm.get('email').disable();
+        this.viewForm.get('username').disable();
+        this.viewForm.get('role').disable();
+        this.viewForm.get('created_at').disable();
+    }
 
+    onOpenDialog(e: any) {
+        this.visible = e.e;
+        this.onDisableViewForm();
+        this.service.getUsersById(e.id).subscribe(( res: any ) => {
+            const setForm = {
+                firstname: res.results.firstname,
+                lastname: res.results.lastname,
+                email: res.results.email,
+                username: res.results.username,
+                role: res.results.role,
+                created_at: this.dateFormat.transform( res.results.created_at, 'dd/MM/yyyy')
+            }
+            this.viewForm.patchValue(setForm)
+            console.log(setForm);
+            
+        })
+    }
+    
 }

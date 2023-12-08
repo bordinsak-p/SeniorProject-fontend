@@ -10,7 +10,7 @@
     [users]="users"
     (onDeleteInRowEvent)="onDelete($event)"
     (onSelectInRowEvent)="onSelectCheckBox($event)"
-
+    (onOpenDialogEvent)="onOpenDialog($event)" 
 >
 </app-search-table>
 
@@ -22,4 +22,5 @@
     </ng-template>
 </p-confirmDialog>
 
+<app-view-dialog [visible]="visible" [viewForm]="viewForm"></app-view-dialog>
 

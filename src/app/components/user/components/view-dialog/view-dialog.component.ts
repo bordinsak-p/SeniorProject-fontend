@@ -9,5 +9,4 @@ import { FormGroup } from '@angular/forms';
 export class ViewDialogComponent {
   @Input() visible = false
   @Input() viewForm!: FormGroup
-  @Input() showImage: any
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { UserRoutingModule } from './user-routing.module';
 import { UserComponent } from './user.component';
@@ -93,6 +93,6 @@ import { ViewDialogComponent } from './components/view-dialog/view-dialog.compon
     ToastModule,
     
   ],
-  providers: [ConfirmationService, MessageService,]
+  providers: [ConfirmationService, MessageService, DatePipe]
 })
 export class UserModule { }
