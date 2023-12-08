@@ -19,6 +19,10 @@ export class RepairService {
     return this.httpClient.get<Repairs[]>(`${environment.baseUrl}getUsers`, { headers: this.headers, params });
   }
 
+  getUsersById(id: any): Observable<Repairs[]> {
+    return this.httpClient.get<Repairs[]>(`${environment.baseUrl}getUsersForPms/${id}`, {headers: this.headers});
+  }
+
   addUser(payload: any): Observable<any> {
     return this.httpClient.post(`${environment.baseUrl}addUsers`, payload, { headers: this.headers });
   }
