@@ -24,7 +24,7 @@ export class SaveComponent implements OnInit {
         private fb: FormBuilder,
         private service: RepairService,
         private sharedService: SharedService,
-        private msags: MessageService
+        private msgs: MessageService
     ) {
         this.onInitForm();
         this.onInitDialogForm();
@@ -56,6 +56,7 @@ export class SaveComponent implements OnInit {
 
     onInitDialogForm() {
         this.dialogForm = this.fb.group({
+            description_1: [null],
             description: [null],
         });
     }
@@ -103,16 +104,17 @@ export class SaveComponent implements OnInit {
     }
 
     onDisable() {
-        this.dialogForm.get('description').disable()
+        this.dialogForm.get('description_1').disable()
     }
 
     onOpen(e: any) {
         this.visible = e.e;
         const id = e.id;
+        this.service.id$.next(id);
 
         this.service.getEquipmentForPrm(id).subscribe((res: any) => {
             this.dialogForm.patchValue({
-                description: `
+                description_1: `
                 รหัสครุภัณฑ์: ${res['results'].equipment_id} 
                 
                 ชื่อครุภัณฑ์: ${res['results'].equipment_name}
@@ -129,9 +131,15 @@ export class SaveComponent implements OnInit {
         this.onDisable()
     }
 
+    // แก้ต้องส่งแบบ formdata
     onSave() {
-        console.log("Hello");
-        
+        const id = this.service.id$.value
+        const paylaod = this.dialogForm.get('description')?.value;
+        this.service.addRepairs(paylaod, id).subscribe((res: any) => {
+            console.log(res);
+            this.msgs.add({ severity: 'success', summary: 'สำเร็จ', detail: 'บันทึกข้อมูลสำเร็จ' })
+        })
+        this.onClose();
     }
 
     onClose() {

@@ -14,6 +14,7 @@ export class RepairService {
 
   mode$ = new BehaviorSubject<any>(null);
   status$ = new BehaviorSubject<any>(false);
+  id$ = new BehaviorSubject<number>(null);
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,7 +23,7 @@ export class RepairService {
   }
 
   addRepairs(paylaod: any, id: number): Observable<any> {    
-    return this.httpClient.post(`${environment.baseUrl}addRepairs${id}`, paylaod, {headers: this.headers });
+    return this.httpClient.post(`${environment.baseUrl}addRepairs/${id}`, paylaod, {headers: this.headers });
   }
 
   delRepair(id: number): Observable<any> {
