@@ -34,7 +34,7 @@ export class AppMenuComponent implements OnInit {
                     { label: 'จัดการข้อมูลสมาชิก', icon: 'pi pi-fw pi-id-card', routerLink: ['/user'] },
                     { label: 'จัดการข้อมูลครุภัณฑ์', icon: 'pi pi-fw pi-server', routerLink: ['/equipment'] },
                     { label: 'จัดการข้อมูลการแจ้งซ่อม', icon: 'pi pi-fw pi-wrench', routerLink: ['/repair'] },
-                    { label: 'สร้าง QR Code', icon: 'pi pi-fw pi-qrcode', routerLink: ['/creatqrcode'] },
+                    { label: 'สร้าง QR Code', icon: 'pi pi-fw pi-qrcode', routerLink: ['/qrcode'] },
                 ]
             },
         ];

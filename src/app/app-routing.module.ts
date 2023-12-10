@@ -47,6 +47,16 @@ import { AuthGuard } from './guard/auth.guard';
                     breadcrumb: 'จัดการข้อมูลสมาชิก'
                 }
             },
+            {
+                path: 'qrcode', component: AppLayoutComponent,
+                canActivate: [AuthGuard],
+                children: [
+                    { path: '', loadChildren: () => import('./components/qrcode/qrcode.module').then(m => m.QrcodeModule) },
+                ],
+                data: {
+                    breadcrumb: 'จัดการข้อมูลสมาชิก'
+                }
+            },
             { 
                 path: 'auth',
                 loadChildren: () => import('./components/auth/auth.module').then(m => m.AuthModule) 
