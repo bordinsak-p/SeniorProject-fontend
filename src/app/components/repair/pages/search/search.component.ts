@@ -115,9 +115,16 @@ export class SearchComponent implements OnInit {
         this.queryTable();
     }
 
-    onEdit(id: any) {
-        console.log(id);
-        this.router.navigate(['status'], {relativeTo: this.activateRoute})
+    onEdit(event: any) {        
+        this.service.repairId$.next(event.id)
+        this.service.repairStatus$.next(event.status)
+        if(event.status == 'ดำเนินการ') {
+            this.router.navigate(['status/step2'], { relativeTo: this.activateRoute })
+        } else if(event.status == 'สำเร็จ') {
+            this.router.navigate(['status/step3'], { relativeTo: this.activateRoute })
+        } else {
+            this.router.navigate(['status'], { relativeTo: this.activateRoute })
+        }
     }
 
     onDeleteInRow(id: number) {

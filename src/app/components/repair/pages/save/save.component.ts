@@ -110,7 +110,7 @@ export class SaveComponent implements OnInit {
     onOpen(e: any) {
         this.visible = e.e;
         const id = e.id;
-        this.service.id$.next(id);
+        this.service.equipmentId$.next(id);
 
         this.service.getEquipmentForPrm(id).subscribe((res: any) => {
             this.dialogForm.patchValue({
@@ -133,7 +133,7 @@ export class SaveComponent implements OnInit {
 
     // แก้ต้องส่งแบบ formdata
     onSave() {
-        const id = this.service.id$.value
+        const id = this.service.equipmentId$.value
         const paylaod = this.dialogForm.get('description')?.value;
 
         const newPaylode = new FormData();

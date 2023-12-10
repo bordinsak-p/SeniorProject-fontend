@@ -15,7 +15,7 @@ export class StepTwoComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.service.status$.next(false)
+        // this.service.status$.next(false)
     }
 
     onNextStep() {
