@@ -34,7 +34,7 @@
         />
     </div>
 
-    <div class="col-12 md:col-12 lg:col-3">
+    <div class="col-12 md:col-12 lg:col-3" [hidden]="setMode">
         <label for="password" class="block text-lg mb-2"> รหัสผ่าน </label>
         <input
             type="text"
@@ -50,7 +50,6 @@
         <p-dropdown 
         formControlName="role"
         [options]="roleOptions" 
-        [(ngModel)]="saveForm.value.role" 
         placeholder="เลือกตำแหน่ง" 
         >
         </p-dropdown>

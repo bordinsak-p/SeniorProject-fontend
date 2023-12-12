@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 export class RepairService {
   private headers = { Authorization: 'Bearer ' + localStorage.getItem('token') };
 
-  equipmentId$ = new BehaviorSubject<any>(null);
+  userId$ = new BehaviorSubject<any>(null);
   mode$ = new BehaviorSubject<any>(null);
 
   constructor(private httpClient: HttpClient) {}
@@ -25,6 +25,10 @@ export class RepairService {
 
   addUser(payload: any): Observable<any> {
     return this.httpClient.post(`${environment.baseUrl}addUsers`, payload, { headers: this.headers });
+  }
+
+  updateUser(id: number, user: any): Observable<any> {
+    return this.httpClient.put<any>(`${environment.baseUrl}updateUsers/${id}`, user, { headers: this.headers });
   }
 
   delUser(id: number): Observable<any> {

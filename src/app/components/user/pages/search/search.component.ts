@@ -6,6 +6,7 @@ import { RepairService } from '../../services/repair.service';
 import { SharedService } from 'src/shared/shared.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DatePipe } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-search',
@@ -32,7 +33,9 @@ export class SearchComponent implements OnInit {
         private sharedService: SharedService,
         private cfs: ConfirmationService,
         private msags: MessageService,
-        private dateFormat: DatePipe 
+        private dateFormat: DatePipe,
+        private router: Router,
+        private route: ActivatedRoute, 
     ) {
         this.queryTable();
         service.mode$.next('add');
@@ -201,9 +204,13 @@ export class SearchComponent implements OnInit {
                 created_at: this.dateFormat.transform( res.results.created_at, 'dd/MM/yyyy')
             }
             this.viewForm.patchValue(setForm)
-            console.log(setForm);
-            
         })
     }
+
+    onEdit(id: any) {
+        this.service.userId$.next(id);
+        this.service.mode$.next('edit');
+        this.router.navigate(['save'], { relativeTo: this.route });
+      }
     
 }

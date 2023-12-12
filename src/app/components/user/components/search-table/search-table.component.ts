@@ -18,6 +18,7 @@ export class SearchTableComponent {
     @Output() onDeleteInRowEvent = new EventEmitter();
     @Output() onSelectInRowEvent = new EventEmitter();
     @Output() onOpenDialogEvent = new EventEmitter();
+    @Output() onEditEvent = new EventEmitter();
 
     onDeleteInRow(id: any) {
         this.onDeleteInRowEvent.emit(id);
@@ -33,6 +34,10 @@ export class SearchTableComponent {
 
     onOpenDialog(e: any, id: number) {
         this.onOpenDialogEvent.emit({ e, id })
+    }
+
+    onEdit(id: any) {
+        this.onEditEvent.emit(id);
     }
     
 }
