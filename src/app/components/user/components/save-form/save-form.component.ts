@@ -10,6 +10,7 @@ export class SaveFormComponent {
 
   @Input() saveForm!: FormGroup;
   @Input() roleOptions: any[] = [];
+  @Input() setMode: boolean;
 
   @Output() onSaveEvent = new EventEmitter();
   @Output() onClearEvent = new EventEmitter();
