@@ -41,7 +41,7 @@
             </td>
             <td class="text-center">
                 <i class="pi pi-trash cursor-pointer sm:m-0 md:mr-3 text-red-500 text-lg" pTooltip="ลบข้อมูล" tooltipPosition="top" (click)="onDeletInRow(repair.id)"></i>
-                <i class="pi pi-info-circle cursor-pointer sm:m-0 md:mr-3 text-cyan-300 text-lg" pTooltip="แก้ไขสถานะ" tooltipPosition="top" (click)="onEdit(repair.id, repair.status)"></i>
+                <i class="pi pi-info-circle cursor-pointer sm:m-0 md:mr-3 text-cyan-300 text-lg" pTooltip="แก้ไขสถานะ" tooltipPosition="top" (click)="onEdit(repair.id, repair.equipmentpk_id,repair.status)"></i>
             </td>
             <td>{{ repair['users'].firstname }}</td>
             <td>{{ repair['users'].lastname }}</td>
@@ -59,7 +59,7 @@
                 <ng-container *ngIf="repair.status == 'สำเร็จ'">
                     <p-tag severity="success" [value]="repair.status"></p-tag>
                 </ng-container>
-            </td>
+            </td>   
         </tr>
     </ng-template>
     <ng-template pTemplate="emptymessage">

@@ -17,6 +17,7 @@ export class RepairService {
   repairStatus$ = new BehaviorSubject<any>(null);
   equipmentId$ = new BehaviorSubject<number>(null);
   repairId$ = new BehaviorSubject<number>(null);
+  repairEquipment_pk$ = new BehaviorSubject<number>(null)
 
   constructor(private httpClient: HttpClient) { }
 

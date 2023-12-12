@@ -29,11 +29,11 @@
         </label>
         <input type="text" pInputText  class="w-full" formControlName="roomNumber"/>
     </div>
-    <div class="col-12 md:col-6">
+    <div class="col-12 md:col-3">
         <label for="budgetYear" class="block text-lg">
             ปีงบประมาณ
         </label>
-        <p-calendar [showIcon]="true" [showButtonBar]="true" formControlName="budgetYear"></p-calendar>
+        <p-calendar [showIcon]="true" [showButtonBar]="true" formControlName="budgetYear" [style]="{ width: '100%' }"></p-calendar>
     </div>
 </div>
 

@@ -16,8 +16,8 @@ export class SearchTableComponent {
     @Output() onDeleteCheckBoxEvent = new EventEmitter();
     @Output() onDeleteInRowEvent = new EventEmitter();
 
-    onEdit(id: any, status: any) {
-        this.onEditEvent.emit({ id, status });
+    onEdit(id: number, equipmentPk: number, status: any) {
+        this.onEditEvent.emit({ id, equipmentPk, status });
     }
 
     onDeletInRow(id: any) {

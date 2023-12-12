@@ -15,7 +15,6 @@ import { STATUS } from '../../constants/status.constant';
 })
 export class SearchComponent implements OnInit {
     searchForm: FormGroup;
-    searchDialog: FormGroup;
     
     queryStr: any;
     visable: any;
@@ -50,11 +49,6 @@ export class SearchComponent implements OnInit {
         });
     }
 
-    onInitFormDialog() {
-        this.searchDialog = this.fb.group({
-            
-        })
-    }
 
     queryTable() {
         this.service.getRepairs(this.queryStr).subscribe((res: any) => {
@@ -116,8 +110,11 @@ export class SearchComponent implements OnInit {
     }
 
     onEdit(event: any) {        
+        console.log(event);
+        
         this.service.repairId$.next(event.id)
         this.service.repairStatus$.next(event.status)
+        this.service.repairEquipment_pk$.next(event.equipmentPk)
         if(event.status == 'ดำเนินการ') {
             this.router.navigate(['status/step2'], { relativeTo: this.activateRoute })
         } else if(event.status == 'สำเร็จ') {
