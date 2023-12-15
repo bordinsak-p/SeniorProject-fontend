@@ -110,8 +110,6 @@ export class SearchComponent implements OnInit {
     }
 
     onEdit(event: any) {        
-        console.log(event);
-        
         this.service.repairId$.next(event.id)
         this.service.repairStatus$.next(event.status)
         this.service.repairEquipment_pk$.next(event.equipmentPk)

@@ -8,12 +8,14 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 @Component({
     selector: 'app-step-one',
     templateUrl: './step-one.component.html',
-    //   styleUrls: ['./step-one.component.scss']
+    styleUrls: ['./step-one.component.scss']
 })
 export class StepOneComponent implements OnInit {
     stepOneForm: FormGroup;
     showImage: any;
     payload: Object;
+    status: string
+    statusBtn: boolean
 
     constructor(
         private router: Router,
@@ -46,6 +48,11 @@ export class StepOneComponent implements OnInit {
 
     ngOnInit(): void {
         this.onInitForm();
+        this.status = this.service.repairStatus$.value
+        if(this.status == 'ดำเนินการ' || this.status == 'สำเร็จ') {
+            this.statusBtn = true;
+        }
+
     }
 
     onInitForm() {
@@ -59,12 +66,21 @@ export class StepOneComponent implements OnInit {
         });
     }
 
-    onNextStep() {
+    onAcceptStatus() {
+        const id = this.service.repairId$.value
+        const paylode = {
+            status: 'ดำเนินการ'
+        }
+
         this.cfs.confirm({
-            message: 'คุณต้องการลบข้อมูลหรือไม่?',
+            message: 'คุณต้องการดำเนินการรับเรื่องหรือไม่?',
             header: 'ยืนยัน',
-            icon: 'pi pi-exclamation-triangle',
-            accept: () => {},
+            icon: 'pi pi-wrench',
+            accept: () => {
+                this.service.editRepairs(paylode, id).subscribe((res: any) => {
+                    this.msags.add({ severity: 'success', summary: 'สำเร็จ', detail: 'บันทึกข้อมูลสำเร็จ' })
+                })
+            },
         });
     }
 

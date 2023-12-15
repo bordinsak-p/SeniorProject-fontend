@@ -26,7 +26,11 @@ export class RepairService {
   }
 
   addRepairs(paylaod: any, id: number): Observable<any> {    
-    return this.httpClient.post(`${environment.baseUrl}addRepairs/${id}`, paylaod, {headers: this.headers });
+    return this.httpClient.post(`${environment.baseUrl}addRepairs/${id}`, paylaod, { headers: this.headers });
+  }
+  
+  editRepairs(paylaod: any, id: number): Observable<any> {    
+    return this.httpClient.put(`${environment.baseUrl}editRepairs/${id}`, paylaod, { headers: this.headers });
   }
 
   delRepair(id: number): Observable<any> {
