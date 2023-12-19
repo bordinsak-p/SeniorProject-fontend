@@ -1,4 +1,27 @@
-<div>
-    <p>step-two works!</p>
-    <button pButton (click)="onNextStep()">next</button>
+<div class="p-2" [style]="{'margin-top': '35px'}">
+    <div class="grid" [formGroup]="stepTwoForm">
+        <div class="col-12 md:col-6 lg:col-2 lg:mt-5">
+            <label for="equipmentId" class="block text-lg mb-2">
+                รหัสครุภัณฑ์
+            </label>
+            <input type="text" pInputText class="w-full" />
+        </div>
+    </div>
 </div>
+
+<div class="gap-2 mt-5 pt-5 button-panel">
+    <button type="button" label="Success" class="p-button p-button-info" (click)="onProgressStatus()">
+        <span class="p-button-label">รับเรื่อง<i class="pi pi-save ml-2"></i></span>
+    </button>
+    <button type="button" label="Success" class="p-button p-button-danger" (click)="onBack()">
+        <span class="p-button-label">กลับ <i class="pi pi-reply ml-2"></i></span>
+    </button>
+</div>
+
+<p-toast></p-toast>
+<p-confirmDialog #cd [style]="{ width: '25vw' }" [breakpoints]="{'900px': '50vw', '600px': '75vw'}">
+    <ng-template pTemplate="footer">
+        <button type="button" pButton icon="pi pi-times" label="ยกเลิก" class="p-button-danger" (click)="cd.reject()"></button>
+        <button type="button" pButton icon="pi pi-check" label="ตกลง" class="p-button-success" (click)="cd.accept()"></button>
+    </ng-template>
+</p-confirmDialog>

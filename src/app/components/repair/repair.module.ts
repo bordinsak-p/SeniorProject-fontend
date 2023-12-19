@@ -103,7 +103,7 @@ import { StepTreeComponent } from './components/step-tree/step-tree.component'
     ToastModule,
     TagModule,
     StepsModule,
-    TooltipModule
+    TooltipModule,
   ],
   providers: [
     ConfirmationService,

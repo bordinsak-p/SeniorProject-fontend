@@ -25,6 +25,10 @@ export class RepairService {
     return this.httpClient.get<Repair>(`${environment.baseUrl}getRepairs`, { headers: this.headers, params })
   }
 
+  getRepairsForPms(id: number): Observable<Repair> {
+    return this.httpClient.get<Repair>(`${environment.baseUrl}getRepairsForPms/${id}`, { headers: this.headers })
+  }
+
   addRepairs(paylaod: any, id: number): Observable<any> {    
     return this.httpClient.post(`${environment.baseUrl}addRepairs/${id}`, paylaod, { headers: this.headers });
   }

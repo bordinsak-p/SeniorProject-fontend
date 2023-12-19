@@ -1,41 +1,69 @@
-<p-dialog [(visible)]="visible" [modal]="true" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+<p-dialog [(visible)]="visible" [modal]="true" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '65vw' }" [draggable]="false" [resizable]="false">
     <ng-template pTemplate="header">
         <h4 style="width: 100%;">
-           ข้อมูลครุภัณฑ์
+           ทำรายการแจ้งซ่อม
         </h4>
     </ng-template>
     <ng-template pTemplate="body">
         <div class="grid" [formGroup]="viewForm">
-            <div class="col-12 md:col-10 lg:col-10">
-                <label for="description" class="block text-lg mb-2"> ลายละเอียด </label>
-                <textarea
-                    type="text"
-                    pInputTextarea
-                    class="w-full"
-                    rows="5"
-                    cols="30"
-                    [autoResize]="true"
-                    [maxLength]="500"
-                    formControlName="description_1"
-                ></textarea>
+                <div class="col-12 md:col-6 lg:col-3">
+                    <label for="equipmentId" class="block text-lg mb-2">
+                        รหัสครุภัณฑ์
+                    </label>
+                    <input type="text" pInputText class="w-full" formControlName="equipmentId"/>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3">
+                    <label for="equipmentName" class="block text-lg mb-2">
+                        ชื่อครุภัณฑ์
+                    </label>
+                    <input type="text" pInputText class="w-full" formControlName="equipmentName"/>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3">
+                    <label for="location" class="block text-lg mb-2">
+                        สถานที่ 
+                    </label>
+                    <input type="text" pInputText  class="w-full" formControlName="locationName"/>
+                </div>
+                <div class="col-12 md:col-6 md:m-0 lg:col-3">
+                    <label for="branchInfo" class="block text-lg mb-2">
+                        สาขา 
+                    </label>
+                    <input type="text" pInputText  class="w-full" formControlName="branchInfo"/>
+                </div>
+                <div class="col-12 md:col-6 lg:col-2">
+                    <label for="roomNumber" class="block text-lg mb-2">
+                        เลขที่ห้อง
+                    </label>
+                    <input type="text" pInputText  class="w-full" formControlName="roomNumber"/>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3">
+                    <label for="budgetYear" class="block text-lg mb-2">
+                        ปีงบประมาณ
+                    </label>
+                    <p-calendar [showIcon]="true" [showButtonBar]="true" formControlName="budgetYear" [style]="{ width: '100%' }"></p-calendar>
+                </div>
+                <div class="col-12 md:col-6 lg:col-3">
+                    <label for="budgetYear" class="block text-lg mb-2">
+                        เลือกอุปกรณ์ แจ้งซ่อม <span style="color: red;">*</span>
+                    </label>
+                    <p-dropdown formControlName="equipmentType" [options]="equipmentType" optionLabel="name" placeholder="เลือกอุปกรณ์" [showClear]="true" [style]="{ width: '100%' }"></p-dropdown>
+                </div>
+                <div class="col-12 md:col-10 lg:col-12">
+                    <label for="description" class="block text-lg mb-2"> สาเหตุการแจ้งซ่อม </label>
+                    <textarea
+                        type="text"
+                        pInputTextarea
+                        class="w-full"
+                        rows="5"
+                        cols="30"
+                        [autoResize]="false"
+                        formControlName="description"
+                    ></textarea>
+                </div>
+                <div class="col-12 md:col-12 lg:col-6 mb-3" *ngIf="showImage">
+                    <img [src]="showImage" alt="previewImage" id="previewImage" class="w-full" />
+                </div>
             </div>
-            <div class="col-12 md:col-10 lg:col-10">
-                <label for="description" class="block text-lg mb-2"> สาเหตุการแจ้งซ่อม </label>
-                <textarea
-                    type="text"
-                    pInputTextarea
-                    class="w-full"
-                    rows="5"
-                    cols="30"
-                    [autoResize]="true"
-                    [maxLength]="500"
-                    formControlName="description"
-                ></textarea>
-            </div>
-            <div class="col-12 md:col-12 lg:col-6 mb-3" *ngIf="showImage">
-                <img [src]="showImage" alt="previewImage" id="previewImage" class="w-full" />
-            </div>    
-        </div>
     </ng-template>
     
    <ng-template pTemplate="footer">

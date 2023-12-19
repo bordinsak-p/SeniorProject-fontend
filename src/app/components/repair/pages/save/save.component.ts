@@ -15,6 +15,7 @@ export class SaveComponent implements OnInit {
     saveForm: FormGroup;
     dialogForm: FormGroup;
     equipments: Equipments[] = [];
+    equipmentType: any
 
     cols = TABLE_SEARCH;
     query: any;
@@ -27,11 +28,18 @@ export class SaveComponent implements OnInit {
         private msgs: MessageService
     ) {
         this.onInitForm();
-        this.onInitDialogForm();
     }
 
     ngOnInit(): void {
         this.queryTable();
+        this.onDisable()
+        this.equipmentType = [
+            { name: 'เมาส์' },
+            { name: 'คีบอร์ด' },
+            { name: 'จอคอมพิวเตอร์' },
+            { name: 'ซีพียู' },
+        ]
+        console.log(this.service.repairId$.value);
     }
 
     queryTable() {
@@ -52,12 +60,17 @@ export class SaveComponent implements OnInit {
             roomNumber: [null],
             budgetYear: [null],
         });
-    }
 
-    onInitDialogForm() {
+        // dialogForm
         this.dialogForm = this.fb.group({
-            description_1: [null],
-            description: [null],
+            equipmentId: [null, [Validators.required]],
+            equipmentName: [null],
+            locationName: [null],
+            branchInfo: [null],
+            roomNumber: [null],
+            budgetYear: [null],
+            description: [null, [Validators.required]],
+            equipmentType: [null, [Validators.required]]
         });
     }
 
@@ -104,7 +117,12 @@ export class SaveComponent implements OnInit {
     }
 
     onDisable() {
-        this.dialogForm.get('description_1').disable()
+        this.dialogForm.get('equipmentId').disable()
+        this.dialogForm.get('equipmentName').disable()
+        this.dialogForm.get('locationName').disable()
+        this.dialogForm.get('branchInfo').disable()
+        this.dialogForm.get('roomNumber').disable()
+        this.dialogForm.get('budgetYear').disable()
     }
 
     onOpen(e: any) {
@@ -114,21 +132,15 @@ export class SaveComponent implements OnInit {
 
         this.service.getEquipmentForPrm(id).subscribe((res: any) => {
             this.dialogForm.patchValue({
-                description_1: `
-                รหัสครุภัณฑ์: ${res['results'].equipment_id} 
-                
-                ชื่อครุภัณฑ์: ${res['results'].equipment_name}
-                
-                สถานที่: ${res['results']['Location'].location_name} 
-                
-                สาขา: ${res['results']['Location'].branch_info} 
-                
-                ห้อง: ${res['results']['Location'].room_number}
-                `,
+                equipmentId: res['results'].equipment_id,
+                equipmentName: res['results'].equipment_name,
+                locationName: res['results']['Location'].location_name,
+                branchInfo: res['results']['Location'].branch_info,
+                roomNumber: res['results']['Location'].room_number,
+                budgetYear: new Date(res['results'].budget_year),
             });
         });
 
-        this.onDisable()
     }
 
     // แก้ต้องส่งแบบ formdata
@@ -138,12 +150,16 @@ export class SaveComponent implements OnInit {
 
         const newPaylode = new FormData();
         newPaylode.append("description", paylaod)
+
+        if(this.dialogForm.invalid) {
+            this.dialogForm.get('description').markAsTouched()
+        }
         
-        this.service.addRepairs(newPaylode, id).subscribe((res: any) => {
-            console.log(res);
-            this.msgs.add({ severity: 'success', summary: 'สำเร็จ', detail: 'บันทึกข้อมูลสำเร็จ' })
-        })
-        this.onClose();
+        // this.service.addRepairs(newPaylode, id).subscribe((res: any) => {
+        //     console.log(res);
+        //     this.msgs.add({ severity: 'success', summary: 'สำเร็จ', detail: 'บันทึกข้อมูลสำเร็จ' })
+        // })
+        // this.onClose();
     }
 
     onClose() {
