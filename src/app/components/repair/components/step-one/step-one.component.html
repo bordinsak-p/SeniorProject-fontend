@@ -72,9 +72,9 @@
 
 <div class="gap-2 mt-5 pt-5 button-panel">
     <button type="button" label="Success" class="p-button p-button-info" (click)="onAcceptStatus()" [disabled]="statusBtn" [class.disable-button-primary]="statusBtn == true">
-        <span class="p-button-label">รับเรื่อง<i class="pi pi-save ml-2"></i></span>
+        <span class="p-button-label">รับเรื่อง<i class="pi pi-spin pi-spinner ml-2"></i></span>
     </button>
-    <button type="button" label="Success" class="p-button p-button-danger" (click)="onBack()">
+    <button type="button" label="Success" class="p-button" [style]="'var(--primary-color2:#6366F1)'" (click)="onBack()">
         <span class="p-button-label">กลับ <i class="pi pi-reply ml-2"></i></span>
     </button>
 </div>

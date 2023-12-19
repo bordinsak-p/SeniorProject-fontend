@@ -1,19 +1,80 @@
 <div class="p-2" [style]="{'margin-top': '35px'}">
+    <h4>ลายละเอียด ครุภัณฑ์</h4>
+    <hr>
     <div class="grid" [formGroup]="stepTwoForm">
         <div class="col-12 md:col-6 lg:col-2 lg:mt-5">
             <label for="equipmentId" class="block text-lg mb-2">
                 รหัสครุภัณฑ์
             </label>
-            <input type="text" pInputText class="w-full" />
+            <input type="text" pInputText class="w-full" formControlName="equipmentId"/>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3 lg:mt-5" >
+            <label for="equipmentName" class="block text-lg mb-2">
+                ชื่อครุภัณฑ์
+            </label>
+            <input type="text" pInputText class="w-full" formControlName="equipmentName"/>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3 lg:mt-5">
+            <label for="location" class="block text-lg mb-2">
+                สถานที่ 
+            </label>
+            <input type="text" pInputText  class="w-full" formControlName="location"/>
+        </div>
+        <div class="col-12 md:col-6 md:m-0 lg:col-3 lg:mt-5">
+            <label for="branchInfo" class="block text-lg mb-2">
+                สาขา 
+            </label>
+            <input type="text" pInputText  class="w-full" formControlName="branchInfo"/>
+        </div>
+        <div class="col-12 md:col-6 lg:col-2">
+            <label for="roomNumber" class="block text-lg mb-2">
+                เลขที่ห้อง
+            </label>
+            <input type="text" pInputText  class="w-full" formControlName="roomNumber"/>
+        </div>
+        <div class="col-12 md:col-6 lg:col-3">
+            <label for="budgetYear" class="block text-lg mb-2">
+                ปีงบประมาณ
+            </label>
+            <p-calendar [showIcon]="true" [showButtonBar]="true"  [style]="{ width: '100%' }" formControlName="budgetYear"></p-calendar>
+        </div>
+        <div class="col-12 md:col-12 lg:col-6 mb-3 previewImage" *ngIf="showImage">
+            <img [src]="showImage" alt="previewImage" id="previewImage" />
         </div>
     </div>
 </div>
 
+<div style="margin-top: 30px;">
+    <h4>ลายละเอียด รายการแจ้งซ่อม</h4>
+    <hr>
+</div>
+
+<div class="grid" [formGroup]="repairForm">
+    <div class="col-12 md:col-6 lg:col-4 lg:mt-5">
+        <label for="fullname" class="block text-lg mb-2">
+            ชื่อ-นามสกุล ผู้แจ้งซ่อม
+        </label>
+        <input type="text" pInputText class="w-full" formControlName="fullname"/>
+    </div>
+    <div class="col-12 md:col-6 lg:col-3 lg:mt-5">
+        <label for="role" class="block text-lg mb-2">
+            ตำแหน่ง
+        </label>
+        <input type="text" pInputText class="w-full" formControlName="role"/>
+    </div>
+    <div class="col-12">
+        <label for="description" class="block text-lg mb-2">
+            สาเหตุ การแจ้งซ่อม
+        </label>
+        <textarea rows="5" cols="30" pInputTextarea formControlName="description" [style]="{width: '100%'}"></textarea>
+    </div>
+</div>
+
 <div class="gap-2 mt-5 pt-5 button-panel">
-    <button type="button" label="Success" class="p-button p-button-info" (click)="onProgressStatus()">
-        <span class="p-button-label">รับเรื่อง<i class="pi pi-save ml-2"></i></span>
+    <button type="button" label="Success" class="p-button p-button-warning" (click)="onProgressStatus()" [disabled]="statusBtn" [class.disable-button-primary]="statusBtn == true">
+        <span class="p-button-label">ดำเนินการ<i class="pi pi-spin pi-cog ml-2"></i></span>
     </button>
-    <button type="button" label="Success" class="p-button p-button-danger" (click)="onBack()">
+    <button type="button" label="Success" class="p-button" [style]="'var(--primary-color2:#6366F1)'" (click)="onBack()">
         <span class="p-button-label">กลับ <i class="pi pi-reply ml-2"></i></span>
     </button>
 </div>

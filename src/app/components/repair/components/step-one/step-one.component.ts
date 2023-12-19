@@ -19,7 +19,7 @@ export class StepOneComponent implements OnInit {
     statusBtn: boolean;
 
     constructor(
-        private route: Router,
+        private router: Router,
         private activatRout: ActivatedRoute,
         private service: RepairService,
         private fb: FormBuilder,
@@ -53,7 +53,7 @@ export class StepOneComponent implements OnInit {
                 this.repairForm.disable();
             });
         } else {
-            route.navigate(['/repair']);
+            router.navigate(['/repair']);
         }
     }
 
@@ -99,7 +99,7 @@ export class StepOneComponent implements OnInit {
                         summary: 'สำเร็จ',
                         detail: 'บันทึกข้อมูลสำเร็จ',
                     });
-                    this.route.navigate(['step2'], { relativeTo: this.activatRout })
+                    this.router.navigate(['step2'], { relativeTo: this.activatRout })
                     // this.route.navigate(['repair'])
                 });
             },
@@ -107,6 +107,6 @@ export class StepOneComponent implements OnInit {
     }
 
     onBack() {
-        this.route.navigate(['/repair']);
+        this.router.navigate(['/repair']);
     }
 }

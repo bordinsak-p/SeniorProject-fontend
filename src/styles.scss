@@ -33,22 +33,18 @@
   }
 }
 
-
 // แก้ไขปุ่ม icon ใน table
-@media screen and (max-width: 820px) {
-  #pr_id_3-table > .p-datatable-tbody > tr > td {
+@media screen and (max-width: 920px){
+  .p-datatable-tbody > tr > td {
     display: flex;
     width: 100% !important;
     align-items: center;
     justify-content: flex-start !important;
-    gap: 20px;
+    gap: 15px;
   }
 }
 
-
-
 /* =============== */
-
 $gutter: 1rem; //for primeflex grid system
 @import "assets/layout/styles/layout/layout.scss";
 
