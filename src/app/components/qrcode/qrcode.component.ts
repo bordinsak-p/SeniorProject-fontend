@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-qrcode',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./qrcode.component.scss']
 })
 export class QrcodeComponent {
+  public myAngularxQrCode: string = "";
+  public qrCodeDownloadLink: SafeUrl = "";
 
+  constructor () {
+    this.myAngularxQrCode = 'https://github.com/bordinsak-p/SeniorProject-fontend';
+  }
+
+  onChangeURL(url: SafeUrl) {
+    this.qrCodeDownloadLink = url;
+  }
 }
+

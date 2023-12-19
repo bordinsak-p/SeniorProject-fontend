@@ -1,5 +1,6 @@
 <p-card class="c-body">
     <p class="m-0 px-4 py-0">
-        <router-outlet></router-outlet>
+        <!-- <router-outlet></router-outlet> -->
+        <qrcode [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
     </p>
 </p-card>

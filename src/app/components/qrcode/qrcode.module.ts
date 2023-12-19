@@ -38,6 +38,7 @@ import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
 import { TreeModule } from 'primeng/tree';
 import { TreeTableModule } from 'primeng/treetable';
+import { QRCodeModule } from 'angularx-qrcode';
 
 
 @NgModule({
@@ -82,7 +83,8 @@ import { TreeTableModule } from 'primeng/treetable';
     ToastModule,
     TagModule,
     StepsModule,
-    TooltipModule
+    TooltipModule,
+    QRCodeModule
   ]
 })
 export class QrcodeModule { }
