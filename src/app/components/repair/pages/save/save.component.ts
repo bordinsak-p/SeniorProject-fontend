@@ -146,20 +146,21 @@ export class SaveComponent implements OnInit {
     // แก้ต้องส่งแบบ formdata
     onSave() {
         const id = this.service.equipmentId$.value
-        const paylaod = this.dialogForm.get('description')?.value;
 
-        const newPaylode = new FormData();
-        newPaylode.append("description", paylaod)
-
-        if(this.dialogForm.invalid) {
-            this.dialogForm.get('description').markAsTouched()
+        if(this.dialogForm.get('description')?.value && this.dialogForm.get('equipmentType')?.value != null) {
+            
+            const paylaod = this.dialogForm.get('description')?.value + ` ( ${this.dialogForm.get('equipmentType')?.value.name} )`;
+            const newPaylode = new FormData();
+            newPaylode.append("description", paylaod)
+            
+            this.service.addRepairs(newPaylode, id).subscribe((res: any) => {
+                console.log(res);
+                this.msgs.add({ severity: 'success', summary: 'สำเร็จ', detail: 'บันทึกข้อมูลสำเร็จ' })
+            })
+            this.onClose();
+        } else {
+            this.msgs.add({ severity: 'warnning', summary: 'เกิดข้อผิดพลาด', detail: 'บันทึกข้อมูลไม่สำเร็จ' })
         }
-        
-        this.service.addRepairs(newPaylode, id).subscribe((res: any) => {
-            console.log(res);
-            this.msgs.add({ severity: 'success', summary: 'สำเร็จ', detail: 'บันทึกข้อมูลสำเร็จ' })
-        })
-        this.onClose();
     }
 
     onClose() {

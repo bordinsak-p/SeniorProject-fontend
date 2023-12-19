@@ -11,7 +11,7 @@ export class QrcodeComponent {
   public qrCodeDownloadLink: SafeUrl = "";
 
   constructor () {
-    this.myAngularxQrCode = 'https://github.com/bordinsak-p/SeniorProject-fontend';
+    this.myAngularxQrCode = 'สแกน = ควยเล็ก';
   }
 
   onChangeURL(url: SafeUrl) {
