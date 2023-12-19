@@ -54,7 +54,7 @@ import { AuthGuard } from './guard/auth.guard';
                     { path: '', loadChildren: () => import('./components/qrcode/qrcode.module').then(m => m.QrcodeModule) },
                 ],
                 data: {
-                    breadcrumb: 'จัดการข้อมูลสมาชิก'
+                    breadcrumb: 'เพิ่ม QR Code'
                 }
             },
             { 

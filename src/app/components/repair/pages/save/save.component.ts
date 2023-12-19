@@ -155,11 +155,11 @@ export class SaveComponent implements OnInit {
             this.dialogForm.get('description').markAsTouched()
         }
         
-        // this.service.addRepairs(newPaylode, id).subscribe((res: any) => {
-        //     console.log(res);
-        //     this.msgs.add({ severity: 'success', summary: 'สำเร็จ', detail: 'บันทึกข้อมูลสำเร็จ' })
-        // })
-        // this.onClose();
+        this.service.addRepairs(newPaylode, id).subscribe((res: any) => {
+            console.log(res);
+            this.msgs.add({ severity: 'success', summary: 'สำเร็จ', detail: 'บันทึกข้อมูลสำเร็จ' })
+        })
+        this.onClose();
     }
 
     onClose() {
