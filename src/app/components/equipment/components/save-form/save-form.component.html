@@ -3,13 +3,19 @@
         <label for="equipmentid" class="block text-lg mb-2">
             รหัสครุภัณฑ์
         </label>
-        <input
+        <!-- <input
             type="text"
             pInputText
             class="w-full"
             formControlName="equipmentid"
             [maxlength]="7"
-        />
+        /> -->
+        <p-inputMask
+            mask="9-999-9999-999-9999/99-99(9)"
+            formControlName="equipmentid"
+            placeholder="x-xxx-xxxx-xxx-xxxx/xx-xx(x)"
+            [style]="{ width: '100%', 'letter-spacing': '1.5px' }"
+        ></p-inputMask>
     </div>
     <div class="col-12 md:col-12 lg:col-4">
         <label for="equipmentname" class="block text-lg mb-2">
@@ -64,7 +70,13 @@
     </div>
     <div class="col-12 md:col-12 lg:col-6">
         <label for="images" class="drop-container" id="dropcontainer">
-            <input type="file" id="images" (change)="onFileSelected($event)"   accept=".png, .jpg, .jpeg"  formControlName="image">
+            <input
+                type="file"
+                id="images"
+                (change)="onFileSelected($event)"
+                accept=".png, .jpg, .jpeg"
+                formControlName="image"
+            />
         </label>
     </div>
     <div class="col-12 md:col-12 lg:col-6 mb-3 previewImage" *ngIf="showImage">

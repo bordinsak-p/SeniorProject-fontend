@@ -49,6 +49,7 @@ import { ManageComponent } from './pages/manage/manage.component';
 import { StepOneComponent } from './components/step-one/step-one.component';
 import { StepTwoComponent } from './components/step-two/step-two.component';
 import { StepTreeComponent } from './components/step-tree/step-tree.component'
+import { InputMaskModule } from 'primeng/inputmask';
 
 @NgModule({
   declarations: [
@@ -104,6 +105,7 @@ import { StepTreeComponent } from './components/step-tree/step-tree.component'
     TagModule,
     StepsModule,
     TooltipModule,
+    InputMaskModule
   ],
   providers: [
     ConfirmationService,

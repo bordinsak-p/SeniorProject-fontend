@@ -15,7 +15,6 @@ import { STATUS } from '../../constants/status.constant';
 })
 export class SearchComponent implements OnInit {
     searchForm: FormGroup;
-    
     queryStr: any;
     visable: any;
     repair: Repair[] = [];
@@ -61,7 +60,7 @@ export class SearchComponent implements OnInit {
 
     onSearch() {
         this.queryStr = {};
-
+        
         const checkNull = this.searchForm.getRawValue();
         if (Object.values(checkNull).every((value) => value === null)) {
             this.msags.add({

@@ -42,6 +42,7 @@ import { SaveComponent } from './pages/save/save.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToastModule } from 'primeng/toast';
 import { ViewDialogComponent } from './components/view-dialog/view-dialog.component';
+import { InputMaskModule } from 'primeng/inputmask';
 
 
 @NgModule({
@@ -90,7 +91,8 @@ import { ViewDialogComponent } from './components/view-dialog/view-dialog.compon
         BreadcrumbModule,
         InputTextareaModule,
         ToastModule,
-        TooltipModule
+        TooltipModule,
+        InputMaskModule
     ],
     providers:[
         DatePipe,

@@ -39,7 +39,6 @@ export class SaveComponent implements OnInit {
             { name: 'จอคอมพิวเตอร์' },
             { name: 'ซีพียู' },
         ]
-        console.log(this.service.repairId$.value);
     }
 
     queryTable() {
@@ -151,15 +150,14 @@ export class SaveComponent implements OnInit {
             
             const paylaod = this.dialogForm.get('description')?.value + ` ( ${this.dialogForm.get('equipmentType')?.value.name} )`;
             const newPaylode = new FormData();
-            newPaylode.append("description", paylaod)
+            newPaylode.append("description", paylaod) 
             
             this.service.addRepairs(newPaylode, id).subscribe((res: any) => {
-                console.log(res);
                 this.msgs.add({ severity: 'success', summary: 'สำเร็จ', detail: 'บันทึกข้อมูลสำเร็จ' })
             })
             this.onClose();
         } else {
-            this.msgs.add({ severity: 'warnning', summary: 'เกิดข้อผิดพลาด', detail: 'บันทึกข้อมูลไม่สำเร็จ' })
+            this.msgs.add({ severity: 'warn', summary: 'เกิดข้อผิดพลาด', detail: 'กรุณากรอกเงื่อนไขให้ถูกต้อง' })
         }
     }
 

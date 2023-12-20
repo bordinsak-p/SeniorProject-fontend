@@ -1,9 +1,13 @@
 <div class="grid" [formGroup]="searchForm">
-    <div class="col-12 md:col-6 lg:col-2 lg:mt-5">
+    <div class="col-12 md:col-6 lg:col-3 lg:mt-5">
         <label for="equipmentId" class="block text-lg mb-2">
             รหัสครุภัณฑ์
         </label>
-        <input type="text" pInputText class="w-full" formControlName="equipmentId" />
+        <!-- <input type="text" pInputText class="w-full" formControlName="equipmentId" /> -->
+        <!-- x-xxx-xxxx-xxx-xxxx/64-01(1) -->
+        <p-inputMask mask="9-999-9999-999-9999/99-99(9)" formControlName="equipmentId" placeholder="x-xxx-xxxx-xxx-xxxx/xx-xx(x)" 
+            [style]="{ width: '100%', 'letter-spacing': '1.5px'}"
+        ></p-inputMask>
     </div>
     <div class="col-12 md:col-6 lg:col-3 lg:mt-5">
         <label for="equipmentName" class="block text-lg mb-2" >
