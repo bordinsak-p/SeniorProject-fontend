@@ -48,7 +48,6 @@ export class SearchComponent implements OnInit {
         });
     }
 
-
     queryTable() {
         this.service.getRepairs(this.queryStr).subscribe((res: any) => {
             this.repair = res.results.map((item: any) => {
