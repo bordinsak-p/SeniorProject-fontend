@@ -162,6 +162,7 @@ export class SaveComponent implements OnInit {
     }
 
     onClose() {
+        this.dialogForm.reset();
         this.visible = false
     }
 }

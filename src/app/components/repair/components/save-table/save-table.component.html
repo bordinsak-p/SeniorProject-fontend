@@ -22,7 +22,7 @@
     <ng-template pTemplate="body" let-equipments>
         <tr>
             <td class="text-center">
-                <i class="pi pi-wrench cursor-pointer text-blue-500 text-lg" pTooltip="แจ้งซ่อม" tooltipPosition="top" (click)="onOpen($event, equipments.id)"></i>
+                <i class="pi pi-wrench cursor-pointer text-red-500 text-lg" pTooltip="แจ้งซ่อม" tooltipPosition="top" (click)="onOpen($event, equipments.id)"></i>
             </td>
             <td>{{ equipments.equipment_id }}</td>
             <td>{{ equipments.equipment_name }}</td>

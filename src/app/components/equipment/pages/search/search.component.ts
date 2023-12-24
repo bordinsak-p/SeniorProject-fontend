@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { EquipmentService } from '../../services/equipment.service';
 import { TABLE_SEARCH } from '../../constants/table-option';
 import { SharedService } from 'src/shared/shared.service';
@@ -54,7 +54,7 @@ export class SearchComponent implements OnInit {
 
     onInitForm() {
         this.searchForm = this.fb.group({
-            equipmentId: [null, [Validators.required]],
+            equipmentId: [null],
             equipmentName: [null],
             locationName: [null],
             branchInfo: [null],

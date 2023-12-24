@@ -1,15 +1,8 @@
 <form class="grid mt-5" [formGroup]="saveForm">
-    <div class="col-12 md:col-12 lg:col-2">
+    <div class="col-12 md:col-12 lg:col-3">
         <label for="equipmentid" class="block text-lg mb-2">
             รหัสครุภัณฑ์
         </label>
-        <!-- <input
-            type="text"
-            pInputText
-            class="w-full"
-            formControlName="equipmentid"
-            [maxlength]="7"
-        /> -->
         <p-inputMask
             mask="9-999-9999-999-9999/99-99(9)"
             formControlName="equipmentid"

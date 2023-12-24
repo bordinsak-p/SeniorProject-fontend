@@ -44,7 +44,7 @@
                 <i class="pi pi-file-edit cursor-pointer sm:m-0 md:mr-3 text-purple-500 text-lg" pTooltip="แก้ไขข้อมูล" tooltipPosition="top" (click)="onEdit(equipments.id)"></i>
                 <i class="pi pi-eye cursor-pointer text-pink-500 text-lg" pTooltip="ดูข้อมูลทั้งหมด" tooltipPosition="top" (click)="onOpenDialog($event, equipments.id)"></i>
             </td>
-            <td>{{ equipments.equipment_id }}</td>
+            <!-- <td>{{ equipments.equipment_id }}</td> -->
             <td>{{ equipments.equipment_name }}</td>
             <td>{{ equipments.Location.location_name }}</td>
             <td>{{ equipments.Location.branch_info }}</td>

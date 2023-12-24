@@ -6,7 +6,7 @@ import { QrcodeComponent } from './qrcode.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccordionModule } from 'primeng/accordion';
-import { SharedModule } from 'primeng/api';
+import { MessageService, SharedModule } from 'primeng/api';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
@@ -39,11 +39,15 @@ import { TooltipModule } from 'primeng/tooltip';
 import { TreeModule } from 'primeng/tree';
 import { TreeTableModule } from 'primeng/treetable';
 import { QRCodeModule } from 'angularx-qrcode';
+import { SearchFormComponent } from './components/search-form/search-form.component';
+import { SearchComponent } from './pages/search/search.component';
 
 
 @NgModule({
   declarations: [
     QrcodeComponent,
+    SearchFormComponent,
+    SearchComponent,
   ],
   imports: [
     CommonModule,
@@ -85,6 +89,9 @@ import { QRCodeModule } from 'angularx-qrcode';
     StepsModule,
     TooltipModule,
     QRCodeModule
+  ],
+  providers: [
+    MessageService
   ]
 })
 export class QrcodeModule { }

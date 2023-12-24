@@ -1,6 +1,6 @@
 export const TABLE_SEARCH = [
     { field: 'option', header: '' },
-    { field: 'equipment_id', header: 'รหัสครุภัณฑ์' },
+    // { field: 'equipment_id', header: 'รหัสครุภัณฑ์' },
     { field: 'equipment_name', header: 'ชื่อครุภัณฑ์' },
     { field: 'location_name', header: 'สถานที่' },
     { field: 'branch_info', header: 'สาขา' },  
