@@ -30,10 +30,8 @@ import { FocusTrapModule } from 'primeng/focustrap';
 import { TreeTableModule } from 'primeng/treetable';
 import { TreeModule } from 'primeng/tree';
 import { MultiSelectModule } from 'primeng/multiselect';
-
-
-
-
+import { CardsComponent } from './components/cards/cards.component';
+import { ChartOneComponent } from './components/chart-one/chart-one.component';
 
 @NgModule({
     imports: [
@@ -67,8 +65,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
         PaginatorModule,
         InputSwitchModule,
         MultiSelectModule,
-        HttpClientModule,
+        HttpClientModule, 
     ],
-    declarations: [DashboardComponent]
+    declarations: [DashboardComponent, CardsComponent, ChartOneComponent]
 })
 export class DashboardModule { }

@@ -1,1 +1,23 @@
-<p>search-form works!</p>
+<form class="grid mt-5" [formGroup]="searchForm">
+    <div class="col-12 md:col-12 lg:col-3">
+        <label for="equipmentid" class="block text-lg mb-2">
+            รหัสครุภัณฑ์
+        </label>
+        <p-inputMask
+            mask="9-999-9999-999-9999/99-99(9)"
+            formControlName="equipmentid"
+            placeholder="x-xxx-xxxx-xxx-xxxx/xx-xx(x)"
+            [style]="{ width: '100%', 'letter-spacing': '1.5px' }"
+        ></p-inputMask>
+    </div>
+    <div class="col-12 md:col-12 lg:col-4">
+        <label for="equipmentname" class="block text-lg mb-2">
+            ชื่อครุภัณฑ์
+        </label>
+        <input
+            type="text"
+            pInputText
+            class="w-full"
+        />
+    </div>
+</form>

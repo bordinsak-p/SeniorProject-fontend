@@ -41,6 +41,8 @@ import { TreeTableModule } from 'primeng/treetable';
 import { QRCodeModule } from 'angularx-qrcode';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { SearchComponent } from './pages/search/search.component';
+import { InputMaskModule } from 'primeng/inputmask';
+import { InfoFormComponent } from './components/info-form/info-form.component';
 
 
 @NgModule({
@@ -48,6 +50,7 @@ import { SearchComponent } from './pages/search/search.component';
     QrcodeComponent,
     SearchFormComponent,
     SearchComponent,
+    InfoFormComponent,
   ],
   imports: [
     CommonModule,
@@ -88,7 +91,8 @@ import { SearchComponent } from './pages/search/search.component';
     TagModule,
     StepsModule,
     TooltipModule,
-    QRCodeModule
+    QRCodeModule,
+    InputMaskModule
   ],
   providers: [
     MessageService

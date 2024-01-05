@@ -6,7 +6,9 @@
     top: 0;
     width: 100%;
     padding: 0 2rem;
-    background-color: var(--surface-card);
+    // background-color: var(--surface-card);
+    background: linear-gradient(to top,#35d0ff 0,#396aff 100%)!important;
+    color: white;
     transition: left $transitionDuration;
     display: flex;
     align-items: center;
