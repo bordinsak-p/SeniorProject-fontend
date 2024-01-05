@@ -8,7 +8,7 @@
         <i class="pi pi-bars text-white"></i>
     </button>
 
-    <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()">
+    <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button text-white" (click)="layoutService.showProfileSidebar()">
         <i class="pi pi-ellipsis-v"></i>
     </button>
 
@@ -21,9 +21,9 @@
             <i class="pi pi-user"></i>
         </button>
         <div class="flex justify-content-center align-items-center">
-            <p style="font-size: 18px;">สวัสดีคุณ {{username}}</p>
+            <p style="font-size: 18px;">คุณ {{username}}</p>
         </div>
-        <button class="p-link layout-topbar-button" (click)="onLogOut()">
+        <button class="p-link layout-topbar-button text-white" (click)="onLogOut()">
            <span class="mr-3"> ออกจากระบบ </span> <i class="pi pi-sign-out"></i>
         </button>
     </div>

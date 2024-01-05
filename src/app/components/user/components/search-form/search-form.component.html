@@ -3,25 +3,25 @@
         <label for="firstname" class="block text-lg">
             ชื่อจริง
         </label>
-        <input type="text" pInputText class="w-full" formControlName="firstname" (keydown.enter)="onSearch()"/>
+        <input type="text" pInputText class="w-full" placeholder="กรอกชื่อ" formControlName="firstname" (keydown.enter)="onSearch()"/>
     </div>
     <div class="col-12 md:col-6 lg:col-3 lg:mt-5">
         <label for="lastname" class="block text-lg">
             นามสกุล
         </label>
-        <input type="text" pInputText class="w-full" formControlName="lastname" (keydown.enter)="onSearch()"/>
+        <input type="text" pInputText class="w-full" placeholder="กรอกนามสกุล" formControlName="lastname" (keydown.enter)="onSearch()"/>
     </div>
     <div class="col-12 md:col-6 lg:col-3 lg:mt-5">
         <label for="email" class="block text-lg">
             อีเมล
         </label>
-        <input type="text" pInputText class="w-full" formControlName="email" (keydown.enter)="onSearch()"/>
+        <input type="text" pInputText class="w-full" placeholder="กรอกอีเมล" formControlName="email" (keydown.enter)="onSearch()"/>
     </div>
     <div class="col-12 md:col-6 lg:col-3 lg:mt-5">
         <label for="username" class="block text-lg">
             ชื่อผู้ใช้งาน
         </label>
-        <input type="text" pInputText class="w-full" formControlName="username" (keydown.enter)="onSearch()"/>
+        <input type="text" pInputText class="w-full" placeholder="กรอกผู้ใช้งาน" formControlName="username" (keydown.enter)="onSearch()"/>
     </div>
     <div class="col-12 md:col-6 lg:col-2">
         <label for="role" class="block text-lg ">
@@ -30,7 +30,8 @@
         <p-dropdown 
         formControlName="role"
         [options]="roleOptions" 
-        placeholder="เลือกตำแหน่ง" 
+        placeholder="เลือกตำแหน่ง"
+        [style]="{width: '100%'}" 
         >
         </p-dropdown>
     </div>
@@ -38,7 +39,7 @@
         <label for="createdAt" class="block text-lg">
             วันที่สร้าง
         </label>
-        <p-calendar [showIcon]="true" [showButtonBar]="true" formControlName="createdAt"></p-calendar>
+        <p-calendar [style]="{width: '100%'}" [showIcon]="true" [showButtonBar]="true" formControlName="createdAt"></p-calendar>
     </div>
 </div>
 
