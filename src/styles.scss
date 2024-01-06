@@ -1,8 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@200;300;400;500;600;700&display=swap');
+
+@font-face {
+  font-family: 'Bai Jamjuree';
+  src: 
+    url('./assets/fonts/BaiJamjuree-Regular.ttf') format('truetype'),
+    url('./assets/fonts/BaiJamjuree-Bold.ttf') format('truetype'),
+    url('./assets/fonts/BaiJamjuree-ExtraLight.ttf') format('truetype'),
+    url('./assets/fonts/BaiJamjuree-Light.ttf') format('truetype'),
+    url('./assets/fonts/BaiJamjuree-Medium.ttf') format('truetype'),
+    url('./assets/fonts/BaiJamjuree-SemiBold.ttf') format('truetype');
+}
 
 * {
-  font-family: 'Bai Jamjuree', sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monaco, Consolas, monospace;
+  font-family: 'Bai Jamjuree', sans-serifม -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", monaco, Consolas, monospace;
 }
 
 /* เพิ่มเอง */

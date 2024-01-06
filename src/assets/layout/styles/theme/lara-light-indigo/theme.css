@@ -2806,7 +2806,7 @@ p-treeselect.p-treeselect-clearable .p-treeselect-clear-icon {
   outline: 0 none;
 }
 .p-datatable .p-datatable-tbody > tr {
-  background: #ffffff;
+  background: #e7faff;
   color: #495057;
   transition: box-shadow 0.2s;
 }
