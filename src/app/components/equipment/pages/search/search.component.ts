@@ -218,4 +218,7 @@ export class SearchComponent implements OnInit {
         })
     }
 
+    onPrint(e: any) {
+        console.log(e);
+    }
 }

@@ -22,20 +22,30 @@
     <ng-template pTemplate="body" let-equipments>
         <tr>
             <td class="text-center">
-                <i class="pi pi-wrench cursor-pointer text-red-500 text-lg" pTooltip="แจ้งซ่อม" tooltipPosition="top" (click)="onOpen($event, equipments.id)"></i>
+                <p-button
+                    (click)="onOpen($event, equipments.id)"
+                    pTooltip="แจ้งซ่อม"
+                    tooltipPosition="top"
+                    [style]="{
+                        padding: '8px',
+                        background: 'linear-gradient(170deg, rgba(255,0,0,1) 31%, rgba(255,199,199,1) 100%, rgba(255,255,255,1) 100%)',
+                        border: 'rgba(255,0,0,1)'
+                    }"
+                >
+                    <i class="pi pi-wrench cursor-pointer text-white"></i>
+                </p-button>
             </td>
             <td>{{ equipments.equipment_id }}</td>
             <td>{{ equipments.equipment_name }}</td>
             <td>{{ equipments.Location.location_name }}</td>
             <td>{{ equipments.Location.branch_info }}</td>
             <td>{{ equipments.Location.room_number }}</td>
-            <td>{{ equipments.budget_year | date:'dd/MM/yyyy' }}</td>
+            <td>{{ equipments.budget_year | date : "dd/MM/yyyy" }}</td>
         </tr>
     </ng-template>
     <ng-template pTemplate="emptymessage">
         <tr>
-          <td colspan="18" style="text-align: center">ไม่พบข้อมูล</td>
+            <td colspan="18" style="text-align: center">ไม่พบข้อมูล</td>
         </tr>
-      </ng-template>
+    </ng-template>
 </p-table>
-

@@ -11,10 +11,8 @@
     (onEditEvent)="onEdit($event)"
     (onSelectInRowEvent)="onSelectCheckBox($event)"
     (onOpenDialogEvent)="onOpenDialog($event)"
+    (onSelectInRowToPrintEvent)="onPrint($event)"
 ></app-search-table>
-
-<!-- (onSelectViewInRowEvent)="onGetViewId($event)" -->
-
 
 <p-toast></p-toast>
 <p-confirmDialog #cd [style]="{ width: '25vw' }" [breakpoints]="{'900px': '50vw', '600px': '75vw'}">

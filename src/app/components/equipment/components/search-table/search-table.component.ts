@@ -15,9 +15,9 @@ export class SearchTableComponent {
   @Output() onDeleteInRowEvent = new EventEmitter();
   @Output() onEditEvent = new EventEmitter();
   @Output() onDeleteEvent = new EventEmitter();
-  @Output() onSelectInRowEvent = new EventEmitter()
-  @Output() onOpenDialogEvent = new EventEmitter()
-  // @Output() onSelectViewInRowEvent = new EventEmitter()
+  @Output() onSelectInRowEvent = new EventEmitter();
+  @Output() onOpenDialogEvent = new EventEmitter();
+  @Output() onSelectInRowToPrintEvent = new EventEmitter()
 
   constructor() {
     // TODO
@@ -41,5 +41,9 @@ export class SearchTableComponent {
 
   onOpenDialog(e: any, id: number) {
     this.onOpenDialogEvent.emit({e, id})
+  }
+
+  onSelectToPrint() {
+    this.onSelectInRowToPrintEvent.emit(this.selectCheckBox)
   }
 }
